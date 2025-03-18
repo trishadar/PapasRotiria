@@ -1,3 +1,64 @@
-[gd_scene format=3 uid="uid://cus2uri4avjoi"]
+[gd_scene load_steps=3 format=3 uid="uid://cus2uri4avjoi"]
+
+[ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pupwl"]
 
 [node name="cook" type="Node2D"]
+script = ExtResource("1_6u6uf")
+
+[node name="orderButton" type="Button" parent="."]
+offset_left = 858.0
+offset_top = 16.0
+offset_right = 920.0
+offset_bottom = 79.0
+
+[node name="rollButton" type="Button" parent="."]
+offset_left = 929.0
+offset_top = 15.0
+offset_right = 991.0
+offset_bottom = 78.0
+
+[node name="cookButton" type="Button" parent="."]
+offset_left = 1004.0
+offset_top = 14.0
+offset_right = 1066.0
+offset_bottom = 77.0
+
+[node name="curryButton" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 13.0
+offset_right = 1138.0
+offset_bottom = 76.0
+
+[node name="takeOrderButton" type="Button" parent="."]
+offset_left = 926.0
+offset_top = 523.0
+offset_right = 1095.0
+offset_bottom = 561.0
+
+[node name="pauseButton" type="Button" parent="."]
+offset_left = 954.0
+offset_top = 601.0
+offset_right = 1067.0
+offset_bottom = 632.0
+text = "PAUSE"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(1011, 370.568)
+scale = Vector2(-282.818, 551.227)
+texture = SubResource("CanvasTexture_pupwl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(968.727, 48.2955)
+scale = Vector2(-367.364, 95.7728)
+texture = SubResource("CanvasTexture_pupwl")
+
+[connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
+[connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]
+[connection signal="pressed" from="curryButton" to="." method="_on_curry_button_pressed"]

@@ -1,3 +1,65 @@
-[gd_scene format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=3 format=3 uid="uid://cn2d54ksqsmb8"]
+
+[ext_resource type="Script" uid="uid://5vtg55qc4am8" path="res://roll.gd" id="1_us4ls"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2633c"]
 
 [node name="roll" type="Node2D"]
+script = ExtResource("1_us4ls")
+
+[node name="orderButton" type="Button" parent="."]
+offset_left = 857.0
+offset_top = 16.0
+offset_right = 919.0
+offset_bottom = 79.0
+
+[node name="rollButton" type="Button" parent="."]
+offset_left = 931.0
+offset_top = 15.0
+offset_right = 993.0
+offset_bottom = 78.0
+
+[node name="cookButton" type="Button" parent="."]
+offset_left = 1002.0
+offset_top = 14.0
+offset_right = 1064.0
+offset_bottom = 77.0
+
+[node name="curryButton" type="Button" parent="."]
+offset_left = 1074.0
+offset_top = 13.0
+offset_right = 1136.0
+offset_bottom = 76.0
+
+[node name="takeOrderButton" type="Button" parent="."]
+offset_left = 926.0
+offset_top = 523.0
+offset_right = 1095.0
+offset_bottom = 561.0
+text = "ONTO PAN"
+
+[node name="pauseButton" type="Button" parent="."]
+offset_left = 954.0
+offset_top = 601.0
+offset_right = 1067.0
+offset_bottom = 632.0
+text = "PAUSE"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(1011, 370.568)
+scale = Vector2(-282.818, 551.227)
+texture = SubResource("CanvasTexture_2633c")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(968.727, 48.2955)
+scale = Vector2(-367.364, 95.7728)
+texture = SubResource("CanvasTexture_2633c")
+
+[connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
+[connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]
+[connection signal="pressed" from="curryButton" to="." method="_on_curry_button_pressed"]
