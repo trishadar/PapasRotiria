@@ -11,5 +11,5 @@ config_version=5
 [application]
 
 config/name="PapasRotiria"
-run/main_scene="uid://cpj4n04lsaqat"
+run/main_scene="uid://df6qbe7a8i3nw"
 config/features=PackedStringArray("4.4", "Forward Plus")
