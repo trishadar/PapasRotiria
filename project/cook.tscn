@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cus2uri4avjoi"]
+[gd_scene load_steps=15 format=3 uid="uid://cus2uri4avjoi"]
 
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
+[ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pupwl"]
 
@@ -10,6 +11,63 @@
 size = Vector2(223, 332)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ciqc8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
+atlas = ExtResource("2_ciqc8")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8dlq"]
+atlas = ExtResource("2_ciqc8")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l328"]
+atlas = ExtResource("2_ciqc8")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fifm2"]
+atlas = ExtResource("2_ciqc8")
+region = Rect2(0, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00dve"]
+atlas = ExtResource("2_ciqc8")
+region = Rect2(500, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7hq0"]
+atlas = ExtResource("2_ciqc8")
+region = Rect2(1000, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ltjv"]
+atlas = ExtResource("2_ciqc8")
+region = Rect2(0, 1000, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o64d8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgwpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8dlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l328")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fifm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00dve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7hq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ltjv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="cook" type="Node2D"]
 script = ExtResource("1_6u6uf")
@@ -90,6 +148,23 @@ z_index = -5
 position = Vector2(1009.43, 122.546)
 scale = Vector2(-246.364, 30.8728)
 texture = SubResource("CanvasTexture_ciqc8")
+
+[node name="FryingPan1" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FryingPan1"]
+position = Vector2(279, 475)
+sprite_frames = SubResource("SpriteFrames_o64d8")
+autoplay = "default"
+frame = 6
+frame_progress = 0.715059
+
+[node name="FryingPan2" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FryingPan2"]
+position = Vector2(615, 476)
+sprite_frames = SubResource("SpriteFrames_o64d8")
+autoplay = "default"
+frame_progress = 0.242565
 
 [connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
