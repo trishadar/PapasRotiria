@@ -13,3 +13,7 @@ config_version=5
 config/name="PapasRotiria"
 run/main_scene="uid://cttn3ftflslw7"
 config/features=PackedStringArray("4.4", "Forward Plus")
+
+[autoload]
+
+globalData="*res://globalData.gd"

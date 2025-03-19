@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://df6qbe7a8i3nw"]
+[gd_scene load_steps=5 format=3 uid="uid://df6qbe7a8i3nw"]
 
 [ext_resource type="Script" uid="uid://b60t24grpvux8" path="res://order.gd" id="1_vwbfx"]
+[ext_resource type="PackedScene" uid="uid://wul3ylsn3vef" path="res://ticket.tscn" id="2_vdalh"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3rmgd"]
 
@@ -87,6 +88,9 @@ rotation = -3.14159
 scale = Vector2(0.0027221, -0.0104414)
 shape = SubResource("RectangleShape2D_vwbfx")
 debug_color = Color(0, 0, 0, 0.192157)
+
+[node name="ticket" parent="." instance=ExtResource("2_vdalh")]
+position = Vector2(677, 324)
 
 [connection signal="pressed" from="curryButton" to="." method="_on_curry_button_pressed"]
 [connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]
