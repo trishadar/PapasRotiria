@@ -1,8 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=6 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_uvy32"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kx0aq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27nkd"]
+size = Vector2(223, 332)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_27nkd"]
 
 [node name="curry" type="Node2D"]
 script = ExtResource("1_kx0aq")
@@ -58,6 +65,32 @@ z_index = -5
 position = Vector2(968.727, 48.2955)
 scale = Vector2(-367.364, 95.7728)
 texture = SubResource("CanvasTexture_uvy32")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(968.727, 48.2955)
+rotation = 3.14159
+scale = Vector2(367.364, -95.7728)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.18359, 0.18359, 0.18359, 1)
+z_index = -4
+position = Vector2(-0.11528, 2.84267)
+scale = Vector2(0.613735, 3.46939)
+texture = SubResource("CanvasTexture_kx0aq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.11371, 2.82653)
+rotation = -3.14159
+scale = Vector2(0.0027221, -0.0104414)
+shape = SubResource("RectangleShape2D_27nkd")
+debug_color = Color(0, 0, 0, 0.192157)
+
+[node name="steps" type="Sprite2D" parent="."]
+modulate = Color(0.355314, 0.355314, 0.355313, 1)
+z_index = -5
+position = Vector2(1009.43, 122.546)
+scale = Vector2(-246.364, 30.8728)
+texture = SubResource("CanvasTexture_27nkd")
 
 [connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
