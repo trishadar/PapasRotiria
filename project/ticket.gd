@@ -8,6 +8,7 @@ extends Node2D
 
 
 func _on_ready() -> void:
+	visible = false
 	ticketNumber.text = str(globalData.ticketNum)
 	randomNum = randi() %3
 	dough.text = str(globalData.doughs[randomNum])
@@ -15,4 +16,5 @@ func _on_ready() -> void:
 	curry.text = str(globalData.curries[randomNum])
 	randomNum = randi() %3
 	time.text = str(globalData.times[randomNum])
+	
 	
