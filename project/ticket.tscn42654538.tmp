@@ -1,0 +1,155 @@
+[gd_scene load_steps=4 format=3 uid="uid://wul3ylsn3vef"]
+
+[ext_resource type="Script" uid="uid://cnr0kmcxk43t2" path="res://ticket.gd" id="1_y5k4v"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_aiqyg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5k4v"]
+size = Vector2(223, 332)
+
+[node name="ticket" type="Node2D"]
+script = ExtResource("1_y5k4v")
+
+[node name="title" type="Label" parent="."]
+z_index = 5
+offset_left = -98.0
+offset_top = -162.0
+offset_right = 92.0
+offset_bottom = -123.0
+theme_override_colors/font_color = Color(0.84684, 0.50345, 0.431772, 1)
+theme_override_font_sizes/font_size = 22
+text = "Papa's Roti"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ticketNumber" type="Label" parent="."]
+z_index = 5
+offset_left = -98.0
+offset_top = -127.0
+offset_right = 92.0
+offset_bottom = -81.0
+theme_override_colors/font_color = Color(0.84684, 0.50345, 0.431772, 1)
+theme_override_font_sizes/font_size = 28
+text = "TICKETNUM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dough" type="Label" parent="."]
+z_index = 5
+offset_left = -53.0
+offset_top = -74.0
+offset_right = 111.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "DOUGH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="curry" type="Label" parent="."]
+z_index = 5
+offset_left = -53.0
+offset_top = 80.0
+offset_right = 111.0
+offset_bottom = 163.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "CURRY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="time" type="Label" parent="."]
+z_index = 5
+offset_left = -53.0
+offset_top = 1.0
+offset_right = 111.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "TIME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dashes" type="Label" parent="."]
+z_index = 5
+offset_left = -111.0
+offset_top = -108.0
+offset_right = 110.0
+offset_bottom = -61.0
+theme_override_colors/font_color = Color(0.84684, 0.50345, 0.431772, 1)
+theme_override_font_sizes/font_size = 19
+text = "-----------------------------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dashes2" type="Label" parent="."]
+z_index = 5
+offset_left = -111.0
+offset_top = -151.0
+offset_right = 110.0
+offset_bottom = -104.0
+theme_override_colors/font_color = Color(0.84684, 0.50345, 0.431772, 1)
+theme_override_font_sizes/font_size = 19
+text = "-----------------------------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dashes3" type="Label" parent="."]
+z_index = 5
+offset_left = -111.0
+offset_top = 143.0
+offset_right = 110.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0.84684, 0.50345, 0.431772, 1)
+theme_override_font_sizes/font_size = 19
+text = "-----------------------------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dashes4" type="Label" parent="."]
+z_index = 5
+offset_left = 30.0
+offset_top = -75.0
+offset_right = 273.0
+offset_bottom = 85.0
+rotation = 1.5708
+theme_override_colors/font_color = Color(0.84684, 0.50345, 0.431772, 1)
+theme_override_font_sizes/font_size = 19
+text = "-----------------------------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(968.727, 48.2955)
+rotation = 3.14159
+scale = Vector2(367.364, -95.7728)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+z_index = -4
+position = Vector2(2.63812, -0.489945)
+scale = Vector2(0.611013, 3.49996)
+texture = SubResource("CanvasTexture_aiqyg")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.972174, 0.847292, 0.869639, 1)
+z_index = -4
+position = Vector2(2.63812, -0.905717)
+scale = Vector2(0.611013, 0.785677)
+texture = SubResource("CanvasTexture_aiqyg")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.972174, 0.847292, 0.869639, 1)
+z_index = -4
+position = Vector2(2.63812, 0.784829)
+scale = Vector2(0.611013, 0.950417)
+texture = SubResource("CanvasTexture_aiqyg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = -5
+position = Vector2(2.63697, -0.493856)
+rotation = -3.14159
+scale = Vector2(0.0027221, -0.0104414)
+shape = SubResource("RectangleShape2D_y5k4v")
+debug_color = Color(0, 0, 0, 0.192157)
+
+[connection signal="ready" from="." to="." method="_on_ready"]
