@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=8 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 
@@ -10,6 +10,11 @@
 size = Vector2(223, 332)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_27nkd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx0aq"]
+size = Vector2(787.998, 10.0002)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bu7om"]
 
 [node name="curry" type="Node2D"]
 script = ExtResource("1_kx0aq")
@@ -91,6 +96,25 @@ z_index = -5
 position = Vector2(1009.43, 122.546)
 scale = Vector2(-246.364, 30.8728)
 texture = SubResource("CanvasTexture_27nkd")
+
+[node name="ticketLine2" type="Area2D" parent="."]
+position = Vector2(968.727, 48.2955)
+rotation = 3.14159
+scale = Vector2(367.364, -95.7728)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ticketLine2"]
+position = Vector2(1.56447, -0.316341)
+rotation = -3.14159
+scale = Vector2(0.0027221, -0.0104414)
+shape = SubResource("RectangleShape2D_kx0aq")
+debug_color = Color(0, 0, 0, 0.192157)
+
+[node name="ticketLine" type="Sprite2D" parent="ticketLine2"]
+modulate = Color(0, 0, 0, 1)
+z_index = -10
+position = Vector2(1.06897, -0.315862)
+scale = Vector2(3.13194, 0.0696732)
+texture = SubResource("CanvasTexture_bu7om")
 
 [connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
