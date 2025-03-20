@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjxq4gbsr4ou6"]
+[gd_scene load_steps=3 format=3 uid="uid://bjxq4gbsr4ou6"]
+
+[ext_resource type="Script" uid="uid://ch02t2l8o3sa5" path="res://roti.gd" id="1_80i1t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_c576d"]
 
 [node name="Roti" type="Node2D"]
+script = ExtResource("1_80i1t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(143.5, 90.25)
 scale = Vector2(-286, 181.5)
 texture = SubResource("CanvasTexture_c576d")
+
+[connection signal="ready" from="." to="." method="_on_ready"]

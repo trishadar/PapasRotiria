@@ -96,9 +96,7 @@ texture = SubResource("CanvasTexture_vrgdt")
 [node name="Roti" parent="." instance=ExtResource("2_vrgdt")]
 position = Vector2(232, 386)
 
-[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
-[connection signal="ready" from="orderButton" to="." method="_on_order_button_ready"]
 [connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]
 [connection signal="pressed" from="curryButton" to="." method="_on_curry_button_pressed"]
