@@ -6,6 +6,7 @@ extends Node2D
 @onready var rollButton = $rollButton
 @onready var cookButton = $cookButton
 @onready var curryButton = $curryButton
+@onready var takeOrderButton = $takeOrderButton
 
 func _on_order_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -26,9 +27,11 @@ func _on_curry_button_pressed() -> void:
 func _on_take_order_button_pressed() -> void:
 	ticket.visible = true
 	globalData.ticketOccupied = true
+	takeOrderButton.text = " "
 
 func _on_ready() -> void:
 	help.text = globalData.helpText
+	takeOrderButton.text = "Take Order"
 	
 func _process(delta):
 	if orderButton.is_hovered():
