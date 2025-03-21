@@ -7,6 +7,7 @@ extends Node2D
 @onready var randomNum = -1
 var dragging = false
 var offset = Vector2()
+var size: Vector2 = Vector2(220, 330)  # Define a default size (width, height)
 
 
 func _on_ready() -> void:
@@ -24,15 +25,15 @@ func _on_ready() -> void:
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed and is_mouse_over(event.position):
+			if event.pressed and is_mouse_over(get_global_mouse_position()):
 				dragging = true
-				offset = position - event.position
+				offset = position - get_global_mouse_position()
 			else:
 				dragging = false
 				
 	if dragging and event is InputEventMouseMotion:
-		position = event.position + offset
+		position = get_global_mouse_position() + offset
 		
 func is_mouse_over(mouse_position: Vector2) -> bool:
-	var global_rect = Rect2(global_position - (get_size() / 2), get_size())
+	var global_rect = Rect2(position - (size / 2), size)
 	return global_rect.has_point(mouse_position)
