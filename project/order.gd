@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var ticket = $ticket
 @onready var help = $help
 @onready var orderButton = $orderButton
 @onready var rollButton = $rollButton
@@ -8,6 +7,12 @@ extends Node2D
 @onready var curryButton = $curryButton
 @onready var takeOrderButton = $takeOrderButton
 @onready var sideBox = $sideBox
+var sceneToSpawn: PackedScene = preload("res://ticket.tscn")
+var zIndex = 10
+
+var timer: Timer
+var target_time: int
+var firstTimerStarted = false
 
 func _on_order_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -26,13 +31,38 @@ func _on_curry_button_pressed() -> void:
 
 
 func _on_take_order_button_pressed() -> void:
-	ticket.visible = true
-	globalData.ticketOccupied = true
-	takeOrderButton.text = " "
+	if (globalData.canTakeOrder == true):
+		spawn_scene()
+		globalData.ticketOccupied = true
+		takeOrderButton.text = " "
+		globalData.canTakeOrder = false
+		
+		# if firstTimerStarted == false:
+			# start first timer
+			#start_new_timer()
+			#firstTimerStarted = true
 
 func _on_ready() -> void:
 	help.text = globalData.helpText
 	takeOrderButton.text = "Take Order"
+	
+	# create timer
+	#timer = Timer.new()
+	#timer.one_shot = true
+	#timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
+	#add_child(timer)
+	
+#func start_new_timer() -> void:
+	# generate random target time between 15 and 60 seconds
+	#target_time = randi() % 5 + 5
+	#timer.start(target_time)
+	#print("timer started: ", target_time)
+	
+#func _on_Timer_timeout() -> void:
+	#globalData.canTakeOrder = true
+	#print("timer ended")
+	#takeOrderButton.text = "Take Order"
+	#start_new_timer()
 	
 func _process(delta):
 	if orderButton.is_hovered():
@@ -50,3 +80,15 @@ func _process(delta):
 	else:
 		globalData.helpText = "..."
 		help.text = globalData.helpText
+		
+func spawn_scene():
+	if sceneToSpawn:
+		print("ticket spawned")
+		globalData.ticketNum += 1
+		var instance = sceneToSpawn.instantiate()
+		add_child(instance)
+		instance.position = Vector2(1011, 318)
+		instance.visible = true
+		zIndex += 1
+		instance.z_index = zIndex
+		globalData.ticketOccupied

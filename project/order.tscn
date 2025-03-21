@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://df6qbe7a8i3nw"]
+[gd_scene load_steps=5 format=3 uid="uid://df6qbe7a8i3nw"]
 
 [ext_resource type="Script" uid="uid://b60t24grpvux8" path="res://order.gd" id="1_vwbfx"]
-[ext_resource type="PackedScene" uid="uid://wul3ylsn3vef" path="res://ticket.tscn" id="2_vdalh"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3rmgd"]
 
@@ -110,10 +109,6 @@ z_index = -10
 position = Vector2(1.06897, -0.315862)
 scale = Vector2(3.13194, 0.0696732)
 texture = SubResource("CanvasTexture_3rmgd")
-
-[node name="ticket" parent="." instance=ExtResource("2_vdalh")]
-z_index = 5
-position = Vector2(1011, 318)
 
 [node name="help" type="Label" parent="."]
 offset_left = 885.0
