@@ -6,8 +6,12 @@ extends Node2D
 @onready var time = $time
 @onready var randomNum = -1
 var dragging = false
-var offset = Vector2()
-var size: Vector2 = Vector2(220, 330)  # Define a default size (width, height)
+var initial_mouse_position: Vector2
+var initial_scale: Vector2
+var scale_factor: float = 0.35  # Factor by which the scene will shrink
+var sizeX = 220
+var sizeY = 330
+var hasShrunk = false
 
 
 func _on_ready() -> void:
@@ -20,20 +24,34 @@ func _on_ready() -> void:
 	randomNum = randi() %3
 	time.text = str(globalData.times[randomNum])
 	
+	initial_scale = scale
 	set_process_input(true)
 	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed and is_mouse_over(get_global_mouse_position()):
+			if event.pressed and globalData.ticketOccupied == true and is_mouse_over(get_global_mouse_position()):
 				dragging = true
-				offset = position - get_global_mouse_position()
+				initial_mouse_position = get_global_mouse_position()
+				shrink_scene()
 			else:
 				dragging = false
 				
 	if dragging and event is InputEventMouseMotion:
-		position = get_global_mouse_position() + offset
+		var delta = get_global_mouse_position() - initial_mouse_position
+		position += delta  # Update position based on mouse movement
+		initial_mouse_position = get_global_mouse_position()
 		
 func is_mouse_over(mouse_position: Vector2) -> bool:
-	var global_rect = Rect2(position - (size / 2), size)
+	var global_rect = Rect2(position - (get_rect_size() / 2), get_rect_size())
 	return global_rect.has_point(mouse_position)
+
+func get_rect_size() -> Vector2:
+	return Vector2(sizeX, sizeY)
+
+func shrink_scene() -> void:
+	if (hasShrunk == false and globalData.ticketOccupied == true):
+		scale *= scale_factor  # Shrink the scene by the defined scale factor
+		sizeX = scale_factor * 220
+		sizeY = scale_factor * 330
+		hasShrunk = true

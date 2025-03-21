@@ -116,6 +116,20 @@ position = Vector2(1.06897, -0.315862)
 scale = Vector2(3.13194, 0.0696732)
 texture = SubResource("CanvasTexture_bu7om")
 
+[node name="dragTicketLabel" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 148.0
+offset_right = 1123.0
+offset_bottom = 489.0
+theme_override_colors/font_color = Color(0.553449, 0.564867, 0.553767, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 27
+text = "DRAG
+TICKET
+HERE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]

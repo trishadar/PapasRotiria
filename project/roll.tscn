@@ -96,6 +96,20 @@ texture = SubResource("CanvasTexture_vrgdt")
 [node name="Roti" parent="." instance=ExtResource("2_vrgdt")]
 position = Vector2(232, 386)
 
+[node name="dragTicketLabel" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 148.0
+offset_right = 1123.0
+offset_bottom = 489.0
+theme_override_colors/font_color = Color(0.553449, 0.564867, 0.553767, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 27
+text = "DRAG
+TICKET
+HERE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
 [connection signal="ready" from="orderButton" to="." method="_on_order_button_ready"]
