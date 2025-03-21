@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=6 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://5vtg55qc4am8" path="res://roll.gd" id="1_us4ls"]
-[ext_resource type="PackedScene" uid="uid://bjxq4gbsr4ou6" path="res://roti.tscn" id="2_vrgdt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2633c"]
 
@@ -92,9 +91,6 @@ z_index = -5
 position = Vector2(1009.43, 122.546)
 scale = Vector2(-246.364, 30.8728)
 texture = SubResource("CanvasTexture_vrgdt")
-
-[node name="Roti" parent="." instance=ExtResource("2_vrgdt")]
-position = Vector2(232, 386)
 
 [node name="dragTicketLabel" type="Label" parent="."]
 offset_left = 902.0
