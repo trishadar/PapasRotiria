@@ -12,6 +12,7 @@ var scale_factor: float = 0.35  # Factor by which the scene will shrink
 var sizeX = 220
 var sizeY = 330
 var hasShrunk = false
+var side_box_position: Vector2 = Vector2(1011, 318)
 
 
 func _on_ready() -> void:
@@ -34,8 +35,14 @@ func _input(event):
 				dragging = true
 				initial_mouse_position = get_global_mouse_position()
 				shrink_scene()
+				globalData.ticketOccupied = false
 			else:
 				dragging = false
+				if (position.x >= 750):
+					move_to_side_box()
+					globalData.ticketOccupied = true
+				else:
+					move_to_top()
 				
 	if dragging and event is InputEventMouseMotion:
 		var delta = get_global_mouse_position() - initial_mouse_position
@@ -55,3 +62,13 @@ func shrink_scene() -> void:
 		sizeX = scale_factor * 220
 		sizeY = scale_factor * 330
 		hasShrunk = true
+		
+func move_to_side_box() -> void:
+	position = side_box_position
+	scale = Vector2(1,1)
+	sizeX = 220
+	sizeY = 330
+	hasShrunk = false
+	
+func move_to_top() -> void:
+	position.y = 65

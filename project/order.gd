@@ -7,6 +7,7 @@ extends Node2D
 @onready var cookButton = $cookButton
 @onready var curryButton = $curryButton
 @onready var takeOrderButton = $takeOrderButton
+@onready var sideBox = $sideBox
 
 func _on_order_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
