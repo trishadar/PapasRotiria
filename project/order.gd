@@ -12,7 +12,6 @@ var zIndex = 10
 
 var timer: Timer
 var target_time: int
-var firstTicketSpawned = false
 
 var currentTicket
 
@@ -33,18 +32,15 @@ func _on_curry_button_pressed() -> void:
 
 
 func _on_take_order_button_pressed() -> void:
-	if (globalData.canTakeOrder == true):
+	if (globalData.pendingTickets.size() >= 1):
 		spawn_scene()
 		globalData.ticketOccupied = true
-		# takeOrderButton.text = " "
-		globalData.canTakeOrder = false
-		globalData.remove_ticket(currentTicket)
-		firstTicketSpawned = true
+		globalData.remove_ticket(globalData.currentTicket)
 		
 
 func _on_ready() -> void:
 	help.text = globalData.helpText
-	takeOrderButton.text = "Take Order"
+	# takeOrderButton.text = "Take Order"
 	
 	# create timer
 	#timer = Timer.new()
@@ -81,22 +77,18 @@ func _process(delta):
 		globalData.helpText = "..."
 		help.text = globalData.helpText
 		
-	if firstTicketSpawned == true:
-		if (globalData.pendingTickets.size() >= 1):
-			takeOrderButton.text = "Take Order"
-		else:
-			takeOrderButton.text = " "
+	if (globalData.pendingTickets.size() >= 1):
+		takeOrderButton.text = "Take Order"
+	else:
+		takeOrderButton.text = " "
 		
 func spawn_scene():
-	if sceneToSpawn:
-		print("ticket spawned")
-		globalData.ticketNum += 1
-		var instance = sceneToSpawn.instantiate()
-		currentTicket = instance
-		add_child(instance)
-		instance.position = Vector2(1011, 318)
-		instance.visible = true
-		zIndex += 1
-		instance.z_index = zIndex
-		globalData.ticketOccupied
-		globalData.add_ticket(instance)
+	print("ticket spawned")
+	var instance = globalData.pendingTickets[0]
+	add_child(instance)
+	
+	instance.position = Vector2(1011, 318)
+	instance.visible = true
+	zIndex += 1
+	instance.z_index = zIndex
+	

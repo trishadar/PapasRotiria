@@ -68,13 +68,11 @@ func start_new_timer() -> void:
 	print("timer started: ", target_time)
 	
 func _on_Timer_timeout() -> void:
-	globalData.canTakeOrder = true
+	canTakeOrder = true
 	print("timer ended")
-	globalData.ticketNum += 1
+	ticketNum += 1
 	var instance = ticket_scene.instantiate()
 	currentTicket = instance
-	add_child(instance)
-	instance.position = Vector2(1011, 318)
-	instance.visible = true
 	add_ticket(instance)
 	start_new_timer()
+	
