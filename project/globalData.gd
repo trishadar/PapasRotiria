@@ -13,6 +13,7 @@ var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var pendingTickets: Array = []
 var allTickets: Array = []
 var currentTicket
+var storedTickets: Array = []
 
 var timer: Timer
 var target_time: int

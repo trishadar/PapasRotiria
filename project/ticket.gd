@@ -80,5 +80,9 @@ func move_to_side_box() -> void:
 	sizeY = 330
 	hasShrunk = false
 	
+	if globalData.storedTickets.has(self):
+		globalData.storedTickets.erase(self)
+	
 func move_to_top() -> void:
 	position.y = 65
+	globalData.storedTickets.append(self)
