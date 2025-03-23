@@ -14,20 +14,20 @@ var timer: Timer
 var target_time: int
 
 var currentTicket
-
-func _on_order_button_pressed() -> void:
+	
+func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
 
 
-func _on_roll_button_pressed() -> void:
+func change_to_roll() -> void:
 	get_tree().change_scene_to_file("res://roll.tscn")
 
 
-func _on_cook_button_pressed() -> void:
+func change_to_cook() -> void:
 	get_tree().change_scene_to_file("res://cook.tscn")
 
 
-func _on_curry_button_pressed() -> void:
+func change_to_curry() -> void:
 	get_tree().change_scene_to_file("res://curry.tscn")
 
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=3 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
+[ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_27nkd"]
 
 [node name="curry" type="Node2D"]
 script = ExtResource("1_kx0aq")
@@ -11,3 +12,5 @@ offset_top = 523.0
 offset_right = 1095.0
 offset_bottom = 561.0
 text = "FINISH ORDER"
+
+[node name="sidebar" parent="." instance=ExtResource("2_27nkd")]

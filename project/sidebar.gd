@@ -7,19 +7,23 @@ extends Node2D
 @onready var curryButton = $curryButton
 
 func _on_order_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://order.tscn")
+	var main_scene = get_parent()
+	main_scene.change_to_order()
 
 
 func _on_roll_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://roll.tscn")
+	var main_scene = get_parent()
+	main_scene.change_to_roll()
 
 
 func _on_cook_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://cook.tscn")
+	var main_scene = get_parent()
+	main_scene.change_to_cook()
 
 
 func _on_curry_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://curry.tscn")
+	var main_scene = get_parent()
+	main_scene.change_to_curry()
 
 func _on_ready() -> void:
 	help.text = globalData.helpText

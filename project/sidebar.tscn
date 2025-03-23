@@ -134,3 +134,8 @@ HERE"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="curryButton" to="." method="_on_curry_button_pressed"]
+[connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]
+[connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
