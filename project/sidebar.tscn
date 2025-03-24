@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://hsfseme0taar"]
+[gd_scene load_steps=4 format=3 uid="uid://hsfseme0taar"]
 
 [ext_resource type="Script" uid="uid://cxq15thre71pj" path="res://sidebar.gd" id="1_1nfj0"]
 
@@ -6,11 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwvo2"]
 size = Vector2(223, 332)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoeub"]
-size = Vector2(787.998, 10.0002)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_thefd"]
 
 [node name="sidebar" type="Node2D"]
 script = ExtResource("1_1nfj0")
@@ -90,25 +85,6 @@ rotation = -3.14159
 scale = Vector2(0.0027221, -0.0104414)
 shape = SubResource("RectangleShape2D_uwvo2")
 debug_color = Color(0, 0, 0, 0.192157)
-
-[node name="ticketLine3" type="Area2D" parent="."]
-position = Vector2(968.727, 48.2955)
-rotation = 3.14159
-scale = Vector2(367.364, -95.7728)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ticketLine3"]
-position = Vector2(1.56447, -0.316341)
-rotation = -3.14159
-scale = Vector2(0.0027221, -0.0104414)
-shape = SubResource("RectangleShape2D_hoeub")
-debug_color = Color(0, 0, 0, 0.192157)
-
-[node name="ticketLine" type="Sprite2D" parent="ticketLine3"]
-modulate = Color(0, 0, 0, 1)
-z_index = -10
-position = Vector2(1.06897, -0.315862)
-scale = Vector2(3.13194, 0.0696732)
-texture = SubResource("CanvasTexture_thefd")
 
 [node name="help" type="Label" parent="."]
 offset_left = 885.0
