@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
 [ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
-[ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="3_lgwpa"]
+[ext_resource type="PackedScene" path="res://sidebar.tscn" id="3_lgwpa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
 atlas = ExtResource("2_ciqc8")

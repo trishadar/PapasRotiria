@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://5vtg55qc4am8" path="res://roll.gd" id="1_us4ls"]
-[ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_vrgdt"]
+[ext_resource type="PackedScene" path="res://sidebar.tscn" id="2_vrgdt"]
 
 [node name="roll" type="Node2D"]
 script = ExtResource("1_us4ls")
