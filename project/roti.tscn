@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjxq4gbsr4ou6"]
+[gd_scene load_steps=4 format=3 uid="uid://bef638wepm82s"]
 
-[ext_resource type="Script" uid="uid://ch02t2l8o3sa5" path="res://roti.gd" id="1_80i1t"]
+[ext_resource type="Script" uid="uid://hu67st48h87l" path="res://drag_object.gd" id="1_boac2"]
+[ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="2_6olxt"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_c576d"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_00dve"]
+radius = 50.01
 
 [node name="Roti" type="Node2D"]
-script = ExtResource("1_80i1t")
+script = ExtResource("1_boac2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(143.5, 90.25)
-scale = Vector2(-286, 181.5)
-texture = SubResource("CanvasTexture_c576d")
+position = Vector2(6, -35)
+scale = Vector2(0.40625, 0.401369)
+texture = ExtResource("2_6olxt")
 
-[connection signal="ready" from="." to="." method="_on_ready"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_00dve")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

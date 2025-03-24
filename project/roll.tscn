@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://5vtg55qc4am8" path="res://roll.gd" id="1_us4ls"]
-[ext_resource type="PackedScene" uid="uid://bjxq4gbsr4ou6" path="res://roti.tscn" id="2_vrgdt"]
+[ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2633c"]
 
