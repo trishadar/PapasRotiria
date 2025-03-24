@@ -1,5 +1,7 @@
 extends Node2D
 
+var ticket_scene: PackedScene = preload("res://ticket.tscn")
+var viewingTicketNode = null
 var sceneToSpawn = preload("res://roti.tscn")
 
 var spawn_count: int = 0

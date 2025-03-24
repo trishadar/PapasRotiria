@@ -14,14 +14,10 @@ var hasShrunk = false
 var side_box_position: Vector2 = Vector2(1011, 318)
 var thisTicketOccupied = false
 var thisTicketStored = false
+var parent = get_parent()
 
 
 func _on_ready() -> void:
-	print(ticketNumber)  # Check if these are initialized properly
-	print(dough)
-	print(curry)
-	print(time)
-	
 	ticketNumber.text = "ticketNumber"
 	dough.text = "dough"
 	curry.text = "curry"
@@ -37,6 +33,12 @@ func set_up(data):
 	dough.text = data.get("dough", "N/A")
 	curry.text = data.get("curry", "N/A")
 	time.text = data.get("time", "N/A")
+	position.x = data.get("positionX", "N/A")
+	position.y = data.get("positionY", "N/A")
+	scale.x = data.get("scaleX", "N/A")
+	scale.y = data.get("scaleY", "N/A")
+	sizeX = data.get("sizeX", "N/A")
+	sizeY = data.get("sizeY", "N/A")
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -82,6 +84,32 @@ func shrink_scene() -> void:
 		hasShrunk = true
 		
 func move_to_side_box() -> void:
+	
+	if globalData.storedTickets.has({
+		"ticketNumber": ticketNumber.text,
+		"dough": dough.text,
+		"curry": curry.text,
+		"time": time.text,
+		"positionX": position.x,
+		"positionY": position.y,
+		"scaleX": scale.x,
+		"scaleY": scale.y,
+		"sizeX": sizeX,
+		"sizeY": sizeY
+	}):
+		globalData.storedTickets.erase({
+		"ticketNumber": ticketNumber.text,
+		"dough": dough.text,
+		"curry": curry.text,
+		"time": time.text,
+		"positionX": position.x,
+		"positionY": position.y,
+		"scaleX": scale.x,
+		"scaleY": scale.y,
+		"sizeX": sizeX,
+		"sizeY": sizeY
+	})
+	
 	position = side_box_position
 	scale = Vector2(1,1)
 	sizeX = 220
@@ -92,14 +120,58 @@ func move_to_side_box() -> void:
 		"ticketNumber": ticketNumber.text,
 		"dough": dough.text,
 		"curry": curry.text,
-		"time": time.text
+		"time": time.text,
+		"positionX": 1011,
+		"positionY": 318,
+		"scaleX": scale.x,
+		"scaleY": scale.y,
+		"sizeX": sizeX,
+		"sizeY": sizeY
 	}
 	
-	if globalData.storedTickets.has(self):
-		globalData.storedTickets.erase(self)
+	var index = int(ticketNumber.text) -1
+	globalData.allTickets[index]["positionX"] = position.x
+	globalData.allTickets[index]["positionY"] = position.y
+	globalData.allTickets[index]["scaleX"] = scale.x
+	globalData.allTickets[index]["scaleY"] = scale.y
+	globalData.allTickets[index]["sizeX"] = sizeX
+	globalData.allTickets[index]["sizeY"] = sizeY
+	
+	parent = get_parent()
+	if parent:
+		parent.viewingTicketNode = self  # Assign the property if parent exists
+	else:
+		print("Parent node is null")
+	
+	
 	
 func move_to_top() -> void:
 	position.y = 65
-	globalData.storedTickets.append(self)
+	globalData.storedTickets.append({
+		"ticketNumber": ticketNumber.text,
+		"dough": dough.text,
+		"curry": curry.text,
+		"time": time.text,
+		"positionX": position.x,
+		"positionY": position.y,
+		"scaleX": scale.x,
+		"scaleY": scale.y,
+		"sizeX": scale_factor*220,
+		"sizeY": scale_factor*330
+	})
 	globalData.ticketOccupied = false
-	globalData.viewingTicket = null
+	#globalData.viewingTicket = null
+	var index = int(ticketNumber.text) -1
+	globalData.allTickets[index]["positionX"] = position.x
+	globalData.allTickets[index]["positionY"] = position.y
+	globalData.allTickets[index]["scaleX"] = scale.x
+	globalData.allTickets[index]["scaleY"] = scale.y
+	globalData.allTickets[index]["sizeX"] = scale_factor*220
+	globalData.allTickets[index]["sizeY"] = scale_factor*330
+	
+	parent = get_parent()
+	if parent:
+		#parent.viewingTicketNode = null  # Assign the property if parent exists
+		pass
+	else:
+		print("Parent node is null")

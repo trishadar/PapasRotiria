@@ -1,5 +1,8 @@
 extends Node2D
 
+var ticket_scene: PackedScene = preload("res://ticket.tscn")
+var viewingTicketNode = null
+
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
 

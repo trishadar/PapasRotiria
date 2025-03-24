@@ -86,7 +86,14 @@ func _on_Timer_timeout() -> void:
 		"ticketNumber": ticketNumber,
 		"dough": dough,
 		"curry": curry,
-		"time": time
+		"time": time,
+		"positionX": 1011,
+		"positionY": 318,
+		"scaleX": 1,
+		"scaleY": 1, 
+		"sizeX": 220,
+		"sizeY": 330
+		
 	}
 	
 	currentTicket = ticket_data
