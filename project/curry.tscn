@@ -47,6 +47,12 @@ position = Vector2(78.5, 193.5)
 scale = Vector2(19, 353)
 texture = SubResource("CanvasTexture_0pmta")
 
+[node name="Sprite2D2" type="Sprite2D" parent="ladle"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(119.5, 337)
+scale = Vector2(101, 66)
+texture = SubResource("CanvasTexture_0pmta")
+
 [node name="spectrum" type="Sprite2D" parent="."]
 position = Vector2(407.5, 195)
 scale = Vector2(0.52144, 0.211663)

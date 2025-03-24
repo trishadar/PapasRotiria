@@ -29,8 +29,13 @@ func _on_ready() -> void:
 	
 func _process(delta: float):
 	# check if space bar pressed and there is a collision
-	if (Input.is_action_just_pressed("ui_accept") and is_colliding):
-		print("yes")
+	if (Input.is_action_just_pressed("ui_accept")):
+		if (is_colliding):
+			print("yes")
+			globalData.ladleMoving = false
+		else:
+			print("no")
+			globalData.ladleMoving = false
 
 
 func _on_green_body_entered(body: Node2D) -> void:

@@ -14,6 +14,8 @@ var canTakeOrder = true
 var viewingTicket = null
 var allTickets = []
 
+var ladleMoving = true
+
 
 func _ready() -> void:
 	ticketNum += 1
