@@ -4,7 +4,6 @@ extends Node2D
 @onready var dough = $dough
 @onready var curry = $curry
 @onready var time = $time
-@onready var randomNum = -1
 var dragging = false
 var initial_mouse_position: Vector2
 var initial_scale: Vector2
@@ -18,17 +17,26 @@ var thisTicketStored = false
 
 
 func _on_ready() -> void:
-	visible = false
-	ticketNumber.text = str(globalData.ticketNum)
-	randomNum = randi() %3
-	dough.text = str(globalData.doughs[randomNum])
-	randomNum = randi() %3
-	curry.text = str(globalData.curries[randomNum])
-	randomNum = randi() %3
-	time.text = str(globalData.times[randomNum])
+	print(ticketNumber)  # Check if these are initialized properly
+	print(dough)
+	print(curry)
+	print(time)
 	
+	ticketNumber.text = "ticketNumber"
+	dough.text = "dough"
+	curry.text = "curry"
+	time.text = "time"
 	initial_scale = scale
+	position = Vector2(1011, 318)
+	z_index = 10
+	visible = true
 	set_process_input(true)
+
+func set_up(data):
+	ticketNumber.text = data.get("ticketNumber", "N/A")
+	dough.text = data.get("dough", "N/A")
+	curry.text = data.get("curry", "N/A")
+	time.text = data.get("time", "N/A")
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -79,6 +87,13 @@ func move_to_side_box() -> void:
 	sizeX = 220
 	sizeY = 330
 	hasShrunk = false
+	globalData.ticketOccupied = true
+	globalData.viewingTicket = {
+		"ticketNumber": ticketNumber.text,
+		"dough": dough.text,
+		"curry": curry.text,
+		"time": time.text
+	}
 	
 	if globalData.storedTickets.has(self):
 		globalData.storedTickets.erase(self)
@@ -86,3 +101,5 @@ func move_to_side_box() -> void:
 func move_to_top() -> void:
 	position.y = 65
 	globalData.storedTickets.append(self)
+	globalData.ticketOccupied = false
+	globalData.viewingTicket = null

@@ -15,6 +15,8 @@ var allTickets: Array = []
 var currentTicket
 var storedTickets: Array = []
 
+var viewingTicket = null
+
 var timer: Timer
 var target_time: int
 
@@ -33,15 +35,15 @@ func _ready() -> void:
 		start_new_timer()
 		firstTimerStarted = true
 		
-func add_ticket(ticket_instance) -> void:
+func add_ticket(ticket_instance_data) -> void:
 	# Add the instance to the array
-	pendingTickets.append(ticket_instance)
-	allTickets.append(ticket_instance)
+	pendingTickets.append(ticket_instance_data)
+	allTickets.append(ticket_instance_data)
 
-func remove_ticket(ticket: Node) -> void:
+func remove_ticket(ticket_data: Dictionary) -> void:
 	# Remove the enemy from the array and the scene tree
-	if pendingTickets.has(ticket):
-		pendingTickets.erase(ticket)
+	if pendingTickets.has(ticket_data):
+		pendingTickets.erase(ticket_data)
 		# ticket.queue_free()  # Free the node
 
 func _process(delta: float) -> void:
@@ -72,8 +74,22 @@ func _on_Timer_timeout() -> void:
 	canTakeOrder = true
 	print("timer ended")
 	ticketNum += 1
-	var instance = ticket_scene.instantiate()
-	currentTicket = instance
-	add_ticket(instance)
+	var ticketNumber = str(ticketNum)
+	var randomNum = randi() %3
+	var dough = str(doughs[randomNum])
+	randomNum = randi() %3
+	var curry = str(curries[randomNum])
+	randomNum = randi() %3
+	var time = str(times[randomNum])
+	
+	var ticket_data = {
+		"ticketNumber": ticketNumber,
+		"dough": dough,
+		"curry": curry,
+		"time": time
+	}
+	
+	currentTicket = ticket_data
+	add_ticket(ticket_data)
 	start_new_timer()
 	

@@ -7,8 +7,7 @@ extends Node2D
 @onready var curryButton = $curryButton
 @onready var takeOrderButton = $takeOrderButton
 
-var sceneToSpawn: PackedScene = preload("res://ticket.tscn")
-var zIndex = 10
+var ticket_scene: PackedScene = preload("res://ticket.tscn")
 
 var timer: Timer
 var target_time: int
@@ -32,29 +31,21 @@ func _on_take_order_button_pressed() -> void:
 	if (globalData.pendingTickets.size() >= 1):
 		spawn_scene()
 		globalData.ticketOccupied = true
-		globalData.remove_ticket(globalData.currentTicket)
+		globalData.remove_ticket(globalData.pendingTickets[0])
 		
 
 func _on_ready() -> void:
-	# help.text = globalData.helpText
-	pass
+	var instance_data = globalData.viewingTicket
+	if (instance_data != null):
+		print("reload viewing ticket")
+		var instance = ticket_scene.instantiate()
+		add_child(instance)
+		instance.set_up(instance_data)
+		
+	else:
+		print("viewing ticket is null")
 	
 func _process(delta):
-	#if orderButton.is_hovered():
-		#globalData.helpText = "**Order Station**"
-		#help.text = globalData.helpText
-	#elif rollButton.is_hovered():
-		#globalData.helpText = "**Roll Station**"
-		#help.text = globalData.helpText
-	#elif cookButton.is_hovered():
-		#globalData.helpText = "**Cook Station**"
-		#help.text = globalData.helpText
-	#elif curryButton.is_hovered():
-		#globalData.helpText = "**Curry Station**"
-		#help.text = globalData.helpText
-	#else:
-		#globalData.helpText = "..."
-		#help.text = globalData.helpText
 		
 	if (globalData.pendingTickets.size() >= 1):
 		takeOrderButton.text = "Take Order"
@@ -63,11 +54,15 @@ func _process(delta):
 		
 func spawn_scene():
 	print("ticket spawned")
-	var instance = globalData.pendingTickets[0]
-	add_child(instance)
+	var instance_data = globalData.pendingTickets[0]
 	
-	instance.position = Vector2(1011, 318)
-	instance.visible = true
-	zIndex += 1
-	instance.z_index = zIndex
+	print(instance_data["ticketNumber"])
+	print(instance_data["dough"])
+	print(instance_data["curry"])
+	print(instance_data["time"])
+	
+	var instance = ticket_scene.instantiate()
+	add_child(instance)
+	instance.set_up(instance_data)
+	globalData.viewingTicket = instance_data
 	
