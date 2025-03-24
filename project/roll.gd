@@ -31,3 +31,12 @@ func spawn_scene():
 	#figure out how to move roti from one scene to next
 	#figure out how to connect order ticket to roti to verify if the final order attached to the ticket is correct
 	
+func _on_ready() -> void:
+	if (globalData.viewingTicket != null):
+		var instance_data = globalData.viewingTicket
+		var instance = ticket_scene.instantiate()
+		add_child(instance)
+		instance.set_up(instance_data)
+		viewingTicketNode = instance
+		globalData.viewingTicket = instance_data
+		globalData.ticketOccupied = true

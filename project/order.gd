@@ -27,12 +27,25 @@ func change_to_curry() -> void:
 func _on_take_order_button_pressed() -> void:
 	spawn_scene()
 	takeOrderButton.text = " "
-		
+	globalData.canTakeOrder = false	
 		
 		
 
 func _on_ready() -> void:
-	takeOrderButton.text = "Take Order"
+	if globalData.canTakeOrder == true:
+		takeOrderButton.text = "TAKE ORDER"
+	else:
+		takeOrderButton.text = " "
+		
+	if (globalData.viewingTicket != null):
+		var instance_data = globalData.viewingTicket
+		var instance = ticket_scene.instantiate()
+		add_child(instance)
+		instance.set_up(instance_data)
+		viewingTicketNode = instance
+		globalData.viewingTicket = instance_data
+		globalData.ticketOccupied = true
+	
 	
 func _process(delta):
 	pass

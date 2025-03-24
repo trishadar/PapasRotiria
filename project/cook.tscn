@@ -88,3 +88,5 @@ autoplay = "default"
 frame_progress = 0.242565
 
 [node name="sidebar" parent="." instance=ExtResource("3_lgwpa")]
+
+[connection signal="ready" from="." to="." method="_on_ready"]

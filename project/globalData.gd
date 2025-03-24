@@ -9,7 +9,7 @@ var times = ["20 Seconds", "40 Seconds", "60 Seconds"]
 var helpText = "..."
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
-var currentTicket
+var canTakeOrder = true
 
 var viewingTicket = null
 var allTickets = []
