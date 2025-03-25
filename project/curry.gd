@@ -2,7 +2,9 @@ extends Node2D
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
-var is_colliding: bool = false
+var is_colliding_green: bool = false
+var is_colliding_yellow: bool = false
+var is_colliding_red: bool = false
 
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -15,6 +17,7 @@ func change_to_cook() -> void:
 
 func change_to_curry() -> void:
 	get_tree().change_scene_to_file("res://curry.tscn")
+
 
 
 func _on_ready() -> void:
@@ -30,16 +33,42 @@ func _on_ready() -> void:
 func _process(delta: float):
 	# check if space bar pressed and there is a collision
 	if (Input.is_action_just_pressed("ui_accept")):
-		if (is_colliding):
-			print("yes")
+		if (is_colliding_green):
+			print("green")
+			globalData.score += 100
+			globalData.ladleMoving = false
+		elif (is_colliding_yellow):
+			print("yellow")
+			globalData.score += 50
 			globalData.ladleMoving = false
 		else:
-			print("no")
+			print("red")
+			globalData.score += 0
 			globalData.ladleMoving = false
 
 
 func _on_green_body_entered(body: Node2D) -> void:
-	is_colliding = true
+	is_colliding_green = true
 
 func _on_green_body_exited(body: Node2D) -> void:
-	is_colliding = false
+	is_colliding_green = false
+
+
+func _on_finish_order_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://order.tscn")
+
+
+func _on_red_body_entered(body: Node2D) -> void:
+	is_colliding_red = true
+
+
+func _on_red_body_exited(body: Node2D) -> void:
+	is_colliding_red = false
+
+
+func _on_yellow_body_entered(body: Node2D) -> void:
+	is_colliding_yellow = true
+
+
+func _on_yellow_body_exited(body: Node2D) -> void:
+	is_colliding_yellow = false

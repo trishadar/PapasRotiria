@@ -1,12 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=12 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 [ext_resource type="PackedScene" path="res://sidebar.tscn" id="2_27nkd"]
 [ext_resource type="Texture2D" uid="uid://dlpxy530ybjmb" path="res://Assets/spectrum.png" id="3_bu7om"]
 [ext_resource type="Script" uid="uid://bhmffjggmjr1s" path="res://ladle.gd" id="4_0pmta"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pmta"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tessa"]
 size = Vector2(111, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pmta"]
+size = Vector2(167, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3f12"]
+size = Vector2(144, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hcq3"]
+size = Vector2(136, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4he2u"]
+size = Vector2(123, 99)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bu7om"]
 height = 354.0
@@ -16,7 +28,7 @@ height = 354.0
 [node name="curry" type="Node2D"]
 script = ExtResource("1_kx0aq")
 
-[node name="takeOrderButton" type="Button" parent="."]
+[node name="finishOrderButton" type="Button" parent="."]
 offset_left = 926.0
 offset_top = 523.0
 offset_right = 1095.0
@@ -29,7 +41,27 @@ text = "FINISH ORDER"
 
 [node name="greenCollision" type="CollisionShape2D" parent="green"]
 position = Vector2(402.5, 195.5)
+shape = SubResource("RectangleShape2D_tessa")
+
+[node name="red" type="Area2D" parent="."]
+
+[node name="redCollision" type="CollisionShape2D" parent="red"]
+position = Vector2(665.5, 195.5)
 shape = SubResource("RectangleShape2D_0pmta")
+
+[node name="redCollision2" type="CollisionShape2D" parent="red"]
+position = Vector2(139, 195.5)
+shape = SubResource("RectangleShape2D_r3f12")
+
+[node name="yellow" type="Area2D" parent="."]
+
+[node name="yellowCollision" type="CollisionShape2D" parent="yellow"]
+position = Vector2(279, 195.5)
+shape = SubResource("RectangleShape2D_5hcq3")
+
+[node name="yellowCollision2" type="CollisionShape2D" parent="yellow"]
+position = Vector2(519.5, 195.5)
+shape = SubResource("RectangleShape2D_4he2u")
 
 [node name="ladle" type="CharacterBody2D" parent="."]
 z_index = 5
@@ -59,6 +91,11 @@ scale = Vector2(0.52144, 0.211663)
 texture = ExtResource("3_bu7om")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="finishOrderButton" to="." method="_on_finish_order_button_pressed"]
 [connection signal="body_entered" from="green" to="." method="_on_green_body_entered"]
 [connection signal="body_exited" from="green" to="." method="_on_green_body_exited"]
+[connection signal="body_entered" from="red" to="." method="_on_red_body_entered"]
+[connection signal="body_exited" from="red" to="." method="_on_red_body_exited"]
+[connection signal="body_entered" from="yellow" to="." method="_on_yellow_body_entered"]
+[connection signal="body_exited" from="yellow" to="." method="_on_yellow_body_exited"]
 [connection signal="ready" from="ladle" to="ladle" method="_on_ready"]

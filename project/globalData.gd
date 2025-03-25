@@ -16,6 +16,8 @@ var allTickets = []
 
 var ladleMoving = true
 
+var score = 0
+
 
 func _ready() -> void:
 	ticketNum += 1
