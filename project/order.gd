@@ -1,52 +1,65 @@
 extends Node2D
 
-@onready var ticket = $ticket
-@onready var help = $help
+# @onready var help = $help
 @onready var orderButton = $orderButton
 @onready var rollButton = $rollButton
 @onready var cookButton = $cookButton
 @onready var curryButton = $curryButton
 @onready var takeOrderButton = $takeOrderButton
-@onready var sideBox = $sideBox
 
-func _on_order_button_pressed() -> void:
+var ticket_scene: PackedScene = preload("res://ticket.tscn")
+var viewingTicketNode = null
+
+	
+func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
 
-
-func _on_roll_button_pressed() -> void:
+func change_to_roll() -> void:
 	get_tree().change_scene_to_file("res://roll.tscn")
 
-
-func _on_cook_button_pressed() -> void:
+func change_to_cook() -> void:
 	get_tree().change_scene_to_file("res://cook.tscn")
 
-
-func _on_curry_button_pressed() -> void:
+func change_to_curry() -> void:
 	get_tree().change_scene_to_file("res://curry.tscn")
 
 
 func _on_take_order_button_pressed() -> void:
-	ticket.visible = true
-	globalData.ticketOccupied = true
-	takeOrderButton.text = " "
+	if (globalData.canTakeOrder == true):
+		spawn_scene()
+		takeOrderButton.text = " "
+		globalData.canTakeOrder = false	
+		
+		
 
 func _on_ready() -> void:
-	help.text = globalData.helpText
-	takeOrderButton.text = "Take Order"
+	if globalData.canTakeOrder == true:
+		takeOrderButton.text = "TAKE ORDER"
+	else:
+		takeOrderButton.text = " "
+		
+	if (globalData.viewingTicket != null):
+		var instance_data = globalData.viewingTicket
+		var instance = ticket_scene.instantiate()
+		add_child(instance)
+		instance.set_up(instance_data)
+		viewingTicketNode = instance
+		globalData.viewingTicket = instance_data
+		globalData.ticketOccupied = true
+	
 	
 func _process(delta):
-	if orderButton.is_hovered():
-		globalData.helpText = "**Order Station**"
-		help.text = globalData.helpText
-	elif rollButton.is_hovered():
-		globalData.helpText = "**Roll Station**"
-		help.text = globalData.helpText
-	elif cookButton.is_hovered():
-		globalData.helpText = "**Cook Station**"
-		help.text = globalData.helpText
-	elif curryButton.is_hovered():
-		globalData.helpText = "**Curry Station**"
-		help.text = globalData.helpText
-	else:
-		globalData.helpText = "..."
-		help.text = globalData.helpText
+	pass
+		
+func spawn_scene():
+	print("ticket spawned")
+	var instance_data = globalData.allTickets[0]
+	var instance = ticket_scene.instantiate()
+	add_child(instance)
+	instance.set_up(instance_data)
+	viewingTicketNode = instance
+	globalData.viewingTicket = instance_data
+	globalData.ticketOccupied = true
+	
+	
+	
