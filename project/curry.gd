@@ -5,6 +5,10 @@ var viewingTicketNode = null
 var is_colliding_green: bool = false
 var is_colliding_yellow: bool = false
 var is_colliding_red: bool = false
+var curryFalling = true
+var targetCurryY = 250
+@onready var fallingCurry = $fallingCurry
+@onready var ladle = $ladle
 
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -29,22 +33,28 @@ func _on_ready() -> void:
 		viewingTicketNode = instance
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
+		fallingCurry.visible = false
 	
 func _process(delta: float):
 	# check if space bar pressed and there is a collision
-	if (Input.is_action_just_pressed("ui_accept")):
-		if (is_colliding_green):
-			print("green")
-			globalData.score += 100
+	if (globalData.viewingTicket != null):
+		if (Input.is_action_just_pressed("ui_accept")):
+			if (is_colliding_green):
+				print("green")
+				globalData.score += 100
+			elif (is_colliding_yellow):
+				print("yellow")
+				globalData.score += 50
+			else:
+				print("red")
+				globalData.score += 0
 			globalData.ladleMoving = false
-		elif (is_colliding_yellow):
-			print("yellow")
-			globalData.score += 50
-			globalData.ladleMoving = false
-		else:
-			print("red")
-			globalData.score += 0
-			globalData.ladleMoving = false
+			fallingCurry.position.x = ladle.position.x
+			fallingCurry.position.y = ladle.position.y
+			fallingCurry.visible = true
+			
+	if (curryFalling == true and fallingCurry.position.y < targetCurryY):
+		fallingCurry.position.y += 10
 
 
 func _on_green_body_entered(body: Node2D) -> void:
@@ -55,7 +65,9 @@ func _on_green_body_exited(body: Node2D) -> void:
 
 
 func _on_finish_order_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://order.tscn")
+	if (globalData.viewingTicket != null):
+		globalData.orderFinished = true
+		get_tree().change_scene_to_file("res://order.tscn")
 
 
 func _on_red_body_entered(body: Node2D) -> void:
@@ -72,3 +84,5 @@ func _on_yellow_body_entered(body: Node2D) -> void:
 
 func _on_yellow_body_exited(body: Node2D) -> void:
 	is_colliding_yellow = false
+	
+	

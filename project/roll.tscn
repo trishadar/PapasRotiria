@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5vtg55qc4am8" path="res://roll.gd" id="1_us4ls"]
 [ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
-[ext_resource type="PackedScene" uid="uid://xskilv5ngf6k" path="res://sidebar.tscn" id="3_ft62e"]
+[ext_resource type="PackedScene" path="res://sidebar.tscn" id="3_ft62e"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2633c"]
 
