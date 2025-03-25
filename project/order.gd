@@ -46,6 +46,10 @@ func _on_ready() -> void:
 		viewingTicketNode = instance
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
+		
+	if (globalData.orderFinished == true):
+		print("Score: " + str(globalData.score))
+		globalData.orderFinished = false
 	
 	
 func _process(delta):
