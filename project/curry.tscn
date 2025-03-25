@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
-[ext_resource type="PackedScene" path="res://sidebar.tscn" id="2_27nkd"]
+[ext_resource type="PackedScene" uid="uid://vjjsm0v3t7x0" path="res://sidebar.tscn" id="2_27nkd"]
 [ext_resource type="Texture2D" uid="uid://dlpxy530ybjmb" path="res://Assets/spectrum.png" id="3_bu7om"]
 [ext_resource type="Script" uid="uid://bhmffjggmjr1s" path="res://ladle.gd" id="4_0pmta"]
 
@@ -21,7 +21,7 @@ size = Vector2(136, 99)
 size = Vector2(123, 99)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bu7om"]
-height = 354.0
+height = 270.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0pmta"]
 
@@ -95,13 +95,13 @@ script = ExtResource("4_0pmta")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ladle"]
 
 [node name="ladleCollision" type="CollisionShape2D" parent="ladle"]
-position = Vector2(78, 191)
+position = Vector2(79, 236)
 shape = SubResource("CapsuleShape2D_bu7om")
 
 [node name="Sprite2D" type="Sprite2D" parent="ladle"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(78.5, 193.5)
-scale = Vector2(19, 353)
+position = Vector2(78.5, 236)
+scale = Vector2(19, 268)
 texture = SubResource("CanvasTexture_0pmta")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ladle"]
