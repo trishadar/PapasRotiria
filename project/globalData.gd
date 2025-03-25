@@ -15,6 +15,7 @@ var viewingTicket = null
 var allTickets = []
 
 var ladleMoving = true
+var is_dragging = false;
 
 var score = 0
 
@@ -43,5 +44,3 @@ func _process(delta: float) -> void:
 	
 func keepRunningFunction() -> void:
 	pass
-	
-	

@@ -1,10 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=8 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://5vtg55qc4am8" path="res://roll.gd" id="1_us4ls"]
-[ext_resource type="PackedScene" path="res://sidebar.tscn" id="2_vrgdt"]
+[ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
+[ext_resource type="PackedScene" uid="uid://xskilv5ngf6k" path="res://sidebar.tscn" id="3_ft62e"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2633c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_us4ls"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrgdt"]
+size = Vector2(223, 332)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
 [node name="roll" type="Node2D"]
 script = ExtResource("1_us4ls")
+
+[node name="orderButton" type="Button" parent="."]
+offset_left = 857.0
+offset_top = 16.0
+offset_right = 919.0
+offset_bottom = 79.0
+
+[node name="rollButton" type="Button" parent="."]
+offset_left = 931.0
+offset_top = 15.0
+offset_right = 993.0
+offset_bottom = 78.0
+
+[node name="cookButton" type="Button" parent="."]
+offset_left = 1002.0
+offset_top = 14.0
+offset_right = 1064.0
+offset_bottom = 77.0
+
+[node name="curryButton" type="Button" parent="."]
+offset_left = 1074.0
+offset_top = 13.0
+offset_right = 1136.0
+offset_bottom = 76.0
 
 [node name="takeOrderButton" type="Button" parent="."]
 offset_left = 926.0
@@ -13,7 +47,76 @@ offset_right = 1095.0
 offset_bottom = 561.0
 text = "ROLL DOUGH"
 
-[node name="sidebar" parent="." instance=ExtResource("2_vrgdt")]
+[node name="pauseButton" type="Button" parent="."]
+offset_left = 954.0
+offset_top = 601.0
+offset_right = 1067.0
+offset_bottom = 632.0
+text = "PAUSE"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(1011, 370.568)
+scale = Vector2(-282.818, 551.227)
+texture = SubResource("CanvasTexture_2633c")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(968.727, 48.2955)
+scale = Vector2(-367.364, 95.7728)
+texture = SubResource("CanvasTexture_2633c")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(968.727, 48.2955)
+rotation = 3.14159
+scale = Vector2(367.364, -95.7728)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.18359, 0.18359, 0.18359, 1)
+z_index = -4
+position = Vector2(-0.11528, 2.84267)
+scale = Vector2(0.613735, 3.46939)
+texture = SubResource("CanvasTexture_us4ls")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.11371, 2.82653)
+rotation = -3.14159
+scale = Vector2(0.0027221, -0.0104414)
+shape = SubResource("RectangleShape2D_vrgdt")
+debug_color = Color(0, 0, 0, 0.192157)
+
+[node name="steps" type="Sprite2D" parent="."]
+modulate = Color(0.355314, 0.355314, 0.355313, 1)
+z_index = -5
+position = Vector2(1009.43, 122.546)
+scale = Vector2(-246.364, 30.8728)
+texture = SubResource("CanvasTexture_vrgdt")
+
+[node name="Roti" parent="." instance=ExtResource("2_vrgdt")]
+position = Vector2(232, 386)
+
+[node name="dragTicketLabel" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 148.0
+offset_right = 1123.0
+offset_bottom = 489.0
+theme_override_colors/font_color = Color(0.553449, 0.564867, 0.553767, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 27
+text = "DRAG
+TICKET
+HERE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
 
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
+[connection signal="ready" from="orderButton" to="." method="_on_order_button_ready"]
+[connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]
+[connection signal="pressed" from="curryButton" to="." method="_on_curry_button_pressed"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
