@@ -32,6 +32,27 @@ height = 354.0
 [node name="curry" type="Node2D"]
 script = ExtResource("1_kx0aq")
 
+[node name="paneerButton" type="Button" parent="."]
+offset_left = 83.0
+offset_top = 27.0
+offset_right = 268.0
+offset_bottom = 69.0
+text = "PANEER"
+
+[node name="butterChickenButton" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 26.0
+offset_right = 505.0
+offset_bottom = 68.0
+text = "BUTTER CHICKEN"
+
+[node name="gobiButton" type="Button" parent="."]
+offset_left = 555.0
+offset_top = 26.0
+offset_right = 740.0
+offset_bottom = 68.0
+text = "GOBI"
+
 [node name="finishOrderButton" type="Button" parent="."]
 offset_left = 926.0
 offset_top = 523.0
@@ -112,6 +133,9 @@ scale = Vector2(258, 117)
 texture = SubResource("CanvasTexture_r3f12")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="paneerButton" to="." method="_on_paneer_button_pressed"]
+[connection signal="pressed" from="butterChickenButton" to="." method="_on_butter_chicken_button_pressed"]
+[connection signal="pressed" from="gobiButton" to="." method="_on_gobi_button_pressed"]
 [connection signal="pressed" from="finishOrderButton" to="." method="_on_finish_order_button_pressed"]
 [connection signal="body_entered" from="green" to="." method="_on_green_body_entered"]
 [connection signal="body_exited" from="green" to="." method="_on_green_body_exited"]

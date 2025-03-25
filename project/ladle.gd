@@ -12,9 +12,6 @@ var moving_right = true
 func _on_ready() -> void:
 	leftmost_position = position
 	rightmost_position = Vector2(position.x + distance, position.y)
-	if (globalData.viewingTicket != null):
-		globalData.ladleMoving = true
-		print(globalData.viewingTicket["ticketNumber"])
 	
 func _process(delta: float) -> void:
 	

@@ -9,6 +9,9 @@ var curryFalling = true
 var targetCurryY = 250
 @onready var fallingCurry = $fallingCurry
 @onready var ladle = $ladle
+var currySelected = false
+var spacePressed = false
+var curryChosen
 
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -37,8 +40,16 @@ func _on_ready() -> void:
 	
 func _process(delta: float):
 	# check if space bar pressed and there is a collision
-	if (globalData.viewingTicket != null):
+	if (globalData.viewingTicket != null and currySelected == true):
 		if (Input.is_action_just_pressed("ui_accept")):
+			
+			# check if they chose right curry
+			if (curryChosen == globalData.viewingTicket["curry"]):
+				globalData.score += 100
+			else:
+				globalData.score += 50
+			
+			spacePressed = true
 			if (is_colliding_green):
 				print("green")
 				globalData.score += 100
@@ -55,6 +66,11 @@ func _process(delta: float):
 			
 	if (curryFalling == true and fallingCurry.position.y < targetCurryY):
 		fallingCurry.position.y += 10
+		
+	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
+		globalData.ladleMoving = true
+	else:
+		globalData.ladleMoving = false
 
 
 func _on_green_body_entered(body: Node2D) -> void:
@@ -84,5 +100,17 @@ func _on_yellow_body_entered(body: Node2D) -> void:
 
 func _on_yellow_body_exited(body: Node2D) -> void:
 	is_colliding_yellow = false
-	
-	
+
+func _on_paneer_button_pressed() -> void:
+	currySelected = true
+	curryChosen = "Paneer"
+
+
+func _on_butter_chicken_button_pressed() -> void:
+	currySelected = true
+	curryChosen = "Butter Chicken"
+
+
+func _on_gobi_button_pressed() -> void:
+	currySelected = true
+	curryChosen = "Gobi"
