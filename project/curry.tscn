@@ -126,6 +126,7 @@ scale = Vector2(0.129382, 0.129492)
 texture = ExtResource("5_r3f12")
 
 [node name="curryBkgd" type="Sprite2D" parent="."]
+visible = false
 z_index = -15
 position = Vector2(577.875, 323)
 scale = Vector2(0.617075, 0.507813)
