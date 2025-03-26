@@ -1,22 +1,60 @@
-[gd_scene load_steps=8 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=16 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_27nkd"]
 [ext_resource type="Texture2D" uid="uid://dlpxy530ybjmb" path="res://Assets/spectrum.png" id="3_bu7om"]
 [ext_resource type="Script" uid="uid://bhmffjggmjr1s" path="res://ladle.gd" id="4_0pmta"]
+[ext_resource type="Texture2D" uid="uid://cwimeudorvp2f" path="res://Assets/ladle.png" id="4_tessa"]
+[ext_resource type="Texture2D" uid="uid://2xqb53hes2a0" path="res://Assets/bowl.png" id="5_r3f12"]
+[ext_resource type="Texture2D" uid="uid://b0vurq4fd1axl" path="res://Assets/curryBkgd.png" id="7_5hcq3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pmta"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tessa"]
 size = Vector2(111, 99)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bu7om"]
-height = 354.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pmta"]
+size = Vector2(167, 99)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_0pmta"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3f12"]
+size = Vector2(144, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hcq3"]
+size = Vector2(136, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4he2u"]
+size = Vector2(123, 99)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bu7om"]
+height = 270.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tessa"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5hcq3"]
 
 [node name="curry" type="Node2D"]
 script = ExtResource("1_kx0aq")
 
-[node name="takeOrderButton" type="Button" parent="."]
+[node name="paneerButton" type="Button" parent="."]
+offset_left = 83.0
+offset_top = 27.0
+offset_right = 268.0
+offset_bottom = 69.0
+text = "PANEER"
+
+[node name="butterChickenButton" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 26.0
+offset_right = 505.0
+offset_bottom = 68.0
+text = "BUTTER CHICKEN"
+
+[node name="gobiButton" type="Button" parent="."]
+offset_left = 555.0
+offset_top = 26.0
+offset_right = 740.0
+offset_bottom = 68.0
+text = "GOBI"
+
+[node name="finishOrderButton" type="Button" parent="."]
 offset_left = 926.0
 offset_top = 523.0
 offset_right = 1095.0
@@ -29,7 +67,27 @@ text = "FINISH ORDER"
 
 [node name="greenCollision" type="CollisionShape2D" parent="green"]
 position = Vector2(402.5, 195.5)
+shape = SubResource("RectangleShape2D_tessa")
+
+[node name="red" type="Area2D" parent="."]
+
+[node name="redCollision" type="CollisionShape2D" parent="red"]
+position = Vector2(665.5, 195.5)
 shape = SubResource("RectangleShape2D_0pmta")
+
+[node name="redCollision2" type="CollisionShape2D" parent="red"]
+position = Vector2(139, 195.5)
+shape = SubResource("RectangleShape2D_r3f12")
+
+[node name="yellow" type="Area2D" parent="."]
+
+[node name="yellowCollision" type="CollisionShape2D" parent="yellow"]
+position = Vector2(279, 195.5)
+shape = SubResource("RectangleShape2D_5hcq3")
+
+[node name="yellowCollision2" type="CollisionShape2D" parent="yellow"]
+position = Vector2(519.5, 195.5)
+shape = SubResource("RectangleShape2D_4he2u")
 
 [node name="ladle" type="CharacterBody2D" parent="."]
 z_index = 5
@@ -38,27 +96,59 @@ script = ExtResource("4_0pmta")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ladle"]
 
 [node name="ladleCollision" type="CollisionShape2D" parent="ladle"]
-position = Vector2(78, 191)
+position = Vector2(79, 236)
 shape = SubResource("CapsuleShape2D_bu7om")
 
 [node name="Sprite2D" type="Sprite2D" parent="ladle"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(78.5, 193.5)
-scale = Vector2(19, 353)
-texture = SubResource("CanvasTexture_0pmta")
+position = Vector2(111, 257)
+scale = Vector2(0.288425, 0.25625)
+texture = ExtResource("4_tessa")
 
-[node name="Sprite2D2" type="Sprite2D" parent="ladle"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(119.5, 337)
-scale = Vector2(101, 66)
-texture = SubResource("CanvasTexture_0pmta")
+[node name="fallingCurry" type="CharacterBody2D" parent="."]
+visible = false
+z_index = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fallingCurry"]
+
+[node name="Sprite2D" type="Sprite2D" parent="fallingCurry"]
+position = Vector2(128.5, 336)
+scale = Vector2(81, 58)
+texture = SubResource("CanvasTexture_tessa")
 
 [node name="spectrum" type="Sprite2D" parent="."]
 position = Vector2(407.5, 195)
 scale = Vector2(0.52144, 0.211663)
 texture = ExtResource("3_bu7om")
 
+[node name="bowl" type="Sprite2D" parent="."]
+position = Vector2(403, 549)
+scale = Vector2(0.129382, 0.129492)
+texture = ExtResource("5_r3f12")
+
+[node name="curryBkgd" type="Sprite2D" parent="."]
+visible = false
+z_index = -15
+position = Vector2(577.875, 323)
+scale = Vector2(0.617075, 0.507813)
+texture = ExtResource("7_5hcq3")
+
+[node name="spectrumBack" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -11
+position = Vector2(408.5, 195.5)
+scale = Vector2(689, 111)
+texture = SubResource("CanvasTexture_5hcq3")
+
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="paneerButton" to="." method="_on_paneer_button_pressed"]
+[connection signal="pressed" from="butterChickenButton" to="." method="_on_butter_chicken_button_pressed"]
+[connection signal="pressed" from="gobiButton" to="." method="_on_gobi_button_pressed"]
+[connection signal="pressed" from="finishOrderButton" to="." method="_on_finish_order_button_pressed"]
 [connection signal="body_entered" from="green" to="." method="_on_green_body_entered"]
 [connection signal="body_exited" from="green" to="." method="_on_green_body_exited"]
+[connection signal="body_entered" from="red" to="." method="_on_red_body_entered"]
+[connection signal="body_exited" from="red" to="." method="_on_red_body_exited"]
+[connection signal="body_entered" from="yellow" to="." method="_on_yellow_body_entered"]
+[connection signal="body_exited" from="yellow" to="." method="_on_yellow_body_exited"]
 [connection signal="ready" from="ladle" to="ladle" method="_on_ready"]
+[connection signal="ready" from="fallingCurry" to="fallingCurry" method="_on_ready"]

@@ -17,6 +17,9 @@ var allTickets = []
 var ladleMoving = true
 var is_dragging = false;
 
+var score = 0
+var orderFinished = false
+
 
 func _ready() -> void:
 	ticketNum += 1

@@ -2,7 +2,16 @@ extends Node2D
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
-var is_colliding: bool = false
+var is_colliding_green: bool = false
+var is_colliding_yellow: bool = false
+var is_colliding_red: bool = false
+var curryFalling = true
+var targetCurryY = 250
+@onready var fallingCurry = $fallingCurry
+@onready var ladle = $ladle
+var currySelected = false
+var spacePressed = false
+var curryChosen
 
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -17,6 +26,7 @@ func change_to_curry() -> void:
 	get_tree().change_scene_to_file("res://curry.tscn")
 
 
+
 func _on_ready() -> void:
 	if (globalData.viewingTicket != null):
 		var instance_data = globalData.viewingTicket
@@ -26,20 +36,81 @@ func _on_ready() -> void:
 		viewingTicketNode = instance
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
+		fallingCurry.visible = false
 	
 func _process(delta: float):
 	# check if space bar pressed and there is a collision
-	if (Input.is_action_just_pressed("ui_accept")):
-		if (is_colliding):
-			print("yes")
+	if (globalData.viewingTicket != null and currySelected == true):
+		if (Input.is_action_just_pressed("ui_accept")):
+			
+			# check if they chose right curry
+			if (curryChosen == globalData.viewingTicket["curry"]):
+				globalData.score += 100
+			else:
+				globalData.score += 50
+			
+			spacePressed = true
+			if (is_colliding_green):
+				print("green")
+				globalData.score += 100
+			elif (is_colliding_yellow):
+				print("yellow")
+				globalData.score += 50
+			else:
+				print("red")
+				globalData.score += 0
 			globalData.ladleMoving = false
-		else:
-			print("no")
-			globalData.ladleMoving = false
+			fallingCurry.position.x = ladle.position.x
+			fallingCurry.position.y = ladle.position.y
+			fallingCurry.visible = true
+			
+	if (curryFalling == true and fallingCurry.position.y < targetCurryY):
+		fallingCurry.position.y += 10
+		
+	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
+		globalData.ladleMoving = true
+	else:
+		globalData.ladleMoving = false
 
 
 func _on_green_body_entered(body: Node2D) -> void:
-	is_colliding = true
+	is_colliding_green = true
 
 func _on_green_body_exited(body: Node2D) -> void:
-	is_colliding = false
+	is_colliding_green = false
+
+
+func _on_finish_order_button_pressed() -> void:
+	if (globalData.viewingTicket != null):
+		globalData.orderFinished = true
+		get_tree().change_scene_to_file("res://order.tscn")
+
+
+func _on_red_body_entered(body: Node2D) -> void:
+	is_colliding_red = true
+
+
+func _on_red_body_exited(body: Node2D) -> void:
+	is_colliding_red = false
+
+
+func _on_yellow_body_entered(body: Node2D) -> void:
+	is_colliding_yellow = true
+
+
+func _on_yellow_body_exited(body: Node2D) -> void:
+	is_colliding_yellow = false
+
+func _on_paneer_button_pressed() -> void:
+	currySelected = true
+	curryChosen = "Paneer"
+
+
+func _on_butter_chicken_button_pressed() -> void:
+	currySelected = true
+	curryChosen = "Butter Chicken"
+
+
+func _on_gobi_button_pressed() -> void:
+	currySelected = true
+	curryChosen = "Gobi"
