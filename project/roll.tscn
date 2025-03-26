@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=8 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://5vtg55qc4am8" path="res://roll.gd" id="1_us4ls"]
 [ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
+[ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_48jdy"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="3_ft62e"]
+[ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="4_jsvgc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsvgc"]
+radius = 50.04
 
 [node name="roll" type="Node2D"]
 script = ExtResource("1_us4ls")
@@ -34,6 +39,20 @@ texture = SubResource("CanvasTexture_vrgdt")
 position = Vector2(232, 386)
 
 [node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
+
+[node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
+position = Vector2(656, 446)
+script = ExtResource("3_48jdy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_jsvgc")
+
+[node name="Circle" type="Sprite2D" parent="PutRotiHere"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(8, -33)
+scale = Vector2(0.389392, 0.410782)
+texture = ExtResource("4_jsvgc")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]

@@ -20,6 +20,7 @@ func change_to_curry() -> void:
 
 func _on_take_order_button_pressed() -> void:
 	spawn_scene()
+	#
 	
 	
 func spawn_scene():

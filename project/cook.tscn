@@ -1,11 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://cus2uri4avjoi"]
+[gd_scene load_steps=23 format=3 uid="uid://cus2uri4avjoi"]
 
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
 [ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="3_lgwpa"]
-[ext_resource type="Script" path="res://put_roti_here.gd" id="3_t8dlq"]
+[ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_t8dlq"]
 [ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="5_7l328"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="6_fifm2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pupwl"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6u6uf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ciqc8"]
+size = Vector2(223, 332)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ciqc8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
 atlas = ExtResource("2_ciqc8")
@@ -64,6 +73,11 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgwpa"]
+size = Vector2(787.998, 10.0002)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t8dlq"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_lgwpa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fifm2"]
@@ -71,6 +85,30 @@ radius = 50.04
 
 [node name="cook" type="Node2D"]
 script = ExtResource("1_6u6uf")
+
+[node name="orderButton" type="Button" parent="."]
+offset_left = 858.0
+offset_top = 16.0
+offset_right = 920.0
+offset_bottom = 79.0
+
+[node name="rollButton" type="Button" parent="."]
+offset_left = 929.0
+offset_top = 15.0
+offset_right = 991.0
+offset_bottom = 78.0
+
+[node name="cookButton" type="Button" parent="."]
+offset_left = 1004.0
+offset_top = 14.0
+offset_right = 1066.0
+offset_bottom = 77.0
+
+[node name="curryButton" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 13.0
+offset_right = 1138.0
+offset_bottom = 76.0
 
 [node name="takeOrderButton" type="Button" parent="."]
 offset_left = 926.0
@@ -84,6 +122,46 @@ offset_top = 601.0
 offset_right = 1067.0
 offset_bottom = 632.0
 text = "PAUSE"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(1011, 370.568)
+scale = Vector2(-282.818, 551.227)
+texture = SubResource("CanvasTexture_pupwl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.219501, 0.219501, 0.219501, 1)
+z_index = -5
+position = Vector2(968.727, 48.2955)
+scale = Vector2(-367.364, 95.7728)
+texture = SubResource("CanvasTexture_pupwl")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(968.727, 48.2955)
+rotation = 3.14159
+scale = Vector2(367.364, -95.7728)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.18359, 0.18359, 0.18359, 1)
+z_index = -4
+position = Vector2(-0.11528, 2.84267)
+scale = Vector2(0.613735, 3.46939)
+texture = SubResource("CanvasTexture_6u6uf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.11371, 2.82653)
+rotation = -3.14159
+scale = Vector2(0.0027221, -0.0104414)
+shape = SubResource("RectangleShape2D_ciqc8")
+debug_color = Color(0, 0, 0, 0.192157)
+
+[node name="steps" type="Sprite2D" parent="."]
+modulate = Color(0.355314, 0.355314, 0.355313, 1)
+z_index = -5
+position = Vector2(1009.43, 122.546)
+scale = Vector2(-246.364, 30.8728)
+texture = SubResource("CanvasTexture_ciqc8")
 
 [node name="FryingPan1" type="CharacterBody2D" parent="."]
 
@@ -102,11 +180,58 @@ sprite_frames = SubResource("SpriteFrames_o64d8")
 autoplay = "default"
 frame_progress = 0.242565
 
+[node name="ticketLine2" type="Area2D" parent="."]
+position = Vector2(968.727, 48.2955)
+rotation = 3.14159
+scale = Vector2(367.364, -95.7728)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ticketLine2"]
+position = Vector2(1.56447, -0.316341)
+rotation = -3.14159
+scale = Vector2(0.0027221, -0.0104414)
+shape = SubResource("RectangleShape2D_lgwpa")
+debug_color = Color(0, 0, 0, 0.192157)
+
+[node name="ticketLine" type="Sprite2D" parent="ticketLine2"]
+modulate = Color(0, 0, 0, 1)
+z_index = -10
+position = Vector2(1.06897, -0.315862)
+scale = Vector2(3.13194, 0.0696732)
+texture = SubResource("CanvasTexture_t8dlq")
+
+[node name="dragTicketLabel" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 148.0
+offset_right = 1123.0
+offset_bottom = 489.0
+theme_override_colors/font_color = Color(0.553449, 0.564867, 0.553767, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 27
+text = "DRAG
+TICKET
+HERE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="RawRotiHolder" type="Sprite2D" parent="."]
 modulate = Color(0.43134, 0.43134, 0.43134, 1)
 position = Vector2(77, 338)
 scale = Vector2(153.75, 111.75)
 texture = SubResource("CanvasTexture_lgwpa")
+
+[node name="RotiStart" type="StaticBody2D" parent="." groups=["Droppable"]]
+position = Vector2(75, 335)
+script = ExtResource("3_t8dlq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RotiStart"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_fifm2")
+
+[node name="Circle" type="Sprite2D" parent="RotiStart"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(8, -33)
+scale = Vector2(0.389392, 0.410782)
+texture = ExtResource("3_lgwpa")
 
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(245, 499)
@@ -122,7 +247,26 @@ position = Vector2(8, -33)
 scale = Vector2(0.389392, 0.410782)
 texture = ExtResource("3_lgwpa")
 
-[node name="Roti" parent="." instance=ExtResource("5_7l328")]
-position = Vector2(80, 342)
+[node name="PutRotiHere2" type="StaticBody2D" parent="." groups=["Droppable"]]
+position = Vector2(581, 502)
+script = ExtResource("3_t8dlq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere2"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_fifm2")
+
+[node name="Circle" type="Sprite2D" parent="PutRotiHere2"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(8, -33)
+scale = Vector2(0.389392, 0.410782)
+texture = ExtResource("3_lgwpa")
 
 [node name="sidebar" parent="." instance=ExtResource("6_fifm2")]
+
+[node name="Roti" parent="." instance=ExtResource("5_7l328")]
+position = Vector2(78, 338)
+
+[connection signal="pressed" from="orderButton" to="." method="_on_order_button_pressed"]
+[connection signal="pressed" from="rollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="cookButton" to="." method="_on_cook_button_pressed"]
+[connection signal="pressed" from="curryButton" to="." method="_on_curry_button_pressed"]
