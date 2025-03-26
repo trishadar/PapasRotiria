@@ -6,7 +6,8 @@ var is_colliding_green: bool = false
 var is_colliding_yellow: bool = false
 var is_colliding_red: bool = false
 var curryFalling = true
-var targetCurryY = 250
+var targetCurryY = 210
+@onready var animationPlayer = $fallingCurry/AnimationPlayer
 @onready var fallingCurry = $fallingCurry
 @onready var ladle = $ladle
 var currySelected = false
@@ -104,13 +105,16 @@ func _on_yellow_body_exited(body: Node2D) -> void:
 func _on_paneer_button_pressed() -> void:
 	currySelected = true
 	curryChosen = "Paneer"
+	animationPlayer.play("paneer")
 
 
 func _on_butter_chicken_button_pressed() -> void:
 	currySelected = true
 	curryChosen = "Butter Chicken"
+	animationPlayer.play("butterChicken")
 
 
 func _on_gobi_button_pressed() -> void:
 	currySelected = true
 	curryChosen = "Gobi"
+	animationPlayer.play("gobi")
