@@ -8,6 +8,7 @@ extends Node2D
 @onready var takeOrderButton = $takeOrderButton
 @onready var score = $score
 @onready var scoreLabel = $score/scoreLabel
+@onready var totalScoreLabel = $score/totalScoreLabel
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
@@ -52,6 +53,7 @@ func _on_ready() -> void:
 	if (globalData.orderFinished == true):
 		print("Score: " + str(globalData.score))
 		scoreLabel.text = "Score: " + str(globalData.score)
+		totalScoreLabel.text = "Total Score: " + str(globalData.totalScore)
 		score.visible = true
 		globalData.orderFinished = false
 	else:
