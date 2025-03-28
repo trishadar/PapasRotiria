@@ -22,7 +22,7 @@ func _on_take_order_button_pressed() -> void:
 	spawn_scene()
 	#
 	
-	
+
 func spawn_scene():
 	var instance = sceneToSpawn.instantiate()
 	add_child(instance)
