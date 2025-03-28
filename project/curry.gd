@@ -6,7 +6,8 @@ var is_colliding_green: bool = false
 var is_colliding_yellow: bool = false
 var is_colliding_red: bool = false
 var curryFalling = true
-var targetCurryY = 250
+var targetCurryY = 210
+@onready var animationPlayer = $fallingCurry/AnimationPlayer
 @onready var fallingCurry = $fallingCurry
 @onready var ladle = $ladle
 var currySelected = false
@@ -83,6 +84,11 @@ func _on_green_body_exited(body: Node2D) -> void:
 func _on_finish_order_button_pressed() -> void:
 	if (globalData.viewingTicket != null):
 		globalData.orderFinished = true
+		globalData.viewingTicket = null
+		globalData.ticketOccupied = false
+		globalData.canTakeOrder = true	
+		globalData.makeNewTicket()
+		globalData.totalScore += globalData.score
 		get_tree().change_scene_to_file("res://order.tscn")
 
 
@@ -104,13 +110,16 @@ func _on_yellow_body_exited(body: Node2D) -> void:
 func _on_paneer_button_pressed() -> void:
 	currySelected = true
 	curryChosen = "Paneer"
+	animationPlayer.play("paneer")
 
 
 func _on_butter_chicken_button_pressed() -> void:
 	currySelected = true
 	curryChosen = "Butter Chicken"
+	animationPlayer.play("butterChicken")
 
 
 func _on_gobi_button_pressed() -> void:
 	currySelected = true
 	curryChosen = "Gobi"
+	animationPlayer.play("gobi")

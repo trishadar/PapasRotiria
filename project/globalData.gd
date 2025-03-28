@@ -18,9 +18,19 @@ var ladleMoving = true
 var is_dragging = false;
 
 var score = 0
+var totalScore = 0
 var orderFinished = false
 
 func _ready() -> void:
+	makeNewTicket()
+
+func _process(delta: float) -> void:
+	keepRunningFunction()
+	
+func keepRunningFunction() -> void:
+	pass
+	
+func makeNewTicket():
 	ticketNum += 1
 	var ticketNumber = str(ticketNum)
 	var randomNum = randi() %3
@@ -38,9 +48,3 @@ func _ready() -> void:
 	}
 	
 	allTickets.append(ticket_data)
-
-func _process(delta: float) -> void:
-	keepRunningFunction()
-	
-func keepRunningFunction() -> void:
-	pass

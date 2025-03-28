@@ -1,12 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=23 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_27nkd"]
 [ext_resource type="Texture2D" uid="uid://dlpxy530ybjmb" path="res://Assets/spectrum.png" id="3_bu7om"]
 [ext_resource type="Script" uid="uid://bhmffjggmjr1s" path="res://ladle.gd" id="4_0pmta"]
 [ext_resource type="Texture2D" uid="uid://cwimeudorvp2f" path="res://Assets/ladle.png" id="4_tessa"]
+[ext_resource type="Texture2D" uid="uid://n6blgsth8dc5" path="res://Assets/butterChicken.png" id="5_8lmbm"]
 [ext_resource type="Texture2D" uid="uid://2xqb53hes2a0" path="res://Assets/bowl.png" id="5_r3f12"]
+[ext_resource type="Texture2D" uid="uid://06eormaalug5" path="res://Assets/gobi.png" id="6_khiik"]
 [ext_resource type="Texture2D" uid="uid://b0vurq4fd1axl" path="res://Assets/curryBkgd.png" id="7_5hcq3"]
+[ext_resource type="Texture2D" uid="uid://c3wssfxpjmxjo" path="res://Assets/paneer.png" id="7_qitu1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tessa"]
 size = Vector2(111, 99)
@@ -26,7 +29,120 @@ size = Vector2(123, 99)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bu7om"]
 height = 270.0
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_tessa"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5jsc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_8lmbm")
+}],
+"loop": true,
+"name": &"butterChicken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_khiik")
+}],
+"loop": true,
+"name": &"gobi",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qitu1")
+}],
+"loop": true,
+"name": &"paneer",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_4he2u"]
+resource_name = "butterChicken"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"butterChicken"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_831q2"]
+resource_name = "gobi"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"gobi"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5hcq3"]
+resource_name = "paneer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"paneer"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8lmbm"]
+_data = {
+&"butterChicken": SubResource("Animation_4he2u"),
+&"gobi": SubResource("Animation_831q2"),
+&"paneer": SubResource("Animation_5hcq3")
+}
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5hcq3"]
 
@@ -105,15 +221,18 @@ scale = Vector2(0.288425, 0.25625)
 texture = ExtResource("4_tessa")
 
 [node name="fallingCurry" type="CharacterBody2D" parent="."]
-visible = false
 z_index = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fallingCurry"]
+position = Vector2(126, 355)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_u5jsc")
+animation = &"paneer"
 
-[node name="Sprite2D" type="Sprite2D" parent="fallingCurry"]
-position = Vector2(128.5, 336)
-scale = Vector2(81, 58)
-texture = SubResource("CanvasTexture_tessa")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fallingCurry"]
+libraries = {
+&"": SubResource("AnimationLibrary_8lmbm")
+}
 
 [node name="spectrum" type="Sprite2D" parent="."]
 position = Vector2(407.5, 195)
