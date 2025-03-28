@@ -75,3 +75,4 @@ func spawn_scene():
 	
 func _on_score_exit_button_pressed() -> void:
 	score.visible = false
+	globalData.score = 0

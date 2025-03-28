@@ -88,6 +88,7 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.ticketOccupied = false
 		globalData.canTakeOrder = true	
 		globalData.makeNewTicket()
+		globalData.totalScore += globalData.score
 		get_tree().change_scene_to_file("res://order.tscn")
 
 
