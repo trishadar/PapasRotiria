@@ -64,8 +64,9 @@ func _process(delta: float):
 			fallingCurry.position.x = ladle.position.x
 			fallingCurry.position.y = ladle.position.y
 			fallingCurry.visible = true
+			print("fallingCurry visible")
 			
-	if (curryFalling == true and fallingCurry.position.y < targetCurryY):
+	if (globalData.viewingTicket != null and curryFalling == true and fallingCurry.position.y < targetCurryY):
 		fallingCurry.position.y += 10
 		
 	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
