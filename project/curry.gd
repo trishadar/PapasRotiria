@@ -48,7 +48,7 @@ func _process(delta: float):
 			if (curryChosen == globalData.viewingTicket["curry"]):
 				globalData.score += 100
 			else:
-				globalData.score += 50
+				globalData.score += 0
 			
 			spacePressed = true
 			if (is_colliding_green):
