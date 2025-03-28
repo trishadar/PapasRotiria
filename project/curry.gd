@@ -84,6 +84,10 @@ func _on_green_body_exited(body: Node2D) -> void:
 func _on_finish_order_button_pressed() -> void:
 	if (globalData.viewingTicket != null):
 		globalData.orderFinished = true
+		globalData.viewingTicket = null
+		globalData.ticketOccupied = false
+		globalData.canTakeOrder = true	
+		globalData.makeNewTicket()
 		get_tree().change_scene_to_file("res://order.tscn")
 
 

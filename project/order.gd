@@ -64,7 +64,7 @@ func _process(delta):
 		
 func spawn_scene():
 	print("ticket spawned")
-	var instance_data = globalData.allTickets[0]
+	var instance_data = globalData.allTickets[-1]
 	var instance = ticket_scene.instantiate()
 	add_child(instance)
 	instance.set_up(instance_data)

@@ -4,8 +4,6 @@ extends Node2D
 @onready var dough = $dough
 @onready var curry = $curry
 @onready var time = $time
-var thisTicketOccupied = false
-var parent = get_parent()
 
 
 func _on_ready() -> void:
