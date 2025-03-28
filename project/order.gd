@@ -6,6 +6,8 @@ extends Node2D
 @onready var cookButton = $cookButton
 @onready var curryButton = $curryButton
 @onready var takeOrderButton = $takeOrderButton
+@onready var score = $score
+@onready var scoreLabel = $score/scoreLabel
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
@@ -49,7 +51,12 @@ func _on_ready() -> void:
 		
 	if (globalData.orderFinished == true):
 		print("Score: " + str(globalData.score))
+		scoreLabel.text = "Score: " + str(globalData.score)
+		score.visible = true
 		globalData.orderFinished = false
+	else:
+		score.visible = false
+		
 	
 	
 func _process(delta):
@@ -66,4 +73,5 @@ func spawn_scene():
 	globalData.ticketOccupied = true
 	
 	
-	
+func _on_score_exit_button_pressed() -> void:
+	score.visible = false
