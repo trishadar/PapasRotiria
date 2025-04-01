@@ -10,6 +10,9 @@ extends Node2D
 @onready var scoreLabel = $score/scoreLabel
 @onready var totalScoreLabel = $score/totalScoreLabel
 
+@onready var customer = $customer
+@onready var animationPlayer = $customer/AnimationPlayer
+
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
 
@@ -27,10 +30,14 @@ func change_to_curry() -> void:
 	get_tree().change_scene_to_file("res://curry.tscn")
 
 
+func customerWalk():
+	customer.position.x -= 200
+
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
 		spawn_scene()
 		takeOrderButton.text = " "
+		customer.visible = false
 		globalData.canTakeOrder = false	
 		
 		
@@ -38,8 +45,14 @@ func _on_take_order_button_pressed() -> void:
 func _on_ready() -> void:
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
+		
+		animationPlayer.play("watson")
+		customerWalk()
+		customer.visible = true
 	else:
 		takeOrderButton.text = " "
+		
+		customer.visible = false
 		
 	if (globalData.viewingTicket != null):
 		var instance_data = globalData.viewingTicket
