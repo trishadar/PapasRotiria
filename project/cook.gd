@@ -15,7 +15,7 @@ func _process(delta: float):
 		elif((rotiObj.position == trash.position)):
 			remove_child(rotiObj)
 		else:
-			startCooking(rotiObj)
+			stopCooking(rotiObj)
 
 func startCooking(roti):
 	var rotiAnim = roti.get_node("AnimatedSprite2D")
