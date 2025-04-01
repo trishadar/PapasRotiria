@@ -3,9 +3,27 @@ extends Node2D
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
 var sceneToSpawn = preload("res://roti.tscn")
+var rotiList = [get_node("Roti")]
 
 var spawn_count: int = 0
 
+
+func _process(delta: float) -> void:
+	var placeRoti = get_node("PutRotiHere")
+	var dough = get_node("Roti")
+	
+	
+	#if(spawn_count>1):
+		
+	
+	if(dough.position == placeRoti.position):
+		print_debug("roti on board")
+		remove_child(dough)
+		spawn_count = spawn_count-1
+		#start board animation
+	else:
+		dough.visible = true
+	
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
 
@@ -20,6 +38,7 @@ func change_to_curry() -> void:
 
 func _on_take_order_button_pressed() -> void:
 	spawn_scene()
+	spawn_count = spawn_count+1
 	#
 	
 	
