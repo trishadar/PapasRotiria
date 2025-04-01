@@ -6,6 +6,7 @@ var sceneToSpawn = preload("res://roti.tscn")
 var rotiList = [get_node("Roti")]
 
 var spawn_count: int = 0
+var ticketSpawned = false
 
 
 func _process(delta: float) -> void:
@@ -52,7 +53,10 @@ func spawn_scene():
 	#figure out how to connect order ticket to roti to verify if the final order attached to the ticket is correct
 	
 func _on_ready() -> void:
-	if (globalData.viewingTicket != null):
+	pass
+
+func _process(delta: float):
+	if (globalData.viewingTicket != null and ticketSpawned == false):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)
@@ -60,3 +64,4 @@ func _on_ready() -> void:
 		viewingTicketNode = instance
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
+		ticketSpawned = true

@@ -10,27 +10,40 @@ extends Node2D
 @onready var scoreLabel = $score/scoreLabel
 @onready var totalScoreLabel = $score/totalScoreLabel
 
+@onready var customer = $customer
+@onready var animationPlayer = $customer/AnimationPlayer
+
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
 
+@onready var cam = get_node("/root/MainScene/Camera2D")
+var orderPos = Vector2(576, 323)
+var rollPos = Vector2(1856, 323)
+var cookPos = Vector2(3136, 323)
+var curryPos = Vector2(4416, 323)
+
 	
 func change_to_order() -> void:
-	get_tree().change_scene_to_file("res://order.tscn")
+	cam.position = orderPos
 
 func change_to_roll() -> void:
-	get_tree().change_scene_to_file("res://roll.tscn")
+	cam.position = rollPos
 
 func change_to_cook() -> void:
-	get_tree().change_scene_to_file("res://cook.tscn")
+	cam.position = cookPos
 
 func change_to_curry() -> void:
-	get_tree().change_scene_to_file("res://curry.tscn")
+	cam.position = curryPos
 
+
+func customerWalk():
+	customer.position.x -= 200
 
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
 		spawn_scene()
 		takeOrderButton.text = " "
+		customer.visible = false
 		globalData.canTakeOrder = false	
 		
 		
@@ -38,31 +51,25 @@ func _on_take_order_button_pressed() -> void:
 func _on_ready() -> void:
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
+		
+		animationPlayer.play("watson")
+		customerWalk()
+		customer.visible = true
 	else:
 		takeOrderButton.text = " "
 		
-	if (globalData.viewingTicket != null):
-		var instance_data = globalData.viewingTicket
-		var instance = ticket_scene.instantiate()
-		add_child(instance)
-		instance.set_up(instance_data)
-		viewingTicketNode = instance
-		globalData.viewingTicket = instance_data
-		globalData.ticketOccupied = true
+		customer.visible = false
 		
+	
+	
+func _process(delta):
 	if (globalData.orderFinished == true):
 		print("Score: " + str(globalData.score))
 		scoreLabel.text = "Score: " + str(globalData.score)
 		totalScoreLabel.text = "Total Score: " + str(globalData.totalScore)
 		score.visible = true
-		globalData.orderFinished = false
 	else:
 		score.visible = false
-		
-	
-	
-func _process(delta):
-	pass
 		
 func spawn_scene():
 	print("ticket spawned")
@@ -78,3 +85,4 @@ func spawn_scene():
 func _on_score_exit_button_pressed() -> void:
 	score.visible = false
 	globalData.score = 0
+	globalData.orderFinished = false

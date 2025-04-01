@@ -6,24 +6,25 @@ extends Node2D
 @onready var cookButton = $cookButton
 @onready var curryButton = $curryButton
 
+@onready var cam = get_node("/root/MainScene/Camera2D")
+var orderPos = Vector2(576, 323)
+var rollPos = Vector2(1856, 323)
+var cookPos = Vector2(3136, 323)
+var curryPos = Vector2(4416, 323)
+
 func _on_order_button_pressed() -> void:
-	var main_scene = get_parent()
-	main_scene.change_to_order()
+	cam.position = orderPos
 
 
 func _on_roll_button_pressed() -> void:
-	var main_scene = get_parent()
-	main_scene.change_to_roll()
-
+	cam.position = rollPos
 
 func _on_cook_button_pressed() -> void:
-	var main_scene = get_parent()
-	main_scene.change_to_cook()
+	cam.position = cookPos
 
 
 func _on_curry_button_pressed() -> void:
-	var main_scene = get_parent()
-	main_scene.change_to_curry()
+	cam.position = curryPos
 
 func _on_ready() -> void:
 	help.text = globalData.helpText

@@ -13,6 +13,10 @@ var targetCurryY = 210
 var currySelected = false
 var spacePressed = false
 var curryChosen
+var ticketSpawned = false
+
+@onready var cam = get_node("/root/MainScene/Camera2D")
+var orderPos = Vector2(576, 323)
 
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -29,7 +33,11 @@ func change_to_curry() -> void:
 
 
 func _on_ready() -> void:
-	if (globalData.viewingTicket != null):
+	pass
+	
+func _process(delta: float):
+	
+	if (globalData.viewingTicket != null and ticketSpawned == false):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)
@@ -38,8 +46,8 @@ func _on_ready() -> void:
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		fallingCurry.visible = false
+		ticketSpawned = true
 	
-func _process(delta: float):
 	# check if space bar pressed and there is a collision
 	if (globalData.viewingTicket != null and currySelected == true):
 		if (Input.is_action_just_pressed("ui_accept")):
