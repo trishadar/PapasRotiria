@@ -5,25 +5,12 @@ var viewingTicketNode = null
 var sceneToSpawn = preload("res://roti.tscn")
 var rotiList = [get_node("Roti")]
 
+@onready var placeRoti = get_node("PutRotiHere")
+@onready var dough = get_node("Roti")
+
 var spawn_count: int = 0
 var ticketSpawned = false
 
-
-func _process(delta: float) -> void:
-	var placeRoti = get_node("PutRotiHere")
-	var dough = get_node("Roti")
-	
-	
-	#if(spawn_count>1):
-		
-	
-	if(dough.position == placeRoti.position):
-		print_debug("roti on board")
-		remove_child(dough)
-		spawn_count = spawn_count-1
-		#start board animation
-	else:
-		dough.visible = true
 	
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
@@ -56,6 +43,8 @@ func _on_ready() -> void:
 	pass
 
 func _process(delta: float):
+	
+	print_debug("process")
 	if (globalData.viewingTicket != null and ticketSpawned == false):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
@@ -65,3 +54,14 @@ func _process(delta: float):
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+	
+	#if(spawn_count>1):
+		
+	
+	if(dough.position == placeRoti.position):
+		print_debug("roti on board")
+		remove_child(dough)
+		spawn_count = spawn_count-1
+		#start board animation
+	else:
+		dough.visible = true
