@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://doaq6os5itvp0"]
+
+[ext_resource type="Script" uid="uid://cikwfm2kos0dd" path="res://main_scene.gd" id="1_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://df6qbe7a8i3nw" path="res://order.tscn" id="1_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://cn2d54ksqsmb8" path="res://roll.tscn" id="2_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://cus2uri4avjoi" path="res://cook.tscn" id="3_hq1ik"]
+[ext_resource type="PackedScene" uid="uid://bn7aqby5pen6l" path="res://curry.tscn" id="4_nfk4m"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_8mm7a")
+
+[node name="order" parent="." instance=ExtResource("1_d5x1h")]
+position = Vector2(0, -2)
+
+[node name="roll" parent="." instance=ExtResource("2_8mm7a")]
+position = Vector2(1280, 0)
+
+[node name="cook" parent="." instance=ExtResource("3_hq1ik")]
+position = Vector2(2560, 1)
+
+[node name="curry" parent="." instance=ExtResource("4_nfk4m")]
+position = Vector2(3840, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 323)

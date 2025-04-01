@@ -48,7 +48,7 @@ func _process(delta: float):
 			if (curryChosen == globalData.viewingTicket["curry"]):
 				globalData.score += 100
 			else:
-				globalData.score += 50
+				globalData.score += 0
 			
 			spacePressed = true
 			if (is_colliding_green):
@@ -64,8 +64,9 @@ func _process(delta: float):
 			fallingCurry.position.x = ladle.position.x
 			fallingCurry.position.y = ladle.position.y
 			fallingCurry.visible = true
+			print("fallingCurry visible")
 			
-	if (curryFalling == true and fallingCurry.position.y < targetCurryY):
+	if (globalData.viewingTicket != null and curryFalling == true and fallingCurry.position.y < targetCurryY):
 		fallingCurry.position.y += 10
 		
 	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
@@ -84,6 +85,11 @@ func _on_green_body_exited(body: Node2D) -> void:
 func _on_finish_order_button_pressed() -> void:
 	if (globalData.viewingTicket != null):
 		globalData.orderFinished = true
+		globalData.viewingTicket = null
+		globalData.ticketOccupied = false
+		globalData.canTakeOrder = true	
+		globalData.makeNewTicket()
+		globalData.totalScore += globalData.score
 		get_tree().change_scene_to_file("res://order.tscn")
 
 
