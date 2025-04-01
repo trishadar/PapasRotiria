@@ -9,7 +9,6 @@ var initialPos : Vector2
 func _process(delta):
 	if draggable:
 		if Input.is_action_just_pressed("click"):
-			print_debug("You just clicked")
 			initialPos = global_position
 			offset = get_global_mouse_position() - global_position
 			globalData.is_dragging = true

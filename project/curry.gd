@@ -18,19 +18,6 @@ var ticketSpawned = false
 @onready var cam = get_node("/root/MainScene/Camera2D")
 var orderPos = Vector2(576, 323)
 
-func change_to_order() -> void:
-	get_tree().change_scene_to_file("res://order.tscn")
-
-func change_to_roll() -> void:
-	get_tree().change_scene_to_file("res://roll.tscn")
-
-func change_to_cook() -> void:
-	get_tree().change_scene_to_file("res://cook.tscn")
-
-func change_to_curry() -> void:
-	get_tree().change_scene_to_file("res://curry.tscn")
-
-
 
 func _on_ready() -> void:
 	pass
@@ -98,7 +85,7 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.canTakeOrder = true	
 		globalData.makeNewTicket()
 		globalData.totalScore += globalData.score
-		get_tree().change_scene_to_file("res://order.tscn")
+		cam.position = orderPos
 
 
 func _on_red_body_entered(body: Node2D) -> void:
