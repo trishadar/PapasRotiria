@@ -60,28 +60,16 @@ func _on_ready() -> void:
 		
 		customer.visible = false
 		
-	if (globalData.viewingTicket != null):
-		var instance_data = globalData.viewingTicket
-		var instance = ticket_scene.instantiate()
-		add_child(instance)
-		instance.set_up(instance_data)
-		viewingTicketNode = instance
-		globalData.viewingTicket = instance_data
-		globalData.ticketOccupied = true
-		
+	
+	
+func _process(delta):
 	if (globalData.orderFinished == true):
 		print("Score: " + str(globalData.score))
 		scoreLabel.text = "Score: " + str(globalData.score)
 		totalScoreLabel.text = "Total Score: " + str(globalData.totalScore)
 		score.visible = true
-		globalData.orderFinished = false
 	else:
 		score.visible = false
-		
-	
-	
-func _process(delta):
-	pass
 		
 func spawn_scene():
 	print("ticket spawned")
@@ -97,3 +85,4 @@ func spawn_scene():
 func _on_score_exit_button_pressed() -> void:
 	score.visible = false
 	globalData.score = 0
+	globalData.orderFinished = false
