@@ -14,6 +14,9 @@ var currySelected = false
 var spacePressed = false
 var curryChosen
 
+@onready var cam = get_node("/root/MainScene/Camera2D")
+var orderPos = Vector2(576, 323)
+
 func change_to_order() -> void:
 	get_tree().change_scene_to_file("res://order.tscn")
 

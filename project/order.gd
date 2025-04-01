@@ -16,18 +16,24 @@ extends Node2D
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
 
+@onready var cam = get_node("/root/MainScene/Camera2D")
+var orderPos = Vector2(576, 323)
+var rollPos = Vector2(1856, 323)
+var cookPos = Vector2(3136, 323)
+var curryPos = Vector2(4416, 323)
+
 	
 func change_to_order() -> void:
-	get_tree().change_scene_to_file("res://order.tscn")
+	cam.position = orderPos
 
 func change_to_roll() -> void:
-	get_tree().change_scene_to_file("res://roll.tscn")
+	cam.position = rollPos
 
 func change_to_cook() -> void:
-	get_tree().change_scene_to_file("res://cook.tscn")
+	cam.position = cookPos
 
 func change_to_curry() -> void:
-	get_tree().change_scene_to_file("res://curry.tscn")
+	cam.position = curryPos
 
 
 func customerWalk():
