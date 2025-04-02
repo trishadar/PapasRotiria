@@ -25,7 +25,7 @@ func _on_ready() -> void:
 	pass
 
 func _process(delta: float):
-	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll"):
+	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll" and globalData.orderFinished == false):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)
@@ -34,3 +34,7 @@ func _process(delta: float):
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+		print("roll spawned ticket")
+		
+	if (globalData.orderFinished == true):
+		ticketSpawned = false

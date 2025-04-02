@@ -84,6 +84,7 @@ func spawn_scene():
 	viewingTicketNode = instance
 	globalData.viewingTicket = instance_data
 	globalData.ticketOccupied = true
+	globalData.orderFinished = false
 	
 	
 func _on_score_exit_button_pressed() -> void:

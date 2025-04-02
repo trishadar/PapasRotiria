@@ -84,7 +84,6 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.ticketOccupied = false
 		globalData.canTakeOrder = true	
 		globalData.makeNewTicket()
-		print("made new ticket")
 		globalData.totalScore += globalData.score
 		cam.position = orderPos
 
