@@ -34,3 +34,5 @@ func _process(delta: float):
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+		
+	print("process")
