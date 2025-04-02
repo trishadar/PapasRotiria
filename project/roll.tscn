@@ -1,11 +1,50 @@
 [gd_scene load_steps=9 format=3 uid="uid://cn2d54ksqsmb8"]
 
-[ext_resource type="Script" uid="uid://b47mkvyaqkv7w" path="res://roti.gd" id="1_jsvgc"]
 [ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
 [ext_resource type="Script" path="res://put_roti_here.gd" id="3_48jdy"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="3_ft62e"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="4_jsvgc"]
 [ext_resource type="PackedScene" uid="uid://ds26w6tcmw7mc" path="res://rollingBoard.tscn" id="6_32hjg"]
+
+[sub_resource type="GDScript" id="GDScript_jsvgc"]
+script/source = "extends Node2D
+
+var ticket_scene: PackedScene = preload(\"res://ticket.tscn\")
+var viewingTicketNode = null
+var sceneToSpawn = preload(\"res://roti.tscn\")
+
+var spawn_count: int = 0
+var ticketSpawned = false
+
+func _on_take_order_button_pressed() -> void:
+	spawn_scene()
+	#
+	
+
+func spawn_scene():
+	var instance = sceneToSpawn.instantiate()
+	add_child(instance)
+	instance.position = Vector2(100,400)
+	
+	#figure out how to spawn in only one ball of dough at a time (check how many rotis are in scene?)
+	#figure out how to move roti from one scene to next
+	#figure out how to connect order ticket to roti to verify if the final order attached to the ticket is correct
+	
+func _on_ready() -> void:
+	pass
+
+func _process(delta: float):
+	if (globalData.viewingTicket != null and ticketSpawned == false):
+		var instance_data = globalData.viewingTicket
+		var instance = ticket_scene.instantiate()
+		add_child(instance)
+		instance.set_up(instance_data)
+		viewingTicketNode = instance
+		globalData.viewingTicket = instance_data
+		globalData.ticketOccupied = true
+		ticketSpawned = true
+	print_debug(\"Debra\")
+"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
@@ -13,7 +52,7 @@
 radius = 50.04
 
 [node name="roll" type="Node2D"]
-script = ExtResource("1_jsvgc")
+script = SubResource("GDScript_jsvgc")
 
 [node name="takeOrderButton" type="Button" parent="."]
 offset_left = 926.0
