@@ -10,7 +10,7 @@ var ticketSpawned = false
 @onready var rotiList = [get_node("Roti")]
 
 func _process(delta: float):
-	if (globalData.viewingTicket != null and ticketSpawned == false):
+	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook"):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)

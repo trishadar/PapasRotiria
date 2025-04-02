@@ -24,7 +24,7 @@ func _on_ready() -> void:
 	
 func _process(delta: float):
 	
-	if (globalData.viewingTicket != null and ticketSpawned == false):
+	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry"):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)
@@ -84,6 +84,7 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.ticketOccupied = false
 		globalData.canTakeOrder = true	
 		globalData.makeNewTicket()
+		print("made new ticket")
 		globalData.totalScore += globalData.score
 		cam.position = orderPos
 

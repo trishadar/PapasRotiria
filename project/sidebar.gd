@@ -14,17 +14,19 @@ var curryPos = Vector2(4416, 323)
 
 func _on_order_button_pressed() -> void:
 	cam.position = orderPos
-
+	globalData.currentScene = "order"
 
 func _on_roll_button_pressed() -> void:
 	cam.position = rollPos
+	globalData.currentScene = "roll"
 
 func _on_cook_button_pressed() -> void:
 	cam.position = cookPos
-
+	globalData.currentScene = "cook"
 
 func _on_curry_button_pressed() -> void:
 	cam.position = curryPos
+	globalData.currentScene = "curry"
 
 func _on_ready() -> void:
 	help.text = globalData.helpText

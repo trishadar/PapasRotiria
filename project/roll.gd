@@ -25,7 +25,7 @@ func _on_ready() -> void:
 	pass
 
 func _process(delta: float):
-	if (globalData.viewingTicket != null and ticketSpawned == false):
+	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll"):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)
