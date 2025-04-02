@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
 [ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="3_lgwpa"]
-[ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_t8dlq"]
+[ext_resource type="Script" path="res://put_roti_here.gd" id="3_t8dlq"]
 [ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="5_7l328"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="6_fifm2"]
 

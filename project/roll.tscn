@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cn2d54ksqsmb8"]
 
-[ext_resource type="Script" uid="uid://bpt1talwgye20" path="res://roll.gd" id="1_32hjg"]
+[ext_resource type="Script" uid="uid://cslwbrquiajw6" path="res://roll.gd" id="1_32hjg"]
 [ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
-[ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_48jdy"]
+[ext_resource type="Script" path="res://put_roti_here.gd" id="3_48jdy"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="3_ft62e"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="4_jsvgc"]
 [ext_resource type="PackedScene" uid="uid://ds26w6tcmw7mc" path="res://rollingBoard.tscn" id="6_32hjg"]

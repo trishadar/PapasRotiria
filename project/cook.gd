@@ -10,7 +10,7 @@ var ticketSpawned = false
 @onready var rotiList = [get_node("Roti")]
 
 func _process(delta: float):
-	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook"):
+	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook" and globalData.orderFinished == false):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)
@@ -19,6 +19,9 @@ func _process(delta: float):
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+		
+	if (globalData.orderFinished == true):
+		ticketSpawned = false
 	
 	for rotiObj in rotiList:
 		if((rotiObj.position == pan.position || rotiObj.position == pan2.position)):

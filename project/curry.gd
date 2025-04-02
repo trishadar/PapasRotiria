@@ -24,7 +24,7 @@ func _on_ready() -> void:
 	
 func _process(delta: float):
 	
-	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry"):
+	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry" and globalData.orderFinished == false):
 		var instance_data = globalData.viewingTicket
 		var instance = ticket_scene.instantiate()
 		add_child(instance)
@@ -34,6 +34,9 @@ func _process(delta: float):
 		globalData.ticketOccupied = true
 		fallingCurry.visible = false
 		ticketSpawned = true
+		
+	if (globalData.orderFinished == true):
+		ticketSpawned = false
 	
 	# check if space bar pressed and there is a collision
 	if (globalData.viewingTicket != null and currySelected == true):
