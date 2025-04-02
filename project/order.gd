@@ -52,7 +52,7 @@ func _on_ready() -> void:
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
 		
-		animationPlayer.play("watson")
+		animationPlayer.play("lewatson")
 		customerWalk()
 		customer.visible = true
 	else:
