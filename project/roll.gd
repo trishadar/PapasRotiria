@@ -6,6 +6,8 @@ var sceneToSpawn = preload("res://roti.tscn")
 
 var spawn_count: int = 0
 var ticketSpawned = false
+var instance = null
+var ticketDeleted = false
 
 func _on_take_order_button_pressed() -> void:
 	spawn_scene()
@@ -27,14 +29,19 @@ func _on_ready() -> void:
 func _process(delta: float):
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll" and globalData.orderFinished == false):
 		var instance_data = globalData.viewingTicket
-		var instance = ticket_scene.instantiate()
+		instance = ticket_scene.instantiate()
 		add_child(instance)
 		instance.set_up(instance_data)
 		viewingTicketNode = instance
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+		ticketDeleted = false
 		print("roll spawned ticket")
 		
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
+		
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		instance.queue_free()
+		ticketDeleted = true
