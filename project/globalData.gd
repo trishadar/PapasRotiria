@@ -21,6 +21,8 @@ var score = 0
 var totalScore = 0
 var orderFinished = false
 
+var currentScene = "order"
+
 func _ready() -> void:
 	makeNewTicket()
 

@@ -21,6 +21,7 @@ var orderPos = Vector2(576, 323)
 var rollPos = Vector2(1856, 323)
 var cookPos = Vector2(3136, 323)
 var curryPos = Vector2(4416, 323)
+var customerWalked = false
 
 	
 func change_to_order() -> void:
@@ -38,6 +39,7 @@ func change_to_curry() -> void:
 
 func customerWalk():
 	customer.position.x -= 200
+	customerWalked = true
 
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
@@ -49,22 +51,24 @@ func _on_take_order_button_pressed() -> void:
 		
 
 func _on_ready() -> void:
-	if globalData.canTakeOrder == true:
-		takeOrderButton.text = "TAKE ORDER"
-		
-		animationPlayer.play("lewatson")
-		customerWalk()
-		customer.visible = true
-	else:
-		takeOrderButton.text = " "
-		
-		customer.visible = false
+	pass
 		
 	
 	
 func _process(delta):
+	if globalData.canTakeOrder == true:
+		takeOrderButton.text = "TAKE ORDER"
+		
+		if customerWalked == false:
+			animationPlayer.play("lewatson")
+			customerWalk()
+			customer.visible = true
+	else:
+		takeOrderButton.text = " "
+		customer.visible = false
+	
 	if (globalData.orderFinished == true):
-		print("Score: " + str(globalData.score))
+		# print("Score: " + str(globalData.score))
 		scoreLabel.text = "Score: " + str(globalData.score)
 		totalScoreLabel.text = "Total Score: " + str(globalData.totalScore)
 		score.visible = true
