@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://hsfseme0taar"]
+[gd_scene load_steps=9 format=3 uid="uid://hsfseme0taar"]
 
 [ext_resource type="Script" uid="uid://cxq15thre71pj" path="res://sidebar.gd" id="1_1nfj0"]
 [ext_resource type="Texture2D" uid="uid://b4betlsffwmsy" path="res://Assets/curryIcon.png" id="2_thefd"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://3ofo64cc3pbo" path="res://Assets/orderIcon.png" id="5_ysgnd"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lu6np"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_thefd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwvo2"]
 size = Vector2(223, 332)
@@ -71,6 +73,13 @@ z_index = -5
 position = Vector2(968.727, 48.2955)
 scale = Vector2(-367.364, 95.7728)
 texture = SubResource("CanvasTexture_lu6np")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+modulate = Color(0.172833, 0.172833, 0.172833, 1)
+z_index = -5
+position = Vector2(393.227, 20.2955)
+scale = Vector2(-786.364, 11.7728)
+texture = SubResource("CanvasTexture_thefd")
 
 [node name="steps2" type="Sprite2D" parent="."]
 modulate = Color(0.355314, 0.355314, 0.355313, 1)
