@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eja5a2j8s652"
-path="res://.godot/imported/Watson.png-8a4b2f975e59c3b2f0362026878bc867.ctex"
+uid="uid://bu3ecbn2twxss"
+path="res://.godot/imported/watsonIdleNoBall.png-351b30935bd6e1e54f5eebe922ce194d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Watson.png"
-dest_files=["res://.godot/imported/Watson.png-8a4b2f975e59c3b2f0362026878bc867.ctex"]
+source_file="res://Assets/customers/watsonIdleNoBall.png"
+dest_files=["res://.godot/imported/watsonIdleNoBall.png-351b30935bd6e1e54f5eebe922ce194d.ctex"]
 
 [params]
 

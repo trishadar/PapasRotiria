@@ -63,7 +63,7 @@ func _process(delta):
 		takeOrderButton.text = "TAKE ORDER"
 		
 		if customerWalked == false:
-			animationPlayer.play("lewatson")
+			animationPlayer.play("rithika")
 			customerWalk()
 			customer.visible = true
 	else:
