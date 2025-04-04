@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=10 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://bpt1talwgye20" path="res://roll.gd" id="1_32hjg"]
 [ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="3_ft62e"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="4_jsvgc"]
 [ext_resource type="PackedScene" uid="uid://ds26w6tcmw7mc" path="res://rollingBoard.tscn" id="6_32hjg"]
+[ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="7_gk5yo"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
@@ -37,12 +38,12 @@ scale = Vector2(-246.364, 30.8728)
 texture = SubResource("CanvasTexture_vrgdt")
 
 [node name="rollingBoard" parent="." instance=ExtResource("6_32hjg")]
-position = Vector2(620, 408)
+position = Vector2(571, 349)
 
 [node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
 
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(623, 409)
+position = Vector2(574, 350)
 script = ExtResource("3_48jdy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
@@ -57,6 +58,27 @@ texture = ExtResource("4_jsvgc")
 
 [node name="Roti" parent="." instance=ExtResource("2_vrgdt")]
 position = Vector2(149, 296)
+
+[node name="BigArrow" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(758, 571)
+scale = Vector2(0.4465, 0.4725)
+texture = ExtResource("7_gk5yo")
+
+[node name="Roll->Cook" type="StaticBody2D" parent="." groups=["Droppable"]]
+z_index = -1
+position = Vector2(750, 561)
+script = ExtResource("3_48jdy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roll->Cook"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_jsvgc")
+
+[node name="Circle" type="Sprite2D" parent="Roll->Cook"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(8, -33)
+scale = Vector2(0.389392, 0.410782)
+texture = ExtResource("4_jsvgc")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]

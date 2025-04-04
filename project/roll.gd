@@ -7,6 +7,8 @@ var sceneToSpawn = preload("res://roti.tscn")
 var spawn_count: int = 0
 var ticketSpawned = false
 
+@onready var ms = get_node("/root/MainScene")
+
 func _on_take_order_button_pressed() -> void:
 	spawn_scene()
 	#
@@ -17,6 +19,7 @@ func spawn_scene():
 	add_child(instance)
 	instance.position = Vector2(100,400)
 	
+	ms.rotiList.append(instance)
 	#figure out how to spawn in only one ball of dough at a time (check how many rotis are in scene?)
 	#figure out how to move roti from one scene to next
 	#figure out how to connect order ticket to roti to verify if the final order attached to the ticket is correct
@@ -34,3 +37,5 @@ func _process(delta: float):
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+		
+	
