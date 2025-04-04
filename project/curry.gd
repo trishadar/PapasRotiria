@@ -6,7 +6,7 @@ var is_colliding_green: bool = false
 var is_colliding_yellow: bool = false
 var is_colliding_red: bool = false
 var curryFalling = true
-var targetCurryY = 210
+var targetCurryY = 200
 @onready var animationPlayer = $fallingCurry/AnimationPlayer
 @onready var fallingCurry = $fallingCurry
 @onready var ladle = $ladle
@@ -14,6 +14,7 @@ var currySelected = false
 var spacePressed = false
 var curryChosen
 var ticketSpawned = false
+var curryDropped = false
 
 @onready var cam = get_node("/root/MainScene/Camera2D")
 var orderPos = Vector2(576, 323)
@@ -41,6 +42,10 @@ func _process(delta: float):
 		
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
+		curryDropped = false
+		curryChosen = null
+		spacePressed = false
+		currySelected = false
 		
 	if (globalData.orderFinished == true and ticketDeleted == false):
 		instance.queue_free()
@@ -48,8 +53,8 @@ func _process(delta: float):
 	
 	# check if space bar pressed and there is a collision
 	if (globalData.viewingTicket != null and currySelected == true):
-		if (Input.is_action_just_pressed("ui_accept")):
-			
+		if (Input.is_action_just_pressed("ui_accept") and curryDropped == false):
+			curryDropped = true
 			# check if they chose right curry
 			if (curryChosen == globalData.viewingTicket["curry"]):
 				globalData.score += 100
@@ -115,18 +120,21 @@ func _on_yellow_body_exited(body: Node2D) -> void:
 	is_colliding_yellow = false
 
 func _on_paneer_button_pressed() -> void:
-	currySelected = true
-	curryChosen = "Paneer"
-	animationPlayer.play("paneer")
+	if (globalData.ticketOccupied == true):
+		currySelected = true
+		curryChosen = "Paneer"
+		animationPlayer.play("paneer")
 
 
 func _on_butter_chicken_button_pressed() -> void:
-	currySelected = true
-	curryChosen = "Butter Chicken"
-	animationPlayer.play("butterChicken")
+	if (globalData.ticketOccupied == true):
+		currySelected = true
+		curryChosen = "Butter Chicken"
+		animationPlayer.play("butterChicken")
 
 
 func _on_gobi_button_pressed() -> void:
-	currySelected = true
-	curryChosen = "Gobi"
-	animationPlayer.play("gobi")
+	if (globalData.ticketOccupied == true):
+		currySelected = true
+		curryChosen = "Gobi"
+		animationPlayer.play("gobi")

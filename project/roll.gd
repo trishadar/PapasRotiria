@@ -43,5 +43,6 @@ func _process(delta: float):
 		ticketSpawned = false
 		
 	if (globalData.orderFinished == true and ticketDeleted == false):
+		print("delete ticket in roll")
 		instance.queue_free()
 		ticketDeleted = true
