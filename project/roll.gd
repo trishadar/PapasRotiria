@@ -36,7 +36,7 @@ func spawn_scene():
 func _process(delta: float):
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll"):
 		var instance_data = globalData.viewingTicket
-		var instance = ticket_scene.instantiate()
+		instance = ticket_scene.instantiate()
 		add_child(instance)
 		instance.set_up(instance_data)
 		viewingTicketNode = instance
