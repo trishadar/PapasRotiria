@@ -14,6 +14,9 @@ var spawnCountChecker = false
 
 @onready var ms = get_node("/root/MainScene")
 
+var instance = null
+var ticketDeleted = false
+
 
 func _on_take_order_button_pressed() -> void:
 	spawn_count = spawn_count+1
@@ -40,6 +43,14 @@ func _process(delta: float):
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+		ticketDeleted = false
+		
+	if (globalData.orderFinished == true):
+		ticketSpawned = false
+		
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		instance.queue_free()
+		ticketDeleted = true
 		
 	print_debug("debra3")
 		
