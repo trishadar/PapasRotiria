@@ -52,13 +52,11 @@ func _process(delta: float):
 		instance.queue_free()
 		ticketDeleted = true
 		
-	print_debug("debra3")
+	#print_debug("debra3")
 		
 		
 	for rotiObj in ms.rotiList:
-		print_debug("debra2")
 		if(rotiObj.position == board.position and spawnCountChecker == false):
-			print_debug("debra")
 			remove_child(rotiObj)
 			spawn_count = spawn_count - 1
 			print_debug(spawn_count)

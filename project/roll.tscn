@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=9 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://bpt1talwgye20" path="res://roll.gd" id="1_32hjg"]
-[ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="2_vrgdt"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_48jdy"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="3_ft62e"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="4_jsvgc"]
@@ -55,9 +54,6 @@ modulate = Color(1, 1, 1, 0.32549)
 position = Vector2(8, -33)
 scale = Vector2(0.389392, 0.410782)
 texture = ExtResource("4_jsvgc")
-
-[node name="Roti" parent="." instance=ExtResource("2_vrgdt")]
-position = Vector2(149, 296)
 
 [node name="BigArrow" type="Sprite2D" parent="."]
 z_index = -2
