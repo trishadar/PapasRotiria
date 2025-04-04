@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eja5a2j8s652"
-path="res://.godot/imported/Watson.png-8a4b2f975e59c3b2f0362026878bc867.ctex"
+uid="uid://ddk7g2oe28co2"
+path="res://.godot/imported/BigArrow.png-4b06da8f842fea8d4970a87093848bb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Watson.png"
-dest_files=["res://.godot/imported/Watson.png-8a4b2f975e59c3b2f0362026878bc867.ctex"]
+source_file="res://Assets/BigArrow.png"
+dest_files=["res://.godot/imported/BigArrow.png-4b06da8f842fea8d4970a87093848bb3.ctex"]
 
 [params]
 

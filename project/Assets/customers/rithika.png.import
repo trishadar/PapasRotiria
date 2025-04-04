@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu3ecbn2twxss"
-path="res://.godot/imported/watsonIdleNoBall.png-81bfcee018f3adf9ce577fc7680e24c1.ctex"
+uid="uid://d02twor8xpphd"
+path="res://.godot/imported/rithika.png-6daaea258b0e8106b1f20a589b09f6b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/watsonIdleNoBall.png"
-dest_files=["res://.godot/imported/watsonIdleNoBall.png-81bfcee018f3adf9ce577fc7680e24c1.ctex"]
+source_file="res://Assets/customers/rithika.png"
+dest_files=["res://.godot/imported/rithika.png-6daaea258b0e8106b1f20a589b09f6b5.ctex"]
 
 [params]
 

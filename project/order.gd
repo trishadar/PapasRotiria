@@ -23,6 +23,9 @@ var cookPos = Vector2(3136, 323)
 var curryPos = Vector2(4416, 323)
 var customerWalked = false
 
+var instance = null
+var ticketDeleted = false
+
 	
 func change_to_order() -> void:
 	cam.position = orderPos
@@ -60,7 +63,7 @@ func _process(delta):
 		takeOrderButton.text = "TAKE ORDER"
 		
 		if customerWalked == false:
-			animationPlayer.play("lewatson")
+			animationPlayer.play("rithika")
 			customerWalk()
 			customer.visible = true
 	else:
@@ -75,15 +78,21 @@ func _process(delta):
 	else:
 		score.visible = false
 		
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		instance.queue_free()
+		ticketDeleted = true
+		
 func spawn_scene():
 	print("ticket spawned")
 	var instance_data = globalData.allTickets[-1]
-	var instance = ticket_scene.instantiate()
+	instance = ticket_scene.instantiate()
 	add_child(instance)
 	instance.set_up(instance_data)
 	viewingTicketNode = instance
 	globalData.viewingTicket = instance_data
 	globalData.ticketOccupied = true
+	globalData.orderFinished = false
+	ticketDeleted = false
 	
 	
 func _on_score_exit_button_pressed() -> void:
