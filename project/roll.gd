@@ -4,25 +4,27 @@ var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
 var sceneToSpawn = preload("res://roti.tscn")
 
-var spawn_count: int = 0
+var spawn_count: int = 1
 var ticketSpawned = false
+var spawnCountChecker = false
 
+@onready var dough = get_node("Roti")
+@onready var board = get_node("PutRotiHere")
+@onready var button = $takeOrderButton
 func _on_take_order_button_pressed() -> void:
+	spawn_count = spawn_count+1
 	spawn_scene()
 	#
 	
 
 func spawn_scene():
-	var instance = sceneToSpawn.instantiate()
-	add_child(instance)
-	instance.position = Vector2(100,400)
+	var dough = sceneToSpawn.instantiate()
+	add_child(dough)
+	dough.position = Vector2(100,400)
 	
-	#figure out how to spawn in only one ball of dough at a time (check how many rotis are in scene?)
-	#figure out how to move roti from one scene to next
-	#figure out how to connect order ticket to roti to verify if the final order attached to the ticket is correct
+
 	
-func _on_ready() -> void:
-	pass
+
 
 func _process(delta: float):
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll"):
@@ -34,3 +36,20 @@ func _process(delta: float):
 		globalData.viewingTicket = instance_data
 		globalData.ticketOccupied = true
 		ticketSpawned = true
+		
+		
+	if(dough.position == board.position and spawnCountChecker == false):
+		print_debug("debra")
+		remove_child(dough)
+		spawn_count = spawn_count - 1
+		print_debug(spawn_count)
+		spawnCountChecker = true
+		
+		
+	if(spawn_count>=1):
+		button.disabled = true
+	else:
+		button.disabled = false
+		
+	
+		
