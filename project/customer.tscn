@@ -1,34 +1,36 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh7yhswfn5qrv"]
+[gd_scene load_steps=13 format=3 uid="uid://dh7yhswfn5qrv"]
 
-[ext_resource type="Texture2D" uid="uid://eja5a2j8s652" path="res://Assets/Watson.png" id="1_7tiyv"]
+[ext_resource type="Texture2D" uid="uid://eja5a2j8s652" path="res://Assets/customers/Watson.png" id="1_7tiyv"]
 [ext_resource type="Script" uid="uid://63y5klkivgho" path="res://customer.gd" id="1_r8ta2"]
-[ext_resource type="Texture2D" uid="uid://bu3ecbn2twxss" path="res://Assets/watsonIdleNoBall.png" id="2_f7asb"]
+[ext_resource type="Texture2D" uid="uid://bu3ecbn2twxss" path="res://Assets/customers/watsonIdleNoBall.png" id="2_f7asb"]
+[ext_resource type="Texture2D" uid="uid://d02twor8xpphd" path="res://Assets/customers/rithika.png" id="3_co351"]
+[ext_resource type="Texture2D" uid="uid://ci2ha5xnhrxko" path="res://Assets/customers/rithika2.png" id="4_gn8fi"]
 
 [sub_resource type="Animation" id="Animation_f7asb"]
 resource_name = "lewatson"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"lewatson"]
+"update": 0,
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [&"lewatson"]
 }
 
 [sub_resource type="Animation" id="Animation_r8ta2"]
@@ -36,31 +38,77 @@ resource_name = "watson"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"watson"]
+}
+
+[sub_resource type="Animation" id="Animation_co351"]
+resource_name = "rithika"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"rithika"]
+}
+
+[sub_resource type="Animation" id="Animation_gn8fi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"watson"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f7asb"]
 _data = {
+&"RESET": SubResource("Animation_gn8fi"),
 &"lewatson": SubResource("Animation_f7asb"),
+&"rithika": SubResource("Animation_co351"),
 &"watson": SubResource("Animation_r8ta2")
 }
 
@@ -72,6 +120,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"lewatson",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_co351")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gn8fi")
+}],
+"loop": true,
+"name": &"rithika",
 "speed": 5.0
 }, {
 "frames": [{
@@ -96,9 +155,11 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+position = Vector2(29, -13)
+scale = Vector2(0.382161, 0.386719)
 sprite_frames = SubResource("SpriteFrames_co351")
-animation = &"lewatson"
+animation = &"rithika"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = -1

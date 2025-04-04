@@ -18,15 +18,18 @@ var ticketSpawned = false
 @onready var cam = get_node("/root/MainScene/Camera2D")
 var orderPos = Vector2(576, 323)
 
+var instance = null
+var ticketDeleted = false
+
 
 func _on_ready() -> void:
 	pass
 	
 func _process(delta: float):
 	
-	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry"):
+	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry" and globalData.orderFinished == false):
 		var instance_data = globalData.viewingTicket
-		var instance = ticket_scene.instantiate()
+		instance = ticket_scene.instantiate()
 		add_child(instance)
 		instance.set_up(instance_data)
 		viewingTicketNode = instance
@@ -34,6 +37,14 @@ func _process(delta: float):
 		globalData.ticketOccupied = true
 		fallingCurry.visible = false
 		ticketSpawned = true
+		ticketDeleted = false
+		
+	if (globalData.orderFinished == true):
+		ticketSpawned = false
+		
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		instance.queue_free()
+		ticketDeleted = true
 	
 	# check if space bar pressed and there is a collision
 	if (globalData.viewingTicket != null and currySelected == true):
@@ -84,7 +95,6 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.ticketOccupied = false
 		globalData.canTakeOrder = true	
 		globalData.makeNewTicket()
-		print("made new ticket")
 		globalData.totalScore += globalData.score
 		cam.position = orderPos
 
