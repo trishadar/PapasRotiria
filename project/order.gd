@@ -25,6 +25,8 @@ var customerWalked = false
 
 var instance = null
 var ticketDeleted = false
+var ticketSpawned = false
+var ticketPosUpdated = false
 
 	
 func change_to_order() -> void:
@@ -58,8 +60,23 @@ func _on_ready() -> void:
 	
 	
 func _process(delta):
+	
+	if (ticketSpawned == true and ticketPosUpdated == false):
+		instance.position = globalData.viewingTicket["position"]
+		if (instance.position != Vector2(1011, 318)):
+			instance.scale = Vector2(.35, .35)
+			instance.thisTicketStored = true
+			instance.thisTicketOccupied = false
+		else:
+			instance.scale = Vector2(1, 1)
+			instance.thisTicketStored = false
+			instance.thisTicketOccupied = true
+		ticketPosUpdated = true
+
+
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
+		ticketSpawned = false
 		
 		if customerWalked == false:
 			animationPlayer.play("rithika")
@@ -91,6 +108,7 @@ func spawn_scene():
 	globalData.ticketOccupied = true
 	globalData.orderFinished = false
 	ticketDeleted = false
+	ticketSpawned = true
 	
 	
 func _on_score_exit_button_pressed() -> void:

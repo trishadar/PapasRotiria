@@ -46,7 +46,8 @@ func makeNewTicket():
 		"ticketNumber": ticketNumber,
 		"dough": dough,
 		"curry": curry,
-		"time": time
+		"time": time,
+		"position": Vector2(1011, 318)
 	}
 	
 	allTickets.append(ticket_data)
