@@ -15,18 +15,6 @@ var ticketPosUpdated = false
 
 func _process(delta: float):
 	
-	if (ticketSpawned == true and ticketPosUpdated == false):
-		instance.position = globalData.viewingTicket["position"]
-		if (instance.position != Vector2(1011, 318)):
-			instance.scale = Vector2(.35, .35)
-			instance.thisTicketStored = true
-			instance.thisTicketOccupied = false
-		else:
-			instance.scale = Vector2(1, 1)
-			instance.thisTicketStored = false
-			instance.thisTicketOccupied = true
-		ticketPosUpdated = true
-	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook" and globalData.orderFinished == false):
 		var instance_data = globalData.viewingTicket
 		instance = ticket_scene.instantiate()

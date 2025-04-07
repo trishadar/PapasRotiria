@@ -12,6 +12,12 @@ var rollPos = Vector2(1856, 323)
 var cookPos = Vector2(3136, 323)
 var curryPos = Vector2(4416, 323)
 
+var instance = null
+@onready var ticket_scene: PackedScene = preload("res://ticket.tscn")
+var viewingTicketNode = null
+var ticketDeleted = false
+var ticketSpawned = false
+
 func _on_order_button_pressed() -> void:
 	cam.position = orderPos
 	globalData.currentScene = "order"
@@ -47,4 +53,17 @@ func _process(delta):
 	else:
 		globalData.helpText = "..."
 		help.text = globalData.helpText
+		
+func spawn_scene():
+	print("ticket spawned")
+	var instance_data = globalData.allTickets[-1]
+	instance = ticket_scene.instantiate()
+	add_child(instance)
+	instance.set_up(instance_data)
+	viewingTicketNode = instance
+	globalData.viewingTicket = instance_data
+	globalData.ticketOccupied = true
+	globalData.orderFinished = false
+	ticketDeleted = false
+	ticketSpawned = true
 		

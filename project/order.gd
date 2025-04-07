@@ -9,6 +9,7 @@ extends Node2D
 @onready var score = $score
 @onready var scoreLabel = $score/scoreLabel
 @onready var totalScoreLabel = $score/totalScoreLabel
+@onready var sidebar = $sidebar
 
 @onready var customer = $customer
 @onready var animationPlayer = $customer/AnimationPlayer
@@ -48,7 +49,7 @@ func customerWalk():
 
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
-		spawn_scene()
+		sidebar.spawn_scene()
 		takeOrderButton.text = " "
 		globalData.canTakeOrder = false	
 		
@@ -60,19 +61,6 @@ func _on_ready() -> void:
 	
 	
 func _process(delta):
-	
-	if (ticketSpawned == true and ticketPosUpdated == false):
-		instance.position = globalData.viewingTicket["position"]
-		if (instance.position != Vector2(1011, 318)):
-			instance.scale = Vector2(.35, .35)
-			instance.thisTicketStored = true
-			instance.thisTicketOccupied = false
-		else:
-			instance.scale = Vector2(1, 1)
-			instance.thisTicketStored = false
-			instance.thisTicketOccupied = true
-		ticketPosUpdated = true
-
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
@@ -96,19 +84,6 @@ func _process(delta):
 	if (globalData.orderFinished == true and ticketDeleted == false):
 		instance.queue_free()
 		ticketDeleted = true
-		
-func spawn_scene():
-	print("ticket spawned")
-	var instance_data = globalData.allTickets[-1]
-	instance = ticket_scene.instantiate()
-	add_child(instance)
-	instance.set_up(instance_data)
-	viewingTicketNode = instance
-	globalData.viewingTicket = instance_data
-	globalData.ticketOccupied = true
-	globalData.orderFinished = false
-	ticketDeleted = false
-	ticketSpawned = true
 	
 	
 func _on_score_exit_button_pressed() -> void:
