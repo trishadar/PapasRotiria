@@ -48,7 +48,6 @@ func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
 		spawn_scene()
 		takeOrderButton.text = " "
-		customer.visible = false
 		globalData.canTakeOrder = false	
 		
 		
@@ -68,7 +67,6 @@ func _process(delta):
 			customer.visible = true
 	else:
 		takeOrderButton.text = " "
-		customer.visible = false
 	
 	if (globalData.orderFinished == true):
 		# print("Score: " + str(globalData.score))

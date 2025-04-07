@@ -74,11 +74,11 @@ position = Vector2(968.727, 48.2955)
 scale = Vector2(-367.364, 95.7728)
 texture = SubResource("CanvasTexture_lu6np")
 
-[node name="Sprite2D4" type="Sprite2D" parent="."]
+[node name="topLine" type="Sprite2D" parent="."]
 modulate = Color(0.172833, 0.172833, 0.172833, 1)
 z_index = -5
-position = Vector2(393.227, 20.2955)
-scale = Vector2(-786.364, 11.7728)
+position = Vector2(394.227, 14.7955)
+scale = Vector2(-788.364, 6.7728)
 texture = SubResource("CanvasTexture_thefd")
 
 [node name="steps2" type="Sprite2D" parent="."]

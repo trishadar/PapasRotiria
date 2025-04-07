@@ -15,6 +15,9 @@ func _on_ready() -> void:
 	
 func _process(delta: float) -> void:
 	
+	if (globalData.orderFinished == true):
+		position = leftmost_position
+	
 	if (globalData.ladleMoving == true):
 		# calculate new position
 		position.x += speed * direction * delta
