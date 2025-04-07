@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=10 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://bpt1talwgye20" path="res://roll.gd" id="1_32hjg"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_48jdy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="4_jsvgc"]
 [ext_resource type="PackedScene" uid="uid://ds26w6tcmw7mc" path="res://rollingBoard.tscn" id="6_32hjg"]
 [ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="7_gk5yo"]
+[ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="8_ak4fk"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
@@ -55,26 +56,23 @@ position = Vector2(8, -33)
 scale = Vector2(0.389392, 0.410782)
 texture = ExtResource("4_jsvgc")
 
-[node name="BigArrow" type="Sprite2D" parent="."]
-z_index = -2
+[node name="SwapArrow" type="Node2D" parent="."]
 position = Vector2(758, 571)
 scale = Vector2(0.4465, 0.4725)
+
+[node name="BigArrow" type="Sprite2D" parent="SwapArrow"]
+z_index = -2
 texture = ExtResource("7_gk5yo")
+script = ExtResource("8_ak4fk")
 
-[node name="Roll->Cook" type="StaticBody2D" parent="." groups=["Droppable"]]
-z_index = -1
-position = Vector2(750, 561)
-script = ExtResource("3_48jdy")
+[node name="Area2D" type="Area2D" parent="SwapArrow"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Roll->Cook"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_jsvgc")
-
-[node name="Circle" type="Sprite2D" parent="Roll->Cook"]
-modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
-texture = ExtResource("4_jsvgc")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwapArrow/Area2D"]
+visible = false
+polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -177.778, 197.089, -14.8148, 47.0325, 160.847, 62.71, 95.2382, -194.849, 95.2382, -44.7928, 88.8889, 31.355, 84.6561, 82.8667, 44.4445, 105.263, -12.6984, 87.3461, -76.1904, 31.355, -120.635, -31.355, -124.868, -94.0649, -95.238, -123.18, -48.6772, -127.66, -2.11633, -96.3046, 61.3757, -47.0325, 86.7726, -194.849, 97.3545)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
+[connection signal="area_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_area_entered"]
+[connection signal="mouse_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_mouse_exited"]
