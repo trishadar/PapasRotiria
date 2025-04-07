@@ -13,6 +13,7 @@ func _process(delta: float):
 			rollToCookHolder.rotiOccupied.global_position = cookHoldPos
 			rollToCookHolder.isOccupied = false
 			rollToCookHolder.rotiOccupied = null
+			scale = Vector2(1, 1)
 	
 func _on_area_2d_mouse_entered() -> void:
 	mouseEnt += 1
