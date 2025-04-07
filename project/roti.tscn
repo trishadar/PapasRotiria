@@ -239,6 +239,7 @@ animations = [{
 radius = 50.01
 
 [node name="Roti" type="Node2D"]
+z_index = 4
 script = ExtResource("1_boac2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

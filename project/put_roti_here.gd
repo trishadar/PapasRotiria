@@ -13,9 +13,9 @@ func _process(delta):
 		visible = false
 	
 	if(rotiOccupied != null):
-		if(rotiOccupied.position != position):
+		if(rotiOccupied.global_position != global_position):
 			isOccupied = false
-			
+	
 	if(isOccupied):
 		self.remove_from_group("Droppable")
 	else:

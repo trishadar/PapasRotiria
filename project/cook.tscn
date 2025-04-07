@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cus2uri4avjoi"]
+[gd_scene load_steps=17 format=3 uid="uid://cus2uri4avjoi"]
 
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
 [ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="3_lgwpa"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_t8dlq"]
-[ext_resource type="PackedScene" uid="uid://bef638wepm82s" path="res://roti.tscn" id="5_7l328"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="6_fifm2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
@@ -104,20 +103,6 @@ position = Vector2(77, 338)
 scale = Vector2(153.75, 111.75)
 texture = SubResource("CanvasTexture_lgwpa")
 
-[node name="RotiStart" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(75, 335)
-script = ExtResource("3_t8dlq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RotiStart"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_fifm2")
-
-[node name="Circle" type="Sprite2D" parent="RotiStart"]
-modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
-texture = ExtResource("3_lgwpa")
-
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(245, 499)
 script = ExtResource("3_t8dlq")
@@ -171,6 +156,3 @@ scale = Vector2(0.389392, 0.410782)
 texture = ExtResource("3_lgwpa")
 
 [node name="sidebar" parent="." instance=ExtResource("6_fifm2")]
-
-[node name="Roti" parent="." instance=ExtResource("5_7l328")]
-position = Vector2(78, 338)
