@@ -150,24 +150,24 @@ _data = {
 script = ExtResource("1_kx0aq")
 
 [node name="paneerButton" type="Button" parent="."]
-offset_left = 83.0
-offset_top = 27.0
-offset_right = 268.0
-offset_bottom = 69.0
+offset_left = 86.0
+offset_top = 64.0
+offset_right = 271.0
+offset_bottom = 106.0
 text = "PANEER"
 
 [node name="butterChickenButton" type="Button" parent="."]
-offset_left = 320.0
-offset_top = 26.0
-offset_right = 505.0
-offset_bottom = 68.0
+offset_left = 316.0
+offset_top = 65.0
+offset_right = 501.0
+offset_bottom = 107.0
 text = "BUTTER CHICKEN"
 
 [node name="gobiButton" type="Button" parent="."]
-offset_left = 555.0
-offset_top = 26.0
-offset_right = 740.0
-offset_bottom = 68.0
+offset_left = 544.0
+offset_top = 65.0
+offset_right = 729.0
+offset_bottom = 107.0
 text = "GOBI"
 
 [node name="finishOrderButton" type="Button" parent="."]
