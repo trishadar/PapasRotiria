@@ -7,7 +7,7 @@ func _ready():
 	modulate = Color(Color.MEDIUM_PURPLE, 0.7)
 
 func _process(delta):
-	if globalData.is_dragging:
+	if globalData.is_dragging && !isOccupied:
 		visible = true
 	else:
 		visible = false
@@ -15,6 +15,9 @@ func _process(delta):
 	if(rotiOccupied != null):
 		if(rotiOccupied.position != position):
 			isOccupied = false
+			
+	if(rotiOccupied == null):
+		isOccupied = false
 			
 	if(isOccupied):
 		self.remove_from_group("Droppable")

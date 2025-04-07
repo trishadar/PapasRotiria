@@ -58,6 +58,8 @@ func _process(delta: float):
 	for rotiObj in ms.rotiList:
 		if(rotiObj.position == board.position and spawnCountChecker == false):
 			remove_child(rotiObj)
+			board.isOccupied = false
+			board.rotiOccupied = null
 			spawn_count = spawn_count - 1
 			print_debug(spawn_count)
 			spawnCountChecker = true
