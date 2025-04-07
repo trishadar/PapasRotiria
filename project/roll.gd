@@ -16,8 +16,8 @@ func _on_take_order_button_pressed() -> void:
 
 func spawn_scene():
 	var instance = sceneToSpawn.instantiate()
-	add_child(instance)
-	instance.position = Vector2(100,400)
+	ms.add_child(instance)
+	instance.position = Vector2(1380,400)
 	
 	ms.rotiList.append(instance)
 	#figure out how to spawn in only one ball of dough at a time (check how many rotis are in scene?)

@@ -9,7 +9,8 @@ var ticketDeleted = false
 @onready var pan = get_node("PutRotiHere")
 @onready var pan2 = get_node("PutRotiHere2")
 @onready var trash = get_node("PutRotiHereTrash")
-@onready var rotiList = [get_node("Roti")]
+
+@onready var ms = get_node("/root/MainScene")
 
 func _process(delta: float):
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook" and globalData.orderFinished == false):
@@ -30,10 +31,11 @@ func _process(delta: float):
 		instance.queue_free()
 		ticketDeleted = true
 	
-	for rotiObj in rotiList:
-		if((rotiObj.position == pan.position || rotiObj.position == pan2.position)):
+	for rotiObj in ms.rotiList:
+		if((rotiObj.global_position == pan.global_position || rotiObj.global_position == pan2.global_position)):
 			startCooking(rotiObj)
-		elif((rotiObj.position == trash.position)):
+		elif((rotiObj.global_position == trash.global_position)):
+			ms.rotiList.erase(rotiObj)
 			remove_child(rotiObj)
 		else:
 			stopCooking(rotiObj)
