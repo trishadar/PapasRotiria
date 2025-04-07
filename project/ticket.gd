@@ -37,7 +37,12 @@ func set_up(data):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			print("event.pressed: " , event.pressed)
+			print("thisTickedOccupied: " , thisTicketOccupied)
+			print("thisTicketStored: " , thisTicketStored)
+			print("is_mouse_over(get_global_mouse_position(): " , is_mouse_over(get_global_mouse_position()))
 			if event.pressed and (thisTicketOccupied == true or thisTicketStored == true) and is_mouse_over(get_global_mouse_position()):
+				print("dragging ticket")
 				dragging = true
 				initial_mouse_position = get_global_mouse_position()
 				
@@ -83,6 +88,8 @@ func move_to_side_box() -> void:
 	sizeX = 220
 	sizeY = 330
 	hasShrunk = false
+	globalData.viewingTicket["position"] = Vector2(1011, 318)
 	
 func move_to_top() -> void:
 	position.y = 65
+	globalData.viewingTicket["position"] = Vector2(position.x, position.y)
