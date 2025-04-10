@@ -243,8 +243,8 @@ z_index = 4
 script = ExtResource("1_boac2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.31, -70.46)
-scale = Vector2(0.462, 0.669)
+position = Vector2(0.295, -48.755)
+scale = Vector2(0.462, 0.46158)
 sprite_frames = SubResource("SpriteFrames_0igqm")
 frame_progress = 0.484286
 
@@ -252,6 +252,7 @@ frame_progress = 0.484286
 scale = Vector2(1.02, 0.985)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_00dve")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
