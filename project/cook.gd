@@ -35,8 +35,9 @@ func _process(delta: float):
 		if((rotiObj.global_position == pan.global_position || rotiObj.global_position == pan2.global_position)):
 			startCooking(rotiObj)
 		elif((rotiObj.global_position == trash.global_position)):
+			print_debug("debra")
 			ms.rotiList.erase(rotiObj)
-			remove_child(rotiObj)
+			ms.remove_child(rotiObj)
 		else:
 			stopCooking(rotiObj)
 

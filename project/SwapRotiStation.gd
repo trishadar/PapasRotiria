@@ -1,26 +1,51 @@
 extends Sprite2D
 
 @onready var rollToCookHolder = get_node("/root/MainScene/roll/Roll->Cook")
-@onready var rawRotiCookHold = get_node("/root/MainScene/cook/RawRotiHolder")
-@onready var cookHoldPos = rawRotiCookHold.global_position
+@onready var cookToCurryHolder = get_node("/root/MainScene/cook/Cook->Curry")
+@onready var rawRotiCookHold = get_node("/root/MainScene/cook/RawRotiHolder/PutRotiHere")
+@onready var cookedCurryHold = get_node("/root/MainScene/curry/PutRotiHere")
+
+@onready var whichScene
+@onready var useThisHolder
+@onready var goesToHold
 
 var mouseEnt = 0
 var mouseEx = 0
 
 func _process(delta: float):
-	if Input.is_action_just_pressed("click"):
-		if(mouseEnt - 1 == mouseEx):
-			rollToCookHolder.rotiOccupied.global_position = cookHoldPos
-			rollToCookHolder.isOccupied = false
-			rollToCookHolder.rotiOccupied = null
+	if useThisHolder.isOccupied:
+		if Input.is_action_just_pressed("click"):
+			if(mouseEnt - 1 == mouseEx):
+				if(goesToHold.isOccupied):
+					print("Transfer is occupied")
+				else:
+					useThisHolder.rotiOccupied.global_position = goesToHold.global_position
+					goesToHold.isOccupied = true
+					goesToHold.rotiOccupied = useThisHolder.rotiOccupied
+					
+					useThisHolder.isOccupied = false
+					useThisHolder.rotiOccupied = null
+					
+					scale = Vector2(1, 1)
 	
 func _on_area_2d_mouse_entered() -> void:
 	mouseEnt += 1
-	if rollToCookHolder.isOccupied:
+	if useThisHolder != null && useThisHolder.isOccupied:
 		scale = Vector2(1.05, 1.05)
 		
 
 func _on_area_2d_mouse_exited():
 	mouseEx += 1
-	if rollToCookHolder.isOccupied:
+	if useThisHolder != null && useThisHolder.isOccupied:
 		scale = Vector2(1, 1)
+
+func _ready():
+	var pos = self.global_position
+	if(pos.x >= 1280 && pos.x <= 2450):
+		whichScene = "roll"
+		useThisHolder = rollToCookHolder
+		goesToHold = rawRotiCookHold
+	if(pos.x >= 2560 && pos.x <= 3730):
+		whichScene = "cook"
+		useThisHolder = cookToCurryHolder
+		goesToHold = cookedCurryHold
