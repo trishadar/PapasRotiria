@@ -5,6 +5,7 @@ var viewingTicketNode = null
 var ticketSpawned = false
 var instance = null
 var ticketDeleted = false
+var ticketPosUpdated = false
 
 @onready var pan = get_node("PutRotiHere")
 @onready var pan2 = get_node("PutRotiHere2")
@@ -13,6 +14,7 @@ var ticketDeleted = false
 @onready var ms = get_node("/root/MainScene")
 
 func _process(delta: float):
+	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook" and globalData.orderFinished == false):
 		var instance_data = globalData.viewingTicket
 		instance = ticket_scene.instantiate()

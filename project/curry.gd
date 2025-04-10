@@ -21,6 +21,8 @@ var orderPos = Vector2(576, 323)
 
 var instance = null
 var ticketDeleted = false
+var ticketPosUpdated = false
+@onready var sidebar = $sidebar
 
 
 func _on_ready() -> void:
