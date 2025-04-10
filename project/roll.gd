@@ -40,6 +40,9 @@ func _process(delta: float):
 		ticketSpawned = true
 		ticketDeleted = false
 		
+	if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "roll"):
+		sidebar.update_ticket()
+		
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
 		

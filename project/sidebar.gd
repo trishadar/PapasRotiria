@@ -68,7 +68,7 @@ func initial_spawn_scene():
 	
 func spawn_scene():
 	var instance_data = globalData.viewingTicket
-	print("ticket position: ", instance_data["position"])
+	# print("ticket position: ", instance_data["position"])
 	instance = ticket_scene.instantiate()
 	add_child(instance)
 	instance.set_up(instance_data)
@@ -83,3 +83,5 @@ func remove_scene():
 		instance.queue_free()
 		ticketDeleted = true
 		
+func update_ticket():
+	instance.set_up(globalData.viewingTicket)
