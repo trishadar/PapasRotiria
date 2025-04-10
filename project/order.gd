@@ -25,9 +25,6 @@ var curryPos = Vector2(4416, 323)
 var customerWalked = false
 
 var instance = null
-var ticketDeleted = false
-var ticketSpawned = false
-var ticketPosUpdated = false
 
 	
 func change_to_order() -> void:
@@ -64,7 +61,6 @@ func _process(delta):
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
-		ticketSpawned = false
 		
 		if customerWalked == false:
 			animationPlayer.play("rithika")
@@ -81,9 +77,6 @@ func _process(delta):
 	else:
 		score.visible = false
 		
-	if (globalData.orderFinished == true and ticketDeleted == false):
-		instance.queue_free()
-		ticketDeleted = true
 	
 	
 func _on_score_exit_button_pressed() -> void:

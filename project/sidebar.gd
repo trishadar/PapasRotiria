@@ -66,4 +66,9 @@ func spawn_scene():
 	globalData.orderFinished = false
 	ticketDeleted = false
 	ticketSpawned = true
+	
+func remove_scene():
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		instance.queue_free()
+		ticketDeleted = true
 		
