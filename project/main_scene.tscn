@@ -38,6 +38,21 @@ texture = ExtResource("5_7ycvg")
 [node name="cook" parent="." instance=ExtResource("3_hq1ik")]
 position = Vector2(2560, 1)
 
+[node name="Cook->Curry" type="StaticBody2D" parent="cook" groups=["Droppable"]]
+z_index = -1
+position = Vector2(764, 317)
+script = ExtResource("4_66tet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cook/Cook->Curry"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_wr18j")
+
+[node name="Circle" type="Sprite2D" parent="cook/Cook->Curry"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(8, -33)
+scale = Vector2(0.389392, 0.410782)
+texture = ExtResource("5_7ycvg")
+
 [node name="curry" parent="." instance=ExtResource("4_nfk4m")]
 position = Vector2(3840, 0)
 
