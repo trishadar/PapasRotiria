@@ -148,8 +148,8 @@ _data = {
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5hcq3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tavto"]
-radius = 50.04
+[sub_resource type="CircleShape2D" id="CircleShape2D_qitu1"]
+radius = 50.01
 
 [node name="curry" type="Node2D"]
 script = ExtResource("1_kx0aq")
@@ -268,15 +268,15 @@ texture = SubResource("CanvasTexture_5hcq3")
 position = Vector2(116, 545)
 script = ExtResource("11_qitu1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_tavto")
-
 [node name="Circle" type="Sprite2D" parent="PutRotiHere"]
 modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
 texture = ExtResource("12_u5jsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_qitu1")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="paneerButton" to="." method="_on_paneer_button_pressed"]

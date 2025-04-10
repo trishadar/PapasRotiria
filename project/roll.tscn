@@ -10,8 +10,8 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jsvgc"]
-radius = 50.04
+[sub_resource type="CircleShape2D" id="CircleShape2D_gk5yo"]
+radius = 50.01
 
 [node name="roll" type="Node2D"]
 script = ExtResource("1_32hjg")
@@ -46,15 +46,15 @@ position = Vector2(571, 349)
 position = Vector2(574, 350)
 script = ExtResource("3_48jdy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_jsvgc")
-
 [node name="Circle" type="Sprite2D" parent="PutRotiHere"]
 modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
 texture = ExtResource("4_jsvgc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_gk5yo")
 
 [node name="SwapArrow" type="Node2D" parent="."]
 position = Vector2(758, 571)
@@ -69,7 +69,7 @@ script = ExtResource("8_ak4fk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwapArrow/Area2D"]
 visible = false
-polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -177.778, 197.089, -14.8148, 47.0325, 160.847, 62.71, 95.2382, -194.849, 95.2382, -44.7928, 88.8889, 31.355, 84.6561, 82.8667, 44.4445, 105.263, -12.6984, 87.3461, -76.1904, 31.355, -120.635, -31.355, -124.868, -94.0649, -95.238, -123.18, -48.6772, -127.66, -2.11633, -96.3046, 61.3757, -47.0325, 86.7726, -194.849, 97.3545)
+polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -177.778, 197.089, -14.8148, 47.0325, 160.847, 62.71, 95.2382, -194.849, 95.2382, -76.1478, 42.3281, -33.5946, 52.9102, 13.4379, 50.7937, 62.71, 31.7461, 91.8253, 0, 91.8253, -38.0952, 67.1892, -71.9576, 8.95862, -95.238, -42.5532, -93.1217, -82.8667, -82.5397, -111.982, -61.3756, -129.899, -31.746, -127.66, -4.23279, -107.503, 25.3969, -78.3875, 42.3281, -194.849, 95.2382)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
