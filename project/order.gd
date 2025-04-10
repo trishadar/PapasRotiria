@@ -48,7 +48,7 @@ func customerWalk():
 
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
-		sidebar.spawn_scene()
+		sidebar.initial_spawn_scene()
 		ticketSpawned = true
 		ticketDeleted = false
 		takeOrderButton.text = " "
