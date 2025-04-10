@@ -16,6 +16,7 @@ var spawnCountChecker = false
 
 var instance = null
 var ticketDeleted = false
+@onready var sidebar = $sidebar
 
 
 func _on_take_order_button_pressed() -> void:
@@ -35,13 +36,7 @@ func spawn_scene():
 
 func _process(delta: float):
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll"):
-		var instance_data = globalData.viewingTicket
-		instance = ticket_scene.instantiate()
-		add_child(instance)
-		instance.set_up(instance_data)
-		viewingTicketNode = instance
-		globalData.viewingTicket = instance_data
-		globalData.ticketOccupied = true
+		sidebar.spawn_scene()
 		ticketSpawned = true
 		ticketDeleted = false
 		
@@ -49,7 +44,7 @@ func _process(delta: float):
 		ticketSpawned = false
 		
 	if (globalData.orderFinished == true and ticketDeleted == false):
-		instance.queue_free()
+		sidebar.remove_scene()
 		ticketDeleted = true
 
 		

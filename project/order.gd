@@ -25,6 +25,8 @@ var curryPos = Vector2(4416, 323)
 var customerWalked = false
 
 var instance = null
+var ticketSpawned = false
+var ticketDeleted = false
 
 	
 func change_to_order() -> void:
@@ -47,6 +49,8 @@ func customerWalk():
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
 		sidebar.spawn_scene()
+		ticketSpawned = true
+		ticketDeleted = false
 		takeOrderButton.text = " "
 		globalData.canTakeOrder = false	
 		
@@ -58,6 +62,13 @@ func _on_ready() -> void:
 	
 	
 func _process(delta):
+	
+	if (globalData.orderFinished == true):
+		ticketSpawned = false
+		
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		sidebar.remove_scene()
+		ticketDeleted = true
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"

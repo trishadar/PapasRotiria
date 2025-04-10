@@ -12,17 +12,12 @@ var ticketPosUpdated = false
 @onready var trash = get_node("PutRotiHereTrash")
 
 @onready var ms = get_node("/root/MainScene")
+@onready var sidebar = $sidebar
 
 func _process(delta: float):
 	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook" and globalData.orderFinished == false):
-		var instance_data = globalData.viewingTicket
-		instance = ticket_scene.instantiate()
-		add_child(instance)
-		instance.set_up(instance_data)
-		viewingTicketNode = instance
-		globalData.viewingTicket = instance_data
-		globalData.ticketOccupied = true
+		sidebar.spawn_scene()
 		ticketSpawned = true
 		ticketDeleted = false
 		
@@ -30,7 +25,7 @@ func _process(delta: float):
 		ticketSpawned = false
 		
 	if (globalData.orderFinished == true and ticketDeleted == false):
-		instance.queue_free()
+		sidebar.remove_scene()
 		ticketDeleted = true
 	
 	for rotiObj in ms.rotiList:

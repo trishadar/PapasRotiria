@@ -83,13 +83,15 @@ func shrink_scene() -> void:
 		hasShrunk = true
 		
 func move_to_side_box() -> void:
-	position = side_box_position
-	scale = Vector2(1,1)
-	sizeX = 220
-	sizeY = 330
-	hasShrunk = false
-	globalData.viewingTicket["position"] = Vector2(1011, 318)
+	if (globalData.viewingTicket != null):
+		position = side_box_position
+		scale = Vector2(1,1)
+		sizeX = 220
+		sizeY = 330
+		hasShrunk = false
+		globalData.viewingTicket["position"] = Vector2(1011, 318)
 	
 func move_to_top() -> void:
-	position.y = 65
-	globalData.viewingTicket["position"] = Vector2(position.x, position.y)
+	if (globalData.viewingTicket != null):
+		position.y = 65
+		globalData.viewingTicket["position"] = Vector2(position.x, position.y)

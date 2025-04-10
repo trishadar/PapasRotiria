@@ -55,7 +55,6 @@ func _process(delta):
 		help.text = globalData.helpText
 		
 func spawn_scene():
-	print("ticket spawned")
 	var instance_data = globalData.allTickets[-1]
 	instance = ticket_scene.instantiate()
 	add_child(instance)
