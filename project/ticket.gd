@@ -34,16 +34,22 @@ func set_up(data):
 	curry.text = data.get("curry", "N/A")
 	time.text = data.get("time", "N/A")
 	position = data.get("position", "N/A")
+	if (position == Vector2(1011, 318)):
+		scale = Vector2(1,1)
+		# print("grow ticket")
+	else:
+		scale = Vector2(.35,.35)
+		# print("shrink ticket")
 	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			# print("event.pressed: " , event.pressed)
-			# print("thisTickedOccupied: " , thisTicketOccupied)
-			# print("thisTicketStored: " , thisTicketStored)
-			# print("is_mouse_over(get_global_mouse_position(): " , is_mouse_over(get_global_mouse_position()))
+			print("event.pressed: " , event.pressed)
+			print("thisTickedOccupied: " , thisTicketOccupied)
+			print("thisTicketStored: " , thisTicketStored)
+			print("is_mouse_over(get_global_mouse_position(): " , is_mouse_over(get_global_mouse_position()))
 			if event.pressed and (thisTicketOccupied == true or thisTicketStored == true) and is_mouse_over(get_global_mouse_position()):
-				print("dragging ticket")
+				# print("dragging ticket")
 				dragging = true
 				initial_mouse_position = get_global_mouse_position()
 				
