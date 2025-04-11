@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bn7aqby5pen6l" path="res://curry.tscn" id="4_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="5_7ycvg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wr18j"]
-radius = 50.04
+[sub_resource type="CircleShape2D" id="CircleShape2D_nfk4m"]
+radius = 50.01
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_8mm7a")
@@ -25,18 +25,33 @@ z_index = -1
 position = Vector2(750, 561)
 script = ExtResource("4_66tet")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="roll/Roll->Cook"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_wr18j")
-
 [node name="Circle" type="Sprite2D" parent="roll/Roll->Cook"]
 modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
 texture = ExtResource("5_7ycvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roll/Roll->Cook"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_nfk4m")
 
 [node name="cook" parent="." instance=ExtResource("3_hq1ik")]
 position = Vector2(2560, 1)
+
+[node name="Cook->Curry" type="StaticBody2D" parent="cook" groups=["Droppable"]]
+z_index = -1
+position = Vector2(769, 317)
+script = ExtResource("4_66tet")
+
+[node name="Circle" type="Sprite2D" parent="cook/Cook->Curry"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
+texture = ExtResource("5_7ycvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cook/Cook->Curry"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_nfk4m")
 
 [node name="curry" parent="." instance=ExtResource("4_nfk4m")]
 position = Vector2(3840, 0)

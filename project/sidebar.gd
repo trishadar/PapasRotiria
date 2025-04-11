@@ -54,8 +54,7 @@ func _process(delta):
 		globalData.helpText = "..."
 		help.text = globalData.helpText
 		
-func spawn_scene():
-	print("ticket spawned")
+func initial_spawn_scene():
 	var instance_data = globalData.allTickets[-1]
 	instance = ticket_scene.instantiate()
 	add_child(instance)
@@ -66,4 +65,23 @@ func spawn_scene():
 	globalData.orderFinished = false
 	ticketDeleted = false
 	ticketSpawned = true
+	
+func spawn_scene():
+	var instance_data = globalData.viewingTicket
+	# print("ticket position: ", instance_data["position"])
+	instance = ticket_scene.instantiate()
+	add_child(instance)
+	instance.set_up(instance_data)
+	viewingTicketNode = instance
+	globalData.ticketOccupied = true
+	globalData.orderFinished = false
+	ticketDeleted = false
+	ticketSpawned = true
+	
+func remove_scene():
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		instance.queue_free()
+		ticketDeleted = true
 		
+func update_ticket():
+	instance.set_up(globalData.viewingTicket)

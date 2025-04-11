@@ -33,6 +33,13 @@ func set_up(data):
 	dough.text = data.get("dough", "N/A")
 	curry.text = data.get("curry", "N/A")
 	time.text = data.get("time", "N/A")
+	position = data.get("position", "N/A")
+	if (position == Vector2(1011, 318)):
+		scale = Vector2(1,1)
+		# print("grow ticket")
+	else:
+		scale = Vector2(.35,.35)
+		# print("shrink ticket")
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -42,7 +49,7 @@ func _input(event):
 			print("thisTicketStored: " , thisTicketStored)
 			print("is_mouse_over(get_global_mouse_position(): " , is_mouse_over(get_global_mouse_position()))
 			if event.pressed and (thisTicketOccupied == true or thisTicketStored == true) and is_mouse_over(get_global_mouse_position()):
-				print("dragging ticket")
+				# print("dragging ticket")
 				dragging = true
 				initial_mouse_position = get_global_mouse_position()
 				
@@ -83,13 +90,15 @@ func shrink_scene() -> void:
 		hasShrunk = true
 		
 func move_to_side_box() -> void:
-	position = side_box_position
-	scale = Vector2(1,1)
-	sizeX = 220
-	sizeY = 330
-	hasShrunk = false
-	globalData.viewingTicket["position"] = Vector2(1011, 318)
+	if (globalData.viewingTicket != null):
+		position = side_box_position
+		scale = Vector2(1,1)
+		sizeX = 220
+		sizeY = 330
+		hasShrunk = false
+		globalData.viewingTicket["position"] = Vector2(1011, 318)
 	
 func move_to_top() -> void:
-	position.y = 65
-	globalData.viewingTicket["position"] = Vector2(position.x, position.y)
+	if (globalData.viewingTicket != null):
+		position.y = 65
+		globalData.viewingTicket["position"] = Vector2(position.x, position.y)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cus2uri4avjoi"]
+[gd_scene load_steps=19 format=3 uid="uid://cus2uri4avjoi"]
 
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
 [ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="3_lgwpa"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_t8dlq"]
+[ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="6_00dve"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="6_fifm2"]
+[ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="7_h7hq0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
 atlas = ExtResource("2_ciqc8")
@@ -65,8 +67,8 @@ animations = [{
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lgwpa"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fifm2"]
-radius = 50.04
+[sub_resource type="CircleShape2D" id="CircleShape2D_00dve"]
+radius = 50.01
 
 [sub_resource type="LabelSettings" id="LabelSettings_fifm2"]
 font_size = 26
@@ -103,33 +105,47 @@ position = Vector2(77, 338)
 scale = Vector2(153.75, 111.75)
 texture = SubResource("CanvasTexture_lgwpa")
 
+[node name="PutRotiHere" type="StaticBody2D" parent="RawRotiHolder" groups=["Droppable"]]
+scale = Vector2(0.00650406, 0.00894855)
+script = ExtResource("3_t8dlq")
+
+[node name="Circle" type="Sprite2D" parent="RawRotiHolder/PutRotiHere"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
+texture = ExtResource("3_lgwpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawRotiHolder/PutRotiHere"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_00dve")
+
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(245, 499)
 script = ExtResource("3_t8dlq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_fifm2")
-
 [node name="Circle" type="Sprite2D" parent="PutRotiHere"]
 modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
 texture = ExtResource("3_lgwpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_00dve")
 
 [node name="PutRotiHere2" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(581, 502)
 script = ExtResource("3_t8dlq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere2"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_fifm2")
-
 [node name="Circle" type="Sprite2D" parent="PutRotiHere2"]
 modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
 texture = ExtResource("3_lgwpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere2"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_00dve")
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -145,14 +161,33 @@ horizontal_alignment = 1
 position = Vector2(771, 175)
 script = ExtResource("3_t8dlq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHereTrash"]
-position = Vector2(2, 2)
-shape = SubResource("CircleShape2D_fifm2")
-
 [node name="Circle" type="Sprite2D" parent="PutRotiHereTrash"]
 modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(8, -33)
-scale = Vector2(0.389392, 0.410782)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
 texture = ExtResource("3_lgwpa")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHereTrash"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_00dve")
+
 [node name="sidebar" parent="." instance=ExtResource("6_fifm2")]
+
+[node name="SwapArrow" type="Node2D" parent="."]
+position = Vector2(777, 327)
+scale = Vector2(0.4465, 0.4725)
+
+[node name="BigArrow" type="Sprite2D" parent="SwapArrow"]
+z_index = -2
+texture = ExtResource("6_00dve")
+script = ExtResource("7_h7hq0")
+
+[node name="Area2D" type="Area2D" parent="SwapArrow"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwapArrow/Area2D"]
+visible = false
+polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -177.778, 197.089, -14.8148, 47.0325, 160.847, 62.71, 95.2382, -194.849, 95.2382, -76.1478, 42.3281, -33.5946, 52.9102, 13.4379, 50.7937, 62.71, 31.7461, 91.8253, 0, 91.8253, -38.0952, 67.1892, -71.9576, 8.95862, -95.238, -42.5532, -93.1217, -82.8667, -82.5397, -111.982, -61.3756, -129.899, -31.746, -127.66, -4.23279, -107.503, 25.3969, -78.3875, 42.3281, -194.849, 95.2382)
+
+[connection signal="area_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_area_entered"]
+[connection signal="mouse_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_mouse_exited"]
