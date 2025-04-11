@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="4_jsvgc"]
 [ext_resource type="PackedScene" uid="uid://ds26w6tcmw7mc" path="res://rollingBoard.tscn" id="6_32hjg"]
 [ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="7_gk5yo"]
-[ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="8_ak4fk"]
+[ext_resource type="Script" path="res://SwapRotiStation.gd" id="8_ak4fk"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
