@@ -6,6 +6,8 @@ var body_ref
 var offset: Vector2
 var initialPos : Vector2
 
+var cookHandRot = 0
+
 func _process(delta):
 	if draggable:
 		if Input.is_action_just_pressed("click"):

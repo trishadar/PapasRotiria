@@ -14,6 +14,9 @@ var ticketPosUpdated = false
 @onready var ms = get_node("/root/MainScene")
 @onready var sidebar = $sidebar
 
+@onready var timerHand = get_node("CookTimer/TimerHand")
+@onready var timerHand2 = get_node("CookTimer2/TimerHand")
+
 func _process(delta: float):
 	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook" and globalData.orderFinished == false):
