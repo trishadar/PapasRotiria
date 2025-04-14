@@ -44,7 +44,7 @@ func _process(delta: float):
 func startCooking(roti):
 	var rotiAnim = roti.get_node("AnimatedSprite2D")
 	if(rotiAnim.frame != 31):
-		rotiAnim.play()
+		rotiAnim.play("cook")
 
 func stopCooking(roti):
 	var rotiAnim = roti.get_node("AnimatedSprite2D")

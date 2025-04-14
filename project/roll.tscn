@@ -38,7 +38,7 @@ scale = Vector2(-246.364, 30.8728)
 texture = SubResource("CanvasTexture_vrgdt")
 
 [node name="rollingBoard" parent="." instance=ExtResource("6_32hjg")]
-position = Vector2(571, 349)
+position = Vector2(573, 349)
 
 [node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
 
