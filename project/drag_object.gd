@@ -7,6 +7,14 @@ var offset: Vector2
 var initialPos : Vector2
 
 var cookHandRot = 0
+var isCooking = false
+var cookTween
+var whichHand
+var cookTime = 0
+
+var timeStart = 0
+var timeNow = 0
+
 
 func _process(delta):
 	if draggable:
