@@ -62,7 +62,7 @@ func _process(delta: float):
 			print_debug(spawn_count)
 			spawnCountChecker = true
 			
-		if spawn_count>=1:
-			button.disabled = true
-		else:
-			button.disabled = false
+		#if spawn_count>=1:
+		#	button.disabled = true
+		#else:
+		#	button.disabled = false

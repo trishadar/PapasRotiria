@@ -80,8 +80,9 @@ func spawn_scene():
 	
 func remove_scene():
 	if (globalData.orderFinished == true and ticketDeleted == false):
-		instance.queue_free()
-		ticketDeleted = true
+		if (instance != null):
+			instance.queue_free()
+			ticketDeleted = true
 		
 func update_ticket():
 	instance.set_up(globalData.viewingTicket)
