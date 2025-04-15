@@ -14,7 +14,9 @@ var mouseEx = 0
 
 func _process(delta: float):
 	if useThisHolder.isOccupied:
-		if Input.is_action_just_pressed("click"):
+		var rotiAnim = useThisHolder.rotiOccupied.get_node("AnimatedSprite2D")
+		rotiAnim.animation = "roll"
+		if Input.is_action_just_pressed("click") && rotiAnim.frame == 12:
 			if(mouseEnt - 1 == mouseEx):
 				if(goesToHold.isOccupied):
 					print("Transfer is occupied")
