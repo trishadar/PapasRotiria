@@ -39,20 +39,19 @@ func set_up(data):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("event.pressed: ", event.pressed)
 			if event.pressed and is_mouse_over(get_global_mouse_position()):
-				print("thisTickedOccupied: ", thisTicketOccupied)
-				print("thisTicketStored: ", thisTicketStored)
 				if (thisTicketOccupied or thisTicketStored):
 					# Only shrink if it's currently occupied
-					if thisTicketStored:
+					if (thisTicketStored == true and thisTicketOccupied == false):
 						move_to_side_box()  # Move to side box
 						thisTicketOccupied = true
 						thisTicketStored = false
-					else:
+					elif (thisTicketStored == false and thisTicketOccupied == true):
 						move_to_top()  # Move to top
 						thisTicketOccupied = false
 						thisTicketStored = true
+					else:
+						print("thisTicketStored and thisTicketOccupied are false")
 					
 					# Reset globalData.ticketOccupied since we're starting to drag
 					globalData.ticketOccupied = false
