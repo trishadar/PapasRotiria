@@ -25,17 +25,16 @@ func _process(delta: float) -> void:
 				print(body_ref.global_position)
 			else:
 				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
-	print(global_position)
 
 func _on_area_2d_mouse_entered():
 	if not globalData.is_dragging && curryScene.curryDropped:
 		draggable = true
-		scale = Vector2(1.05, 1.05)
+		scale = scale * 1.05
 
 func _on_area_2d_mouse_exited():
 	if not globalData.is_dragging && curryScene.curryDropped:
 		draggable = false
-		scale = Vector2(1, 1)
+		scale = scale * (1/1.05)
 
 func _on_area_2d_body_entered(body:StaticBody2D):
 	if body.is_in_group('BowlDroppable'):

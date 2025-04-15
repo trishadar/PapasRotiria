@@ -49,15 +49,14 @@ func _process(delta: float):
 
 func startCooking(roti, whichHand):
 	var rotiAnim = roti.get_node("AnimatedSprite2D")
+	rotiAnim.animation = "cook"
 	if(rotiAnim.frame != 31):
-		print("Start cooking")
 		rotiAnim.play()
 		roti.isCooking = true
 		whichHand.rotation = roti.cookHandRot
-		print(rad_to_deg(whichHand.rotation))
-		
+			
 		roti.timeStart = Time.get_ticks_msec()
-		
+			
 		if(roti.cookTween == null || roti.whichHand != whichHand):
 			print("Creating tween")
 			roti.cookTween = get_tree().create_tween()
