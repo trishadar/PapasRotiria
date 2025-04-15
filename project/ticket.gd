@@ -10,8 +10,6 @@ var initial_mouse_position: Vector2
 var initial_position: Vector2
 var initial_scale
 var scale_factor: float = 0.35
-var sizeX = 220
-var sizeY = 330
 var hasShrunk = false
 var side_box_position: Vector2 = Vector2(1011, 318)
 var thisTicketOccupied = true  # Initialized to true since it starts in the side box
@@ -43,19 +41,13 @@ func _input(event):
 				if (thisTicketOccupied or thisTicketStored):
 					# Only shrink if it's currently occupied
 					if (thisTicketStored == true and thisTicketOccupied == false):
+						print("moved ticket to side")
 						move_to_side_box()  # Move to side box
-						thisTicketOccupied = true
-						thisTicketStored = false
 					elif (thisTicketStored == false and thisTicketOccupied == true):
+						print("moved ticket to top")
 						move_to_top()  # Move to top
-						thisTicketOccupied = false
-						thisTicketStored = true
 					else:
 						print("thisTicketStored and thisTicketOccupied are false")
-					
-					# Reset globalData.ticketOccupied since we're starting to drag
-					globalData.ticketOccupied = false
-				
 
 func is_mouse_over(mouse_position: Vector2) -> bool:
 	return get_global_rect().has_point(mouse_position)
@@ -71,9 +63,10 @@ func move_to_side_box() -> void:
 	if globalData.viewingTicket != null:
 		position = side_box_position
 		scale = Vector2(1, 1)
-		sizeX = 220
-		sizeY = 330
 		hasShrunk = false
+		thisTicketOccupied = true
+		thisTicketStored = false
+		globalData.ticketOccupied = true
 		globalData.viewingTicket["position"] = side_box_position
 
 func move_to_top() -> void:
@@ -82,7 +75,8 @@ func move_to_top() -> void:
 		position.x = xPos
 		position.y = 65
 		scale = Vector2(.35, .35)
-		sizeX = scale_factor * 220
-		sizeY = scale_factor * 330
 		hasShrunk = true
+		thisTicketOccupied = false
+		thisTicketStored = true
+		globalData.ticketOccupied = false
 		globalData.viewingTicket["position"] = Vector2(position.x, position.y)

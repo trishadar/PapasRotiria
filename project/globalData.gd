@@ -9,10 +9,11 @@ var times = ["20 Seconds", "40 Seconds", "60 Seconds"]
 var helpText = "..."
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
-var canTakeOrder = true
+var canTakeOrder = false
 
 var viewingTicket = null
 var allTickets = []
+var pendingTickets = []
 
 var ladleMoving = true
 var is_dragging = false;
@@ -23,14 +24,36 @@ var orderFinished = false
 
 var currentScene = "order"
 
+var rng: RandomNumberGenerator
+var timer: Timer
+
 func _ready() -> void:
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	timer = Timer.new()
+	timer.wait_time = rng.randi_range(2,5)
+	timer.one_shot = false
+	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	add_child(timer)
+	timer.start()
+	
+func _on_timer_timeout():
 	makeNewTicket()
+	timer.wait_time = rng.randi_range(2,5)
+	timer.start()
 
 func _process(delta: float) -> void:
 	keepRunningFunction()
 	
 func keepRunningFunction() -> void:
-	pass
+	if (pendingTickets.size() > 0):
+		canTakeOrder = true
+	else:
+		canTakeOrder = false
+		
+func removeTicket():
+	pendingTickets.remove_at(0)
 	
 func makeNewTicket():
 	ticketNum += 1
@@ -51,3 +74,4 @@ func makeNewTicket():
 	}
 	
 	allTickets.append(ticket_data)
+	pendingTickets.append(ticket_data)
