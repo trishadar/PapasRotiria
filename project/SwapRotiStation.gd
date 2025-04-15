@@ -14,9 +14,7 @@ var mouseEx = 0
 
 func _process(delta: float):
 	if useThisHolder.isOccupied:
-		var rotiAnim = useThisHolder.rotiOccupied.get_node("AnimatedSprite2D")
-		rotiAnim.animation = "roll"
-		if Input.is_action_just_pressed("click") && rotiAnim.frame == 12:
+		if Input.is_action_just_pressed("click") && isFullRolled():
 			if(mouseEnt - 1 == mouseEx):
 				if(goesToHold.isOccupied):
 					print("Transfer is occupied")
@@ -32,14 +30,19 @@ func _process(delta: float):
 	
 func _on_area_2d_mouse_entered() -> void:
 	mouseEnt += 1
-	if useThisHolder != null && useThisHolder.isOccupied:
+	if useThisHolder != null && useThisHolder.isOccupied && isFullRolled():
 		scale = Vector2(1.05, 1.05)
 		
 
 func _on_area_2d_mouse_exited():
 	mouseEx += 1
-	if useThisHolder != null && useThisHolder.isOccupied:
+	if useThisHolder != null && useThisHolder.isOccupied && isFullRolled():
 		scale = Vector2(1, 1)
+
+func isFullRolled():
+	var rotiAnim = useThisHolder.rotiOccupied.get_node("AnimatedSprite2D")
+	rotiAnim.animation = "roll"
+	return rotiAnim.frame == 12
 
 func _ready():
 	var pos = self.global_position

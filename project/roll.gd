@@ -29,7 +29,7 @@ func _on_take_order_button_pressed() -> void:
 func spawn_scene():
 	var dough = sceneToSpawn.instantiate()
 	ms.add_child(dough)
-	dough.position = spawn.position
+	dough.global_position = spawn.global_position
 	ms.rotiList.append(dough)
 
 	

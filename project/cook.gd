@@ -9,7 +9,7 @@ var ticketPosUpdated = false
 
 @onready var pan = get_node("PutRotiHere")
 @onready var pan2 = get_node("PutRotiHere2")
-@onready var trash = get_node("PutRotiHereTrash")
+@onready var trash = get_node("TrashCan/PutRotiHereTrash")
 
 @onready var ms = get_node("/root/MainScene")
 @onready var sidebar = $sidebar
@@ -40,10 +40,6 @@ func _process(delta: float):
 			startCooking(rotiObj, timerHand)
 		elif(rotiObj.global_position == pan2.global_position && !rotiObj.isCooking):
 			startCooking(rotiObj, timerHand2)
-		elif((rotiObj.global_position == trash.global_position)):
-			print_debug("debra")
-			ms.rotiList.erase(rotiObj)
-			ms.remove_child(rotiObj)
 		elif(rotiObj.isCooking && (rotiObj.global_position != pan.global_position && rotiObj.global_position != pan2.global_position)):
 			stopCooking(rotiObj)
 

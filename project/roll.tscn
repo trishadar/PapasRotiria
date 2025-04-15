@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=12 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://bpt1talwgye20" path="res://roll.gd" id="1_32hjg"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_48jdy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="7_gk5yo"]
 [ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="8_ak4fk"]
 [ext_resource type="Texture2D" uid="uid://ctqdh8ivxtujf" path="res://Assets/rolling pin.png" id="8_j3jrc"]
+[ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="9_j3jrc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
@@ -94,6 +95,9 @@ texture = ExtResource("4_jsvgc")
 position = Vector2(-290, 29)
 scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_gk5yo")
+
+[node name="TrashCan" parent="." instance=ExtResource("9_j3jrc")]
+position = Vector2(772, 185)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]

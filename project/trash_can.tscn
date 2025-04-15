@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3ciqkisnm1fh"]
+
+[ext_resource type="Script" uid="uid://bluyd6cc51rcc" path="res://trash_can.gd" id="1_wr0p8"]
+[ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="2_kcyba"]
+[ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="3_dv6pg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lgwpa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fifm2"]
+font_size = 26
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_00dve"]
+radius = 50.01
+
+[node name="TrashCan" type="Node2D"]
+script = ExtResource("1_wr0p8")
+
+[node name="TrashSprite" type="Sprite2D" parent="."]
+modulate = Color(0.43134, 0.43134, 0.43134, 1)
+scale = Vector2(140.729, 102.112)
+texture = SubResource("CanvasTexture_lgwpa")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -62.0
+offset_top = -19.0
+offset_right = 63.0
+offset_bottom = 17.0
+text = "Trash Can"
+label_settings = SubResource("LabelSettings_fifm2")
+horizontal_alignment = 1
+
+[node name="PutRotiHereTrash" type="StaticBody2D" parent="." groups=["Droppable"]]
+script = ExtResource("2_kcyba")
+
+[node name="Circle" type="Sprite2D" parent="PutRotiHereTrash"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
+texture = ExtResource("3_dv6pg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHereTrash"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_00dve")
