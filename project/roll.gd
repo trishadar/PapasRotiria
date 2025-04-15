@@ -30,11 +30,8 @@ func spawn_scene():
 	var dough = sceneToSpawn.instantiate()
 	ms.add_child(dough)
 	dough.global_position = spawn.global_position
-<<<<<<< HEAD
-=======
 	spawn.isOccupied = true
 	spawn.rotiOccupied = dough
->>>>>>> 01a73d45c2bac6db692b6c4bd0b329219d7bb76b
 	ms.rotiList.append(dough)
 
 	
