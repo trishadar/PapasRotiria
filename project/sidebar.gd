@@ -17,21 +17,26 @@ var instance = null
 var viewingTicketNode = null
 var ticketDeleted = false
 var ticketSpawned = false
+var startingPos = position
 
 func _on_order_button_pressed() -> void:
 	cam.position = orderPos
+	position = startingPos
 	globalData.currentScene = "order"
 
 func _on_roll_button_pressed() -> void:
 	cam.position = rollPos
+	position.x = startingPos.x + 1280
 	globalData.currentScene = "roll"
 
 func _on_cook_button_pressed() -> void:
 	cam.position = cookPos
+	position.x = startingPos.x + 1280 *2
 	globalData.currentScene = "cook"
 
 func _on_curry_button_pressed() -> void:
 	cam.position = curryPos
+	position.x = startingPos.x + 1280 *3
 	globalData.currentScene = "curry"
 
 func _on_ready() -> void:

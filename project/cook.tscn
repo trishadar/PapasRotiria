@@ -174,6 +174,7 @@ scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_00dve")
 
 [node name="sidebar" parent="." instance=ExtResource("6_fifm2")]
+visible = false
 
 [node name="SwapArrow" type="Node2D" parent="."]
 position = Vector2(777, 327)

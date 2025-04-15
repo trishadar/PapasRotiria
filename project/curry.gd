@@ -23,6 +23,7 @@ var instance = null
 var ticketDeleted = false
 var ticketPosUpdated = false
 @onready var sidebar = $sidebar
+@onready var globalSidebar = get_node("/root/MainScene/sidebar")
 
 
 func _on_ready() -> void:
@@ -102,6 +103,7 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.makeNewTicket()
 		globalData.totalScore += globalData.score
 		cam.position = orderPos
+		globalSidebar.position = globalSidebar.startingPos
 
 
 func _on_red_body_entered(body: Node2D) -> void:
