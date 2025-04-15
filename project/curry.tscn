@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=27 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_27nkd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://06eormaalug5" path="res://Assets/gobi.png" id="6_khiik"]
 [ext_resource type="Texture2D" uid="uid://b0vurq4fd1axl" path="res://Assets/curryBkgd.png" id="7_5hcq3"]
 [ext_resource type="Texture2D" uid="uid://c3wssfxpjmxjo" path="res://Assets/paneer.png" id="7_qitu1"]
+[ext_resource type="Script" path="res://bowlDrag.gd" id="9_u5jsc"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="11_qitu1"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="12_u5jsc"]
 
@@ -245,10 +246,21 @@ position = Vector2(407.5, 195)
 scale = Vector2(0.52144, 0.211663)
 texture = ExtResource("3_bu7om")
 
-[node name="bowl" type="Sprite2D" parent="."]
+[node name="Bowl" type="Node2D" parent="."]
+z_index = 3
 position = Vector2(403, 549)
+script = ExtResource("9_u5jsc")
+
+[node name="bowlSprite" type="Sprite2D" parent="Bowl"]
 scale = Vector2(0.129382, 0.129492)
 texture = ExtResource("5_r3f12")
+
+[node name="Area2D" type="Area2D" parent="Bowl"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bowl/Area2D"]
+visible = false
+position = Vector2(-120, -27)
+polygon = PackedVector2Array(-1, -3, 4, -12, 26, -30, 51, -41, 86, -48, 119, -49, 160, -49, 198, -41, 228, -26, 236, -15, 240, -4, 237, 17, 221, 56, 203, 77, 175, 94, 135, 104, 90, 103, 65, 96, 39, 80, 21, 57, 11, 35, 3, 15)
 
 [node name="curryBkgd" type="Sprite2D" parent="."]
 visible = false
@@ -264,8 +276,14 @@ position = Vector2(408.5, 195.5)
 scale = Vector2(689, 111)
 texture = SubResource("CanvasTexture_5hcq3")
 
+[node name="Plate" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(748, 380)
+scale = Vector2(0.921, 0.684)
+texture = ExtResource("12_u5jsc")
+
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(116, 545)
+position = Vector2(689, 450)
 script = ExtResource("11_qitu1")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHere"]
@@ -275,6 +293,20 @@ scale = Vector2(0.394, 0.286)
 texture = ExtResource("12_u5jsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_qitu1")
+
+[node name="PutBowlHere" type="StaticBody2D" parent="." groups=["BowlDroppable"]]
+position = Vector2(614, 584)
+script = ExtResource("11_qitu1")
+
+[node name="Circle" type="Sprite2D" parent="PutBowlHere"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
+texture = ExtResource("12_u5jsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutBowlHere"]
 scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_qitu1")
 
@@ -291,3 +323,7 @@ shape = SubResource("CircleShape2D_qitu1")
 [connection signal="body_exited" from="yellow" to="." method="_on_yellow_body_exited"]
 [connection signal="ready" from="ladle" to="ladle" method="_on_ready"]
 [connection signal="ready" from="fallingCurry" to="fallingCurry" method="_on_ready"]
+[connection signal="body_entered" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_mouse_exited"]

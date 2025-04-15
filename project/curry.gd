@@ -83,6 +83,7 @@ func _process(delta: float):
 		globalData.ladleMoving = true
 	else:
 		globalData.ladleMoving = false
+	
 
 
 func _on_green_body_entered(body: Node2D) -> void:
