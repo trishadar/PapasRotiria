@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="7_h7hq0"]
 [ext_resource type="Texture2D" uid="uid://j0msave456tf" path="res://Assets/Timer.png" id="8_3ltjv"]
 [ext_resource type="Texture2D" uid="uid://dflmb8rqy3wn8" path="res://Assets/TimerHand.png" id="9_o64d8"]
+[ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="10_o64d8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
 atlas = ExtResource("2_ciqc8")
@@ -72,9 +73,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_00dve"]
 radius = 50.01
 
-[sub_resource type="LabelSettings" id="LabelSettings_fifm2"]
-font_size = 26
-
 [node name="cook" type="Node2D"]
 script = ExtResource("1_6u6uf")
 
@@ -94,12 +92,6 @@ position = Vector2(615, 476)
 sprite_frames = SubResource("SpriteFrames_o64d8")
 autoplay = "default"
 frame_progress = 0.242565
-
-[node name="TrashCan" type="Sprite2D" parent="."]
-modulate = Color(0.43134, 0.43134, 0.43134, 1)
-position = Vector2(772, 177)
-scale = Vector2(140.729, 102.112)
-texture = SubResource("CanvasTexture_lgwpa")
 
 [node name="RawRotiHolder" type="Sprite2D" parent="."]
 modulate = Color(0.43134, 0.43134, 0.43134, 1)
@@ -149,30 +141,6 @@ texture = ExtResource("3_lgwpa")
 scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_00dve")
 
-[node name="Label" type="Label" parent="."]
-modulate = Color(0, 0, 0, 1)
-offset_left = 710.0
-offset_top = 158.0
-offset_right = 835.0
-offset_bottom = 194.0
-text = "Trash Can"
-label_settings = SubResource("LabelSettings_fifm2")
-horizontal_alignment = 1
-
-[node name="PutRotiHereTrash" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(771, 175)
-script = ExtResource("3_t8dlq")
-
-[node name="Circle" type="Sprite2D" parent="PutRotiHereTrash"]
-modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(6.2, -24.115)
-scale = Vector2(0.394, 0.286)
-texture = ExtResource("3_lgwpa")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHereTrash"]
-scale = Vector2(1.001, 0.7)
-shape = SubResource("CircleShape2D_00dve")
-
 [node name="sidebar" parent="." instance=ExtResource("6_fifm2")]
 visible = false
 
@@ -211,6 +179,9 @@ texture = ExtResource("8_3ltjv")
 
 [node name="TimerHand" type="Sprite2D" parent="CookTimer2"]
 texture = ExtResource("9_o64d8")
+
+[node name="TrashCan" parent="." instance=ExtResource("10_o64d8")]
+position = Vector2(768, 171)
 
 [connection signal="area_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_area_entered"]
 [connection signal="mouse_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_mouse_entered"]

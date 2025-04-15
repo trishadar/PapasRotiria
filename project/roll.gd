@@ -29,7 +29,9 @@ func _on_take_order_button_pressed() -> void:
 func spawn_scene():
 	var dough = sceneToSpawn.instantiate()
 	ms.add_child(dough)
-	dough.position = spawn.position
+	dough.global_position = spawn.global_position
+	spawn.isOccupied = true
+	spawn.rotiOccupied = dough
 	ms.rotiList.append(dough)
 
 	
@@ -50,27 +52,30 @@ func _process(delta: float):
 	if (globalData.orderFinished == true and ticketDeleted == false):
 		sidebar.remove_scene()
 		ticketDeleted = true
+		
+	if(spawn.isOccupied == true):
+		button.disabled = true
+	else:
+		button.disabled = false
 
 		
 		
 	for rotiObj in ms.rotiList:
 		
 		if(rotiObj.position == board.global_position and spawnCountChecker == false):
+			#spawn.isOccupied = false
 			print_debug("debra")
 			#rotiObj.visible = false
 			board.isOccupied = false
 			board.rotiOccupied = null
-			#spawn_count = spawn_count - 1
-			print_debug(spawn_count)
 			spawnCountChecker = true
 			
 		if(spawnCountChecker == true and rotiObj.position == board.global_position):
 			var doughtoroti = rotiObj.get_node("AnimatedSprite2D")
-			if(Input.is_action_just_pressed("ui_accept") and doughtoroti.frame!=12):
+			if(Input.is_action_just_pressed("ui_right") and doughtoroti.frame!=12):
 				doughtoroti.frame = doughtoroti.frame+1
 			
-			
-		if spawn_count>=1:
+		if(spawn.isOccupied == true):
 			button.disabled = true
 		else:
 			button.disabled = false
