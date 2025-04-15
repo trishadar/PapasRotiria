@@ -48,11 +48,16 @@ func customerWalk():
 
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
+		
+		if (globalData.ticketOccupied == true):
+			sidebar.moveTicket()
+		
 		sidebar.initial_spawn_scene()
 		ticketSpawned = true
 		ticketDeleted = false
 		takeOrderButton.text = " "
 		globalData.canTakeOrder = false	
+		globalData.removeTicket()
 		
 		
 

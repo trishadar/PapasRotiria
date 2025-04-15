@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 				print(body_ref.global_position)
 			else:
 				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
-	print(global_position)
+	#print(global_position)
 
 func _on_area_2d_mouse_entered():
 	if not globalData.is_dragging && curryScene.curryDropped:

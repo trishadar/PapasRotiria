@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://06eormaalug5" path="res://Assets/gobi.png" id="6_khiik"]
 [ext_resource type="Texture2D" uid="uid://b0vurq4fd1axl" path="res://Assets/curryBkgd.png" id="7_5hcq3"]
 [ext_resource type="Texture2D" uid="uid://c3wssfxpjmxjo" path="res://Assets/paneer.png" id="7_qitu1"]
-[ext_resource type="Script" path="res://bowlDrag.gd" id="9_u5jsc"]
+[ext_resource type="Script" uid="uid://crmpysw4lcfkp" path="res://bowlDrag.gd" id="9_u5jsc"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="11_qitu1"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="12_u5jsc"]
 
