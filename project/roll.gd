@@ -10,6 +10,7 @@ var spawnCountChecker = false
 var spacebar = false
 #@onready var dough = get_node("Roti")
 @onready var board = get_node("PutRotiHere")
+@onready var spawn = get_node("PutRotiHere2")
 @onready var button = $takeOrderButton
 
 @onready var ms = get_node("/root/MainScene")
@@ -28,7 +29,7 @@ func _on_take_order_button_pressed() -> void:
 func spawn_scene():
 	var dough = sceneToSpawn.instantiate()
 	ms.add_child(dough)
-	dough.position = Vector2(1380,400)
+	dough.position = spawn.position
 	ms.rotiList.append(dough)
 
 	
