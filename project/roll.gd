@@ -7,9 +7,10 @@ var sceneToSpawn = preload("res://roti.tscn")
 var spawn_count: int = 0
 var ticketSpawned = false
 var spawnCountChecker = false
-
+var spacebar = false
 #@onready var dough = get_node("Roti")
 @onready var board = get_node("PutRotiHere")
+@onready var spawn = get_node("PutRotiHere2")
 @onready var button = $takeOrderButton
 
 @onready var ms = get_node("/root/MainScene")
@@ -28,7 +29,7 @@ func _on_take_order_button_pressed() -> void:
 func spawn_scene():
 	var dough = sceneToSpawn.instantiate()
 	ms.add_child(dough)
-	dough.position = Vector2(1380,400)
+	dough.position = spawn.position
 	ms.rotiList.append(dough)
 
 	
@@ -53,16 +54,23 @@ func _process(delta: float):
 		
 		
 	for rotiObj in ms.rotiList:
+		
 		if(rotiObj.position == board.global_position and spawnCountChecker == false):
 			print_debug("debra")
-			rotiObj.visible = false
+			#rotiObj.visible = false
 			board.isOccupied = false
 			board.rotiOccupied = null
-			spawn_count = spawn_count - 1
+			#spawn_count = spawn_count - 1
 			print_debug(spawn_count)
 			spawnCountChecker = true
 			
-		#if spawn_count>=1:
-		#	button.disabled = true
-		#else:
-		#	button.disabled = false
+		if(spawnCountChecker == true and rotiObj.position == board.global_position):
+			var doughtoroti = rotiObj.get_node("AnimatedSprite2D")
+			if(Input.is_action_just_pressed("ui_accept") and doughtoroti.frame!=12):
+				doughtoroti.frame = doughtoroti.frame+1
+			
+			
+		if spawn_count>=1:
+			button.disabled = true
+		else:
+			button.disabled = false

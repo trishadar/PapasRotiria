@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5dpbn2trdh68"
-path="res://.godot/imported/Cooking Roti.png-9f8759cdbae80bc37af6749a7b689fac.ctex"
+uid="uid://ded74ihjj8go2"
+path="res://.godot/imported/Cooking Roti Final.png-f53c61cd1469735e37eedca4ba5609fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cooking Roti.png"
-dest_files=["res://.godot/imported/Cooking Roti.png-9f8759cdbae80bc37af6749a7b689fac.ctex"]
+source_file="res://Assets/Cooking Roti Final.png"
+dest_files=["res://.godot/imported/Cooking Roti Final.png-f53c61cd1469735e37eedca4ba5609fd.ctex"]
 
 [params]
 
