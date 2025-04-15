@@ -55,7 +55,7 @@ func _process(delta):
 		help.text = globalData.helpText
 		
 func initial_spawn_scene():
-	var instance_data = globalData.allTickets[-1]
+	var instance_data = globalData.pendingTickets[0]
 	instance = ticket_scene.instantiate()
 	add_child(instance)
 	instance.set_up(instance_data)
@@ -86,3 +86,6 @@ func remove_scene():
 		
 func update_ticket():
 	instance.set_up(globalData.viewingTicket)
+	
+func moveTicket():
+	instance.move_to_top()

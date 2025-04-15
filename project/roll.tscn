@@ -82,7 +82,7 @@ position = Vector2(30, 21)
 texture = ExtResource("8_j3jrc")
 
 [node name="PutRotiHere2" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(574, 350)
+position = Vector2(147, 401)
 script = ExtResource("3_48jdy")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHere2"]
@@ -92,7 +92,6 @@ scale = Vector2(0.394, 0.286)
 texture = ExtResource("4_jsvgc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PutRotiHere2"]
-position = Vector2(-290, 29)
 scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_gk5yo")
 
