@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://06eormaalug5" path="res://Assets/gobi.png" id="6_khiik"]
 [ext_resource type="Texture2D" uid="uid://b0vurq4fd1axl" path="res://Assets/curryBkgd.png" id="7_5hcq3"]
 [ext_resource type="Texture2D" uid="uid://c3wssfxpjmxjo" path="res://Assets/paneer.png" id="7_qitu1"]
-[ext_resource type="Script" path="res://bowlDrag.gd" id="9_u5jsc"]
+[ext_resource type="Script" uid="uid://crmpysw4lcfkp" path="res://bowlDrag.gd" id="9_u5jsc"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="11_qitu1"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="12_u5jsc"]
 
@@ -297,7 +297,8 @@ scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_qitu1")
 
 [node name="PutBowlHere" type="StaticBody2D" parent="." groups=["BowlDroppable"]]
-position = Vector2(614, 584)
+position = Vector2(756, 386)
+scale = Vector2(0.531633, 0.646941)
 script = ExtResource("11_qitu1")
 
 [node name="Circle" type="Sprite2D" parent="PutBowlHere"]
@@ -307,6 +308,21 @@ scale = Vector2(0.394, 0.286)
 texture = ExtResource("12_u5jsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PutBowlHere"]
+scale = Vector2(1.001, 0.7)
+shape = SubResource("CircleShape2D_qitu1")
+
+[node name="PutBowlHere2" type="StaticBody2D" parent="." groups=["BowlDroppable"]]
+position = Vector2(799, 457)
+scale = Vector2(0.531633, 0.646941)
+script = ExtResource("11_qitu1")
+
+[node name="Circle" type="Sprite2D" parent="PutBowlHere2"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(6.2, -24.115)
+scale = Vector2(0.394, 0.286)
+texture = ExtResource("12_u5jsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PutBowlHere2"]
 scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_qitu1")
 
