@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_t8dlq"]
 [ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="6_00dve"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="6_fifm2"]
-[ext_resource type="Script" path="res://SwapRotiStation.gd" id="7_h7hq0"]
+[ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="7_h7hq0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
 atlas = ExtResource("2_ciqc8")

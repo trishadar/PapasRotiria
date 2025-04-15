@@ -344,7 +344,6 @@ position = Vector2(0, 1)
 scale = Vector2(0.462, 0.46158)
 sprite_frames = SubResource("SpriteFrames_0igqm")
 animation = &"roll"
-frame_progress = 0.672887
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(1.02, 0.985)
