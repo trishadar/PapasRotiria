@@ -58,7 +58,6 @@ func startCooking(roti, whichHand):
 		roti.timeStart = Time.get_ticks_msec()
 			
 		if(roti.cookTween == null || roti.whichHand != whichHand):
-			print("Creating tween")
 			roti.cookTween = get_tree().create_tween()
 			roti.cookTween.tween_property(whichHand, "rotation", deg_to_rad(360), 31 - (roti.cookTime/1000))
 			roti.whichHand = whichHand
