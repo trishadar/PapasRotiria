@@ -43,47 +43,30 @@ func _input(event):
 			if event.pressed and is_mouse_over(get_global_mouse_position()):
 				print("thisTickedOccupied: ", thisTicketOccupied)
 				print("thisTicketStored: ", thisTicketStored)
-				if dragging == false and (thisTicketOccupied or thisTicketStored):
-					dragging = true
-					initial_mouse_position = get_global_mouse_position()
-					initial_position = position
-					
+				if (thisTicketOccupied or thisTicketStored):
 					# Only shrink if it's currently occupied
-					if thisTicketOccupied:
-						shrink_scene()
+					if thisTicketStored:
+						move_to_side_box()  # Move to side box
+						thisTicketOccupied = true
+						thisTicketStored = false
+					else:
+						move_to_top()  # Move to top
+						thisTicketOccupied = false
+						thisTicketStored = true
 					
 					# Reset globalData.ticketOccupied since we're starting to drag
 					globalData.ticketOccupied = false
-
-			elif !event.pressed and dragging:
-				dragging = false
-				# Check position to determine where to move the ticket
-				if position.x >= 750:
-					move_to_side_box()  # Move to side box
-					thisTicketOccupied = true
-					thisTicketStored = false
-				else:
-					move_to_top()  # Move to top
-					thisTicketOccupied = false
-					thisTicketStored = true
-
-	if dragging and event is InputEventMouseMotion:
-		var delta = get_global_mouse_position() - initial_mouse_position
-		position = initial_position + delta  # Update position based on mouse movement
+				
 
 func is_mouse_over(mouse_position: Vector2) -> bool:
-	var global_rect = Rect2(position - (get_rect_size() / 2), get_rect_size())
-	return global_rect.has_point(mouse_position)
+	return get_global_rect().has_point(mouse_position)
 
-func get_rect_size() -> Vector2:
-	return Vector2(sizeX, sizeY)
-
-func shrink_scene() -> void:
-	if not hasShrunk and thisTicketOccupied:
-		scale *= scale_factor
-		sizeX = scale_factor * 220
-		sizeY = scale_factor * 330
-		hasShrunk = true
+func get_global_rect() -> Rect2:
+	var shape = get_node("Area2D/CollisionShape2D").shape
+	if shape is RectangleShape2D:
+		var rect = shape.size
+		return Rect2(global_position - rect / 2, rect)
+	return Rect2()
 
 func move_to_side_box() -> void:
 	if globalData.viewingTicket != null:
@@ -96,5 +79,11 @@ func move_to_side_box() -> void:
 
 func move_to_top() -> void:
 	if globalData.viewingTicket != null:
+		var xPos = randi() % (700-75 +1) +75
+		position.x = xPos
 		position.y = 65
+		scale = Vector2(.35, .35)
+		sizeX = scale_factor * 220
+		sizeY = scale_factor * 330
+		hasShrunk = true
 		globalData.viewingTicket["position"] = Vector2(position.x, position.y)
