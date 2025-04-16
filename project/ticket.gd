@@ -68,15 +68,42 @@ func move_to_side_box() -> void:
 		thisTicketStored = false
 		globalData.ticketOccupied = true
 		globalData.viewingTicket["position"] = side_box_position
+		
+		var ticket_data = {
+		"ticketNumber": ticketNumber.text,
+		"dough": dough.text,
+		"curry": curry.text,
+		"time": time.text,
+		"position": side_box_position
+	}
+		globalData.viewingTicket = ticket_data
 
 func move_to_top() -> void:
 	if globalData.viewingTicket != null:
-		var xPos = randi() % (700-75 +1) +75
-		position.x = xPos
-		position.y = 65
-		scale = Vector2(.35, .35)
-		hasShrunk = true
-		thisTicketOccupied = false
-		thisTicketStored = true
-		globalData.ticketOccupied = false
-		globalData.viewingTicket["position"] = Vector2(position.x, position.y)
+		var xPos = getStoragePos()
+		if xPos != null:
+			position.x = xPos
+			position.y = 65
+			scale = Vector2(.35, .35)
+			hasShrunk = true
+			thisTicketOccupied = false
+			thisTicketStored = true
+			globalData.ticketOccupied = false
+			# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
+			globalData.viewingTicket = null
+		
+func getStoragePos():
+	var foundSpot = false
+	var spot = null
+	for i in range(globalData.storage.size()):
+		if (foundSpot == false and globalData.storage[i] == 0):
+			foundSpot = true
+			spot = i
+			
+	if foundSpot == false:
+		#storage is full
+		return null
+	else:
+		var pos = (spot+1) * 100
+		globalData.storage[spot] = 1
+		return pos

@@ -52,9 +52,9 @@ func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true):
 		
 		if (globalData.ticketOccupied == true):
-			sidebar.moveTicket()
+			# sidebar.moveTicket()
 			globalSidebar.moveTicket()
-		sidebar.initial_spawn_scene()
+		# sidebar.initial_spawn_scene()
 		globalSidebar.initial_spawn_scene()
 		ticketSpawned = true
 		ticketDeleted = false

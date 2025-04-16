@@ -14,6 +14,7 @@ var canTakeOrder = false
 var viewingTicket = null
 var allTickets = []
 var pendingTickets = []
+var storage = [0,0,0,0,0,0]
 
 var ladleMoving = true
 var is_dragging = false;
