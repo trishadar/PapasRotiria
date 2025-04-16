@@ -75,11 +75,12 @@ visible = false
 polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -177.778, 197.089, -14.8148, 47.0325, 160.847, 62.71, 95.2382, -194.849, 95.2382, -76.1478, 42.3281, -33.5946, 52.9102, 13.4379, 50.7937, 62.71, 31.7461, 91.8253, 0, 91.8253, -38.0952, 67.1892, -71.9576, 8.95862, -95.238, -42.5532, -93.1217, -82.8667, -82.5397, -111.982, -61.3756, -129.899, -31.746, -127.66, -4.23279, -107.503, 25.3969, -78.3875, 42.3281, -194.849, 95.2382)
 
 [node name="RollingPin" type="Node2D" parent="."]
+z_index = 7
 position = Vector2(562, 255)
 scale = Vector2(0.4, 0.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="RollingPin"]
-position = Vector2(30, 21)
+position = Vector2(27.5, 27.5)
 texture = ExtResource("8_j3jrc")
 
 [node name="PutRotiHere2" type="StaticBody2D" parent="." groups=["Droppable"]]
