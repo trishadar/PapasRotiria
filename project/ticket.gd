@@ -60,14 +60,18 @@ func get_global_rect() -> Rect2:
 	return Rect2()
 
 func move_to_side_box() -> void:
-	if globalData.viewingTicket != null:
+	
+	if (globalData.viewingTicket == null):
+		
+		var index = findCurrentSpot()
+		globalData.storage[index] = 0
+		
 		position = side_box_position
 		scale = Vector2(1, 1)
 		hasShrunk = false
 		thisTicketOccupied = true
 		thisTicketStored = false
 		globalData.ticketOccupied = true
-		globalData.viewingTicket["position"] = side_box_position
 		
 		var ticket_data = {
 		"ticketNumber": ticketNumber.text,
@@ -75,22 +79,21 @@ func move_to_side_box() -> void:
 		"curry": curry.text,
 		"time": time.text,
 		"position": side_box_position
-	}
+		}
 		globalData.viewingTicket = ticket_data
 
 func move_to_top() -> void:
-	if globalData.viewingTicket != null:
-		var xPos = getStoragePos()
-		if xPos != null:
-			position.x = xPos
-			position.y = 65
-			scale = Vector2(.35, .35)
-			hasShrunk = true
-			thisTicketOccupied = false
-			thisTicketStored = true
-			globalData.ticketOccupied = false
-			# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
-			globalData.viewingTicket = null
+	var xPos = getStoragePos()
+	if xPos != null:
+		position.x = xPos
+		position.y = 65
+		scale = Vector2(.35, .35)
+		hasShrunk = true
+		thisTicketOccupied = false
+		thisTicketStored = true
+		globalData.ticketOccupied = false
+		# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
+		globalData.viewingTicket = null
 		
 func getStoragePos():
 	var foundSpot = false
@@ -107,3 +110,17 @@ func getStoragePos():
 		var pos = (spot+1) * 100
 		globalData.storage[spot] = 1
 		return pos
+
+func findCurrentSpot():
+	if (position.x == 100):
+		return 0
+	elif (position.x == 200):
+		return 1
+	elif (position.x == 300):
+		return 2
+	elif (position.x == 400):
+		return 3
+	elif (position.x == 500):
+		return 4
+	elif (position.x == 600):
+		return 5

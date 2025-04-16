@@ -76,3 +76,13 @@ func makeNewTicket():
 	
 	allTickets.append(ticket_data)
 	pendingTickets.append(ticket_data)
+	
+func isStorageFull():
+	var foundSpot = false
+	for i in range(globalData.storage.size()):
+		if (globalData.storage[i] == 0):
+			foundSpot = true
+	if foundSpot == false:
+		return true
+	else:
+		return false
