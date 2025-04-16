@@ -49,12 +49,11 @@ func customerWalk():
 	customerWalked = true
 
 func _on_take_order_button_pressed() -> void:
-	if (globalData.canTakeOrder == true):
-		
+	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
 		if (globalData.ticketOccupied == true):
-			sidebar.moveTicket()
+			# sidebar.moveTicket()
 			globalSidebar.moveTicket()
-		sidebar.initial_spawn_scene()
+		# sidebar.initial_spawn_scene()
 		globalSidebar.initial_spawn_scene()
 		ticketSpawned = true
 		ticketDeleted = false
@@ -62,7 +61,11 @@ func _on_take_order_button_pressed() -> void:
 		globalData.canTakeOrder = false	
 		globalData.removeTicket()
 		
-		
+func reachedTicketLimit():
+	if (globalData.isStorageFull() == true and globalData.viewingTicket != null):
+		return true
+	else:
+		return false
 
 func _on_ready() -> void:
 	pass
