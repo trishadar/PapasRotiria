@@ -15,8 +15,6 @@ var curryPos = Vector2(4416, 323)
 var instance = null
 @onready var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
-var ticketDeleted = false
-var ticketSpawned = false
 var startingPos = position
 
 func _on_order_button_pressed() -> void:
@@ -44,9 +42,6 @@ func _on_ready() -> void:
 	
 func _process(delta):
 	
-	# if (globalData.viewingTicket == null):
-		# viewingTicketNode = null
-	
 	if orderButton.is_hovered():
 		globalData.helpText = "**Order Station**"
 		help.text = globalData.helpText
@@ -72,14 +67,15 @@ func initial_spawn_scene():
 	globalData.viewingTicket = instance_data
 	globalData.ticketOccupied = true
 	globalData.orderFinished = false
-	ticketDeleted = false
-	ticketSpawned = true
 	
 func remove_scene():
-	if (globalData.orderFinished == true and ticketDeleted == false):
+	if (globalData.orderFinished == true):
+		print("order finished")
 		if (viewingTicketNode != null):
+			print("viewing ticket deleted")
 			remove_child(viewingTicketNode)
-			ticketDeleted = true
+		else:
+			print("viewingTicketNode is null")
 	
 func moveTicket():
 	viewingTicketNode.move_to_top()
