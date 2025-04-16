@@ -62,7 +62,7 @@ func _on_take_order_button_pressed() -> void:
 		globalData.removeTicket()
 		
 func reachedTicketLimit():
-	if (globalData.isStorageFull() == true and globalData.viewingTicket != null):
+	if (globalData.isStorageFull() == true):
 		return true
 	else:
 		return false
