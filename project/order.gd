@@ -83,13 +83,14 @@ func _process(delta):
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
+		customer.visible = true
 		
 		if customerWalked == false:
 			animationPlayer.play("rithika")
 			customerWalk()
-			customer.visible = true
 	else:
 		takeOrderButton.text = " "
+		customer.visible = false
 	
 	if (globalData.orderFinished == true):
 		# print("Score: " + str(globalData.score))

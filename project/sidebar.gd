@@ -74,6 +74,7 @@ func remove_scene():
 		if (viewingTicketNode != null):
 			print("viewing ticket deleted")
 			remove_child(viewingTicketNode)
+			viewingTicketNode = null
 		else:
 			print("viewingTicketNode is null")
 	
