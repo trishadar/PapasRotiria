@@ -20,21 +20,6 @@ var ticketPosUpdated = false
 
 func _process(delta: float):
 	
-	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "cook" and globalData.orderFinished == false):
-		sidebar.spawn_scene()
-		ticketSpawned = true
-		ticketDeleted = false
-		
-	if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "cook"):
-		sidebar.update_ticket()
-		
-	if (globalData.orderFinished == true):
-		ticketSpawned = false
-		
-	if (globalData.orderFinished == true and ticketDeleted == false):
-		sidebar.remove_scene()
-		ticketDeleted = true
-	
 	for rotiObj in ms.rotiList:
 		if(rotiObj.global_position == pan.global_position && !rotiObj.isCooking):
 			startCooking(rotiObj, timerHand)

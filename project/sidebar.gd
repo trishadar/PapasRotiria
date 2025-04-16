@@ -43,6 +43,10 @@ func _on_ready() -> void:
 	help.text = globalData.helpText
 	
 func _process(delta):
+	
+	# if (globalData.viewingTicket == null):
+		# viewingTicketNode = null
+	
 	if orderButton.is_hovered():
 		globalData.helpText = "**Order Station**"
 		help.text = globalData.helpText
@@ -73,12 +77,9 @@ func initial_spawn_scene():
 	
 func remove_scene():
 	if (globalData.orderFinished == true and ticketDeleted == false):
-		if (instance != null):
-			instance.queue_free()
+		if (viewingTicketNode != null):
+			remove_child(viewingTicketNode)
 			ticketDeleted = true
-		
-func update_ticket():
-	instance.set_up(globalData.viewingTicket)
 	
 func moveTicket():
-	instance.move_to_top()
+	viewingTicketNode.move_to_top()

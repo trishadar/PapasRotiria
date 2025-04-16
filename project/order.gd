@@ -74,9 +74,6 @@ func _on_ready() -> void:
 	
 func _process(delta):
 	
-	if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "order"):
-		sidebar.update_ticket()
-	
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
 		

@@ -41,20 +41,6 @@ func spawn_scene():
 
 
 func _process(delta: float):
-	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "roll"):
-		sidebar.spawn_scene()
-		ticketSpawned = true
-		ticketDeleted = false
-		
-	if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "roll"):
-		sidebar.update_ticket()
-		
-	if (globalData.orderFinished == true):
-		ticketSpawned = false
-		
-	if (globalData.orderFinished == true and ticketDeleted == false):
-		sidebar.remove_scene()
-		ticketDeleted = true
 		
 	if(spawn.isOccupied == true):
 		button.disabled = true

@@ -31,7 +31,7 @@ func set_up(data):
 	dough.text = data.get("dough", "N/A")
 	curry.text = data.get("curry", "N/A")
 	time.text = data.get("time", "N/A")
-	position = data.get("position", side_box_position)
+	position = side_box_position
 	scale = Vector2(1, 1) if position == side_box_position else Vector2(scale_factor, scale_factor)
 
 func _input(event):
@@ -41,10 +41,8 @@ func _input(event):
 				if (thisTicketOccupied or thisTicketStored):
 					# Only shrink if it's currently occupied
 					if (thisTicketStored == true and thisTicketOccupied == false):
-						print("moved ticket to side")
 						move_to_side_box()  # Move to side box
 					elif (thisTicketStored == false and thisTicketOccupied == true):
-						print("moved ticket to top")
 						move_to_top()  # Move to top
 					else:
 						print("thisTicketStored and thisTicketOccupied are false")
@@ -81,6 +79,8 @@ func move_to_side_box() -> void:
 		"position": side_box_position
 		}
 		globalData.viewingTicket = ticket_data
+		
+		print("moved ticket to side")
 
 func move_to_top() -> void:
 	var xPos = getStoragePos()
@@ -94,6 +94,8 @@ func move_to_top() -> void:
 		globalData.ticketOccupied = false
 		# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
 		globalData.viewingTicket = null
+		
+		print("moved ticket to top")
 		
 func getStoragePos():
 	var foundSpot = false
