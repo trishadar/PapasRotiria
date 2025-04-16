@@ -24,7 +24,6 @@ var orderPos = Vector2(576, 323)
 var rollPos = Vector2(1856, 323)
 var cookPos = Vector2(3136, 323)
 var curryPos = Vector2(4416, 323)
-var customerWalked = false
 
 var instance = null
 var ticketSpawned = false
@@ -42,11 +41,6 @@ func change_to_cook() -> void:
 
 func change_to_curry() -> void:
 	cam.position = curryPos
-
-
-func customerWalk():
-	customer.position.x -= 200
-	customerWalked = true
 
 func _on_take_order_button_pressed() -> void:
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
@@ -83,11 +77,10 @@ func _process(delta):
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
+		
+		spawnCustomer()
 		customer.visible = true
 		
-		if customerWalked == false:
-			animationPlayer.play("rithika")
-			customerWalk()
 	else:
 		takeOrderButton.text = " "
 		customer.visible = false
@@ -99,6 +92,13 @@ func _process(delta):
 		score.visible = true
 	else:
 		score.visible = false
+		
+func spawnCustomer():
+	var randomNum = randi() %2
+	if randomNum == 1:
+		animationPlayer.play("rithika")
+	elif randomNum == 2:
+		animationPlayer.play("kyle")
 		
 	
 	
