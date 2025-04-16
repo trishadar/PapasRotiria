@@ -18,6 +18,8 @@ var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
 
 @onready var cam = get_node("/root/MainScene/Camera2D")
+@onready var globalSidebar = get_node("/root/MainScene/sidebar")
+
 var orderPos = Vector2(576, 323)
 var rollPos = Vector2(1856, 323)
 var cookPos = Vector2(3136, 323)
@@ -51,8 +53,9 @@ func _on_take_order_button_pressed() -> void:
 		
 		if (globalData.ticketOccupied == true):
 			sidebar.moveTicket()
-		
+			globalSidebar.moveTicket()
 		sidebar.initial_spawn_scene()
+		globalSidebar.initial_spawn_scene()
 		ticketSpawned = true
 		ticketDeleted = false
 		takeOrderButton.text = " "

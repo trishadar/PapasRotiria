@@ -19,6 +19,7 @@ text = "TAKE ORDER"
 metadata/_edit_use_anchors_ = true
 
 [node name="sidebar" parent="." instance=ExtResource("2_vdalh")]
+visible = false
 
 [node name="score" type="Area2D" parent="."]
 
