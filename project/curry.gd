@@ -25,6 +25,11 @@ var ticketPosUpdated = false
 @onready var sidebar = $sidebar
 @onready var globalSidebar = get_node("/root/MainScene/sidebar")
 
+@onready var rotiPlate = get_node("PutRotiHere")
+@onready var bowlPlate = get_node("PutBowlHere")
+@onready var bowlPlate2 = get_node("PutBowlHere2")
+@onready var ms = get_node("/root/MainScene")
+
 
 func _on_ready() -> void:
 	pass
@@ -50,6 +55,20 @@ func _process(delta: float):
 	if (globalData.orderFinished == true and ticketDeleted == false):
 		sidebar.remove_scene()
 		ticketDeleted = true
+		
+		print("deleted")
+		#if(rotiPlate.isOccupied):
+			#rotiPlate.isOccupied = false
+			#ms.remove_child(rotiPlate.rotiOccupied)
+			#rotiPlate.rotiOccupied = null
+		#if(bowlPlate.isOccupied):
+			#bowlPlate.isOccupied = false
+			#remove_child(bowlPlate.rotiOccupied)
+			#bowlPlate.rotiOccupied = null
+		#if(rotiPlate.isOccupied):
+			#bowlPlate2.isOccupied = false
+			#remove_child(bowlPlate2.rotiOccupied)
+			#bowlPlate2.rotiOccupied = null
 	
 	# check if space bar pressed and there is a collision
 	if (globalData.viewingTicket != null and currySelected == true):

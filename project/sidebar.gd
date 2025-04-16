@@ -86,6 +86,7 @@ func spawn_scene():
 func remove_scene():
 	if (globalData.orderFinished == true and ticketDeleted == false):
 		if (instance != null):
+			print("Should Delete")
 			instance.queue_free()
 			ticketDeleted = true
 		
