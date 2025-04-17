@@ -56,7 +56,6 @@ func _process(delta: float):
 		sidebar.remove_scene()
 		ticketDeleted = true
 		
-		print("deleted")
 		#if(rotiPlate.isOccupied):
 			#rotiPlate.isOccupied = false
 			#ms.remove_child(rotiPlate.rotiOccupied)
