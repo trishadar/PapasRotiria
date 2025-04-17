@@ -29,6 +29,8 @@ var instance = null
 var ticketSpawned = false
 var ticketDeleted = false
 
+var customerSpawned = false
+
 	
 func change_to_order() -> void:
 	cam.position = orderPos
@@ -54,6 +56,7 @@ func _on_take_order_button_pressed() -> void:
 		takeOrderButton.text = " "
 		globalData.canTakeOrder = false	
 		globalData.removeTicket()
+		customerSpawned = false
 		
 func reachedTicketLimit():
 	if (globalData.ticketCount >= 7):
@@ -78,8 +81,9 @@ func _process(delta):
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
 		
-		spawnCustomer()
-		customer.visible = true
+		if !customerSpawned:
+			spawnCustomer()
+			customer.visible = true
 		
 	else:
 		takeOrderButton.text = " "
@@ -95,11 +99,12 @@ func _process(delta):
 		
 func spawnCustomer():
 	var randomNum = randi() %2
-	if randomNum == 1:
+	if randomNum == 0:
 		animationPlayer.play("rithika")
-	elif randomNum == 2:
+	elif randomNum == 1:
 		animationPlayer.play("kyle")
-		
+	
+	customerSpawned = true
 	
 	
 func _on_score_exit_button_pressed() -> void:
