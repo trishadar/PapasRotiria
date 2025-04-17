@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dh7yhswfn5qrv"]
+[gd_scene load_steps=16 format=3 uid="uid://dh7yhswfn5qrv"]
 
 [ext_resource type="Texture2D" uid="uid://eja5a2j8s652" path="res://Assets/customers/Watson.png" id="1_7tiyv"]
 [ext_resource type="Script" uid="uid://63y5klkivgho" path="res://customer.gd" id="1_r8ta2"]
+[ext_resource type="Texture2D" uid="uid://cdgbveebvqstr" path="res://Assets/customers/kyle.png" id="2_0rcyg"]
 [ext_resource type="Texture2D" uid="uid://bu3ecbn2twxss" path="res://Assets/customers/watsonIdleNoBall.png" id="2_f7asb"]
 [ext_resource type="Texture2D" uid="uid://d02twor8xpphd" path="res://Assets/customers/rithika.png" id="3_co351"]
+[ext_resource type="Texture2D" uid="uid://bg6yyf40x8xt2" path="res://Assets/customers/kyle2.png" id="3_frhio"]
 [ext_resource type="Texture2D" uid="uid://ci2ha5xnhrxko" path="res://Assets/customers/rithika2.png" id="4_gn8fi"]
 
 [sub_resource type="Animation" id="Animation_gn8fi"]
@@ -19,6 +21,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_0rcyg"]
+resource_name = "kyle"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"kyle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_f7asb"]
@@ -107,6 +138,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f7asb"]
 _data = {
 &"RESET": SubResource("Animation_gn8fi"),
+&"kyle": SubResource("Animation_0rcyg"),
 &"lewatson": SubResource("Animation_f7asb"),
 &"rithika": SubResource("Animation_co351"),
 &"watson": SubResource("Animation_r8ta2")
@@ -114,6 +146,17 @@ _data = {
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_co351"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0rcyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_frhio")
+}],
+"loop": true,
+"name": &"kyle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_f7asb")
@@ -158,7 +201,7 @@ libraries = {
 position = Vector2(29, -13)
 scale = Vector2(0.382161, 0.386719)
 sprite_frames = SubResource("SpriteFrames_co351")
-animation = &"rithika"
+animation = &"kyle"
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
