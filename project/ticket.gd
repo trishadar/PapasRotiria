@@ -5,6 +5,8 @@ extends Node2D
 @onready var curry = $curry
 @onready var time = $time
 
+var timer: PackedScene = preload("res://cook_timer.tscn")
+
 var dragging = false
 var initial_mouse_position: Vector2
 var initial_position: Vector2
@@ -19,7 +21,7 @@ func _ready() -> void:
 	ticketNumber.text = "ticketNumber"
 	dough.text = "dough"
 	curry.text = "curry"
-	time.text = "time"
+	time.text = ""
 	position = side_box_position
 	z_index = 10
 	visible = true
@@ -30,7 +32,11 @@ func set_up(data):
 	ticketNumber.text = data.get("ticketNumber", "N/A")
 	dough.text = data.get("dough", "N/A")
 	curry.text = data.get("curry", "N/A")
-	time.text = data.get("time", "N/A")
+	var timeNum = data.get("time", "N/A")
+	var timeInstance = timer.instantiate()
+	add_child(timeInstance)
+	timeInstance.position = time.position + Vector2(75,40)
+	timeInstance.rotate(deg_to_rad(float(timeNum)))
 	position = data.get("position", side_box_position)
 	scale = Vector2(1, 1) if position == side_box_position else Vector2(scale_factor, scale_factor)
 
@@ -41,10 +47,8 @@ func _input(event):
 				if (thisTicketOccupied or thisTicketStored):
 					# Only shrink if it's currently occupied
 					if (thisTicketStored == true and thisTicketOccupied == false):
-						print("moved ticket to side")
 						move_to_side_box()  # Move to side box
 					elif (thisTicketStored == false and thisTicketOccupied == true):
-						print("moved ticket to top")
 						move_to_top()  # Move to top
 					else:
 						print("thisTicketStored and thisTicketOccupied are false")
