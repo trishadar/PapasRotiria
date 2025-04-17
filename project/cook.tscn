@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="6_00dve"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="6_fifm2"]
 [ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="7_h7hq0"]
-[ext_resource type="PackedScene" uid="uid://b1j630owh20nl" path="res://cook_timer.tscn" id="8_2x4bt"]
+[ext_resource type="PackedScene" path="res://cook_timer.tscn" id="8_2x4bt"]
 [ext_resource type="Texture2D" uid="uid://j0msave456tf" path="res://Assets/Timer.png" id="8_3ltjv"]
 [ext_resource type="Texture2D" uid="uid://dflmb8rqy3wn8" path="res://Assets/TimerHand.png" id="9_o64d8"]
 [ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="10_o64d8"]
