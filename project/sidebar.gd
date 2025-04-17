@@ -67,6 +67,7 @@ func initial_spawn_scene():
 	globalData.viewingTicket = instance_data
 	globalData.ticketOccupied = true
 	globalData.orderFinished = false
+	globalData.ticketCount += 1
 	
 func remove_scene():
 	if (globalData.orderFinished == true):

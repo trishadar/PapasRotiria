@@ -80,7 +80,7 @@ func move_to_side_box() -> void:
 		}
 		globalData.viewingTicket = ticket_data
 		
-		print("moved ticket to side")
+		# print("moved ticket to side")
 
 func move_to_top() -> void:
 	var xPos = getStoragePos()
@@ -95,7 +95,7 @@ func move_to_top() -> void:
 		# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
 		globalData.viewingTicket = null
 		
-		print("moved ticket to top")
+		# print("moved ticket to top")
 		
 func getStoragePos():
 	var foundSpot = false
@@ -126,3 +126,5 @@ func findCurrentSpot():
 		return 4
 	elif (position.x == 600):
 		return 5
+	elif (position.x == 700):
+		return 6

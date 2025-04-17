@@ -24,6 +24,7 @@ var totalScore = 0
 var orderFinished = false
 
 var currentScene = "order"
+var ticketCount = 0
 
 var rng: RandomNumberGenerator
 var timer: Timer

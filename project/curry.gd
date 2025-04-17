@@ -94,6 +94,7 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.totalScore += globalData.score
 		cam.position = orderPos
 		globalSidebar.position = globalSidebar.startingPos
+		globalData.ticketCount -= 1
 
 
 func _on_red_body_entered(body: Node2D) -> void:
