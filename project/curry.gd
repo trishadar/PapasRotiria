@@ -37,13 +37,13 @@ func _on_ready() -> void:
 func _process(delta: float):
 	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry" and globalData.orderFinished == false):
-		sidebar.spawn_scene()
+		# sidebar.spawn_scene()
 		fallingCurry.visible = false
 		ticketSpawned = true
 		ticketDeleted = false
 		
-	if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "curry"):
-		sidebar.update_ticket()
+	# if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "curry"):
+		# sidebar.update_ticket()
 		
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
@@ -53,7 +53,7 @@ func _process(delta: float):
 		currySelected = false
 		
 	if (globalData.orderFinished == true and ticketDeleted == false):
-		sidebar.remove_scene()
+		globalSidebar.remove_scene()
 		ticketDeleted = true
 		
 		#if(rotiPlate.isOccupied):
