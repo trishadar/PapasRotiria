@@ -5,7 +5,8 @@ var ticketNum = 0
 var ticketOccupied = false
 var doughs = ["Regular", "Naan", "Paratha"]
 var curries = ["Paneer", "Gobi", "Butter Chicken"]
-var times = ["20 Seconds", "40 Seconds", "60 Seconds"]
+
+var times = [225, 270, 315]
 var helpText = "..."
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
@@ -24,6 +25,7 @@ var totalScore = 0
 var orderFinished = false
 
 var currentScene = "order"
+var ticketCount = 0
 
 var rng: RandomNumberGenerator
 var timer: Timer

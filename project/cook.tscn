@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cus2uri4avjoi"]
+[gd_scene load_steps=22 format=3 uid="uid://cus2uri4avjoi"]
 
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
 [ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ddk7g2oe28co2" path="res://Assets/BigArrow.png" id="6_00dve"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="6_fifm2"]
 [ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="7_h7hq0"]
+[ext_resource type="PackedScene" path="res://cook_timer.tscn" id="8_2x4bt"]
 [ext_resource type="Texture2D" uid="uid://j0msave456tf" path="res://Assets/Timer.png" id="8_3ltjv"]
 [ext_resource type="Texture2D" uid="uid://dflmb8rqy3wn8" path="res://Assets/TimerHand.png" id="9_o64d8"]
 [ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="10_o64d8"]
@@ -159,16 +160,8 @@ script = ExtResource("7_h7hq0")
 visible = false
 polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -177.778, 197.089, -14.8148, 47.0325, 160.847, 62.71, 95.2382, -194.849, 95.2382, -76.1478, 42.3281, -33.5946, 52.9102, 13.4379, 50.7937, 62.71, 31.7461, 91.8253, 0, 91.8253, -38.0952, 67.1892, -71.9576, 8.95862, -95.238, -42.5532, -93.1217, -82.8667, -82.5397, -111.982, -61.3756, -129.899, -31.746, -127.66, -4.23279, -107.503, 25.3969, -78.3875, 42.3281, -194.849, 95.2382)
 
-[node name="CookTimer" type="Node2D" parent="."]
+[node name="CookTimer" parent="." instance=ExtResource("8_2x4bt")]
 position = Vector2(105, 538)
-scale = Vector2(0.190293, 0.240491)
-
-[node name="Timer" type="Sprite2D" parent="CookTimer"]
-rotation = 6.28319
-texture = ExtResource("8_3ltjv")
-
-[node name="TimerHand" type="Sprite2D" parent="CookTimer"]
-texture = ExtResource("9_o64d8")
 
 [node name="CookTimer2" type="Node2D" parent="."]
 position = Vector2(434, 537)

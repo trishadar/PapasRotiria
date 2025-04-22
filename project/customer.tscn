@@ -201,7 +201,7 @@ libraries = {
 position = Vector2(29, -13)
 scale = Vector2(0.382161, 0.386719)
 sprite_frames = SubResource("SpriteFrames_co351")
-animation = &"kyle"
+animation = &"rithika"
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

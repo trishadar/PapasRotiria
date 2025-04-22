@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1j630owh20nl"]
+
+[ext_resource type="Texture2D" uid="uid://j0msave456tf" path="res://Assets/Timer.png" id="1_64ydi"]
+[ext_resource type="Texture2D" uid="uid://dflmb8rqy3wn8" path="res://Assets/TimerHand.png" id="2_r3wom"]
+
+[node name="CookTimer" type="Node2D"]
+z_index = 11
+scale = Vector2(0.190293, 0.240491)
+
+[node name="Timer" type="Sprite2D" parent="."]
+rotation = 6.28319
+texture = ExtResource("1_64ydi")
+
+[node name="TimerHand" type="Sprite2D" parent="."]
+texture = ExtResource("2_r3wom")

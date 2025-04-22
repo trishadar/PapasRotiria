@@ -16,19 +16,19 @@
 [ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="14_tavto"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tessa"]
-size = Vector2(111, 99)
+size = Vector2(111, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pmta"]
-size = Vector2(167, 99)
+size = Vector2(167, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3f12"]
-size = Vector2(144, 99)
+size = Vector2(144, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hcq3"]
-size = Vector2(136, 99)
+size = Vector2(136, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4he2u"]
-size = Vector2(123, 99)
+size = Vector2(123, 63)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bu7om"]
 height = 270.0
@@ -157,24 +157,24 @@ radius = 50.01
 script = ExtResource("1_kx0aq")
 
 [node name="paneerButton" type="Button" parent="."]
-offset_left = 86.0
-offset_top = 64.0
-offset_right = 271.0
-offset_bottom = 106.0
+offset_left = 87.0
+offset_top = 125.0
+offset_right = 272.0
+offset_bottom = 167.0
 text = "PANEER"
 
 [node name="butterChickenButton" type="Button" parent="."]
-offset_left = 316.0
-offset_top = 65.0
-offset_right = 501.0
-offset_bottom = 107.0
+offset_left = 319.0
+offset_top = 125.0
+offset_right = 504.0
+offset_bottom = 167.0
 text = "BUTTER CHICKEN"
 
 [node name="gobiButton" type="Button" parent="."]
-offset_left = 544.0
-offset_top = 65.0
-offset_right = 729.0
-offset_bottom = 107.0
+offset_left = 543.0
+offset_top = 124.0
+offset_right = 728.0
+offset_bottom = 166.0
 text = "GOBI"
 
 [node name="finishOrderButton" type="Button" parent="."]
@@ -190,27 +190,27 @@ visible = false
 [node name="green" type="Area2D" parent="."]
 
 [node name="greenCollision" type="CollisionShape2D" parent="green"]
-position = Vector2(402.5, 195.5)
+position = Vector2(402.5, 212.5)
 shape = SubResource("RectangleShape2D_tessa")
 
 [node name="red" type="Area2D" parent="."]
 
 [node name="redCollision" type="CollisionShape2D" parent="red"]
-position = Vector2(665.5, 195.5)
+position = Vector2(665.5, 213)
 shape = SubResource("RectangleShape2D_0pmta")
 
 [node name="redCollision2" type="CollisionShape2D" parent="red"]
-position = Vector2(139, 195.5)
+position = Vector2(139, 212.5)
 shape = SubResource("RectangleShape2D_r3f12")
 
 [node name="yellow" type="Area2D" parent="."]
 
 [node name="yellowCollision" type="CollisionShape2D" parent="yellow"]
-position = Vector2(279, 195.5)
+position = Vector2(279, 213)
 shape = SubResource("RectangleShape2D_5hcq3")
 
 [node name="yellowCollision2" type="CollisionShape2D" parent="yellow"]
-position = Vector2(519.5, 195.5)
+position = Vector2(519.5, 213.5)
 shape = SubResource("RectangleShape2D_4he2u")
 
 [node name="ladle" type="CharacterBody2D" parent="."]
@@ -244,8 +244,8 @@ libraries = {
 }
 
 [node name="spectrum" type="Sprite2D" parent="."]
-position = Vector2(407.5, 195)
-scale = Vector2(0.52144, 0.211663)
+position = Vector2(407.5, 212)
+scale = Vector2(0.52144, 0.138229)
 texture = ExtResource("3_bu7om")
 
 [node name="Bowl" type="Node2D" parent="."]
@@ -274,8 +274,8 @@ texture = ExtResource("7_5hcq3")
 [node name="spectrumBack" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = -11
-position = Vector2(408.5, 195.5)
-scale = Vector2(689, 111)
+position = Vector2(408.5, 212.5)
+scale = Vector2(689, 73)
 texture = SubResource("CanvasTexture_5hcq3")
 
 [node name="Plate" type="Sprite2D" parent="."]

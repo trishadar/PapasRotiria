@@ -5,6 +5,8 @@ extends Node2D
 @onready var curry = $curry
 @onready var time = $time
 
+var timer: PackedScene = preload("res://cook_timer.tscn")
+
 var dragging = false
 var initial_mouse_position: Vector2
 var initial_position: Vector2
@@ -30,7 +32,11 @@ func set_up(data):
 	ticketNumber.text = data.get("ticketNumber", "N/A")
 	dough.text = data.get("dough", "N/A")
 	curry.text = data.get("curry", "N/A")
-	time.text = data.get("time", "N/A")
+	var timeNum = data.get("time", "N/A")
+	var timeInstance = timer.instantiate()
+	add_child(timeInstance)
+	timeInstance.position = time.position + Vector2(75,40)
+	timeInstance.rotate(deg_to_rad(float(timeNum)))
 	position = side_box_position
 	scale = Vector2(1, 1) if position == side_box_position else Vector2(scale_factor, scale_factor)
 
@@ -80,7 +86,7 @@ func move_to_side_box() -> void:
 		}
 		globalData.viewingTicket = ticket_data
 		
-		print("moved ticket to side")
+		# print("moved ticket to side")
 
 func move_to_top() -> void:
 	var xPos = getStoragePos()
@@ -95,7 +101,7 @@ func move_to_top() -> void:
 		# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
 		globalData.viewingTicket = null
 		
-		print("moved ticket to top")
+		# print("moved ticket to top")
 		
 func getStoragePos():
 	var foundSpot = false
@@ -126,3 +132,5 @@ func findCurrentSpot():
 		return 4
 	elif (position.x == 600):
 		return 5
+	elif (position.x == 700):
+		return 6
