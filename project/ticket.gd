@@ -4,6 +4,7 @@ extends Node2D
 @onready var dough = $dough
 @onready var curry = $curry
 @onready var time = $time
+@onready var globalSidebar = get_node("/root/MainScene/sidebar")
 
 var timer: PackedScene = preload("res://cook_timer.tscn")
 
@@ -85,6 +86,7 @@ func move_to_side_box() -> void:
 		"position": side_box_position
 		}
 		globalData.viewingTicket = ticket_data
+		globalSidebar.viewingTicketNode = self
 		
 		# print("moved ticket to side")
 
@@ -100,7 +102,7 @@ func move_to_top() -> void:
 		globalData.ticketOccupied = false
 		# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
 		globalData.viewingTicket = null
-		
+		globalSidebar.viewingTicketNode = null
 		# print("moved ticket to top")
 		
 func getStoragePos():
