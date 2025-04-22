@@ -30,6 +30,8 @@ var ticketPosUpdated = false
 @onready var bowlPlate2 = get_node("PutBowlHere2")
 @onready var ms = get_node("/root/MainScene")
 
+@onready var bowlPlayer = $Bowl/AnimatedSprite2D
+
 
 func _on_ready() -> void:
 	pass
