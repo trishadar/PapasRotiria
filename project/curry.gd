@@ -34,7 +34,7 @@ var ticketPosUpdated = false
 
 
 func _on_ready() -> void:
-	pass
+	bowlPlayer.play("emptyBowl")
 	
 func _process(delta: float):
 	
@@ -43,6 +43,7 @@ func _process(delta: float):
 		fallingCurry.visible = false
 		ticketSpawned = true
 		ticketDeleted = false
+		bowlPlayer.play("emptyBowl")
 		
 	# if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "curry"):
 		# sidebar.update_ticket()
