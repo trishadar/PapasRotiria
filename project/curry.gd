@@ -5,7 +5,6 @@ var viewingTicketNode = null
 var is_colliding_green: bool = false
 var is_colliding_yellow: bool = false
 var is_colliding_red: bool = false
-var curryFalling = true
 var targetCurryY = 200
 @onready var animationPlayer = $fallingCurry/AnimationPlayer
 @onready var fallingCurry = $fallingCurry
@@ -31,6 +30,7 @@ var ticketPosUpdated = false
 @onready var ms = get_node("/root/MainScene")
 
 @onready var bowlPlayer = $Bowl/AnimatedSprite2D
+var color = null
 
 
 func _on_ready() -> void:
@@ -85,12 +85,15 @@ func _process(delta: float):
 			spacePressed = true
 			if (is_colliding_green):
 				print("green")
+				color = "green"
 				globalData.score += 100
 			elif (is_colliding_yellow):
 				print("yellow")
+				color = "yellow"
 				globalData.score += 50
 			else:
 				print("red")
+				color = "red"
 				globalData.score += 0
 			globalData.ladleMoving = false
 			fallingCurry.position.x = ladle.position.x
@@ -98,8 +101,18 @@ func _process(delta: float):
 			fallingCurry.visible = true
 			print("fallingCurry visible")
 			
-	if (globalData.viewingTicket != null and curryFalling == true and fallingCurry.position.y < targetCurryY):
-		fallingCurry.position.y += 10
+	if (globalData.viewingTicket != null and curryDropped == true):
+		if (fallingCurry.position.y < targetCurryY):
+			fallingCurry.position.y += 10
+		elif (fallingCurry.position.y == targetCurryY):
+			fallingCurry.visible = false
+			
+			if (curryChosen == "Paneer" and color != "red"):
+				bowlPlayer.play("paneerBowl")
+			elif (curryChosen == "Gobi" and color != "red"):
+				bowlPlayer.play("gobiBowl")
+			elif (curryChosen == "Butter Chicken" and color != "red"):
+				bowlPlayer.play("butterChickenBowl")
 		
 	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
 		globalData.ladleMoving = true
