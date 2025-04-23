@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=28 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_27nkd"]
@@ -6,11 +6,10 @@
 [ext_resource type="Script" uid="uid://bhmffjggmjr1s" path="res://ladle.gd" id="4_0pmta"]
 [ext_resource type="Texture2D" uid="uid://cwimeudorvp2f" path="res://Assets/ladle.png" id="4_tessa"]
 [ext_resource type="Texture2D" uid="uid://n6blgsth8dc5" path="res://Assets/butterChicken.png" id="5_8lmbm"]
-[ext_resource type="Texture2D" uid="uid://2xqb53hes2a0" path="res://Assets/bowl.png" id="5_r3f12"]
 [ext_resource type="Texture2D" uid="uid://06eormaalug5" path="res://Assets/gobi.png" id="6_khiik"]
 [ext_resource type="Texture2D" uid="uid://b0vurq4fd1axl" path="res://Assets/curryBkgd.png" id="7_5hcq3"]
 [ext_resource type="Texture2D" uid="uid://c3wssfxpjmxjo" path="res://Assets/paneer.png" id="7_qitu1"]
-[ext_resource type="Script" uid="uid://crmpysw4lcfkp" path="res://bowlDrag.gd" id="9_u5jsc"]
+[ext_resource type="PackedScene" uid="uid://c4fcisvvwbrom" path="res://bowl.tscn" id="9_tavto"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="11_qitu1"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="12_u5jsc"]
 [ext_resource type="Script" uid="uid://c21mwh4xtm6rv" path="res://plate.gd" id="13_wbs1u"]
@@ -249,21 +248,8 @@ position = Vector2(407.5, 195)
 scale = Vector2(0.52144, 0.211663)
 texture = ExtResource("3_bu7om")
 
-[node name="Bowl" type="Node2D" parent="."]
-z_index = 3
+[node name="Bowl" parent="." instance=ExtResource("9_tavto")]
 position = Vector2(403, 549)
-script = ExtResource("9_u5jsc")
-
-[node name="bowlSprite" type="Sprite2D" parent="Bowl"]
-scale = Vector2(0.129382, 0.129492)
-texture = ExtResource("5_r3f12")
-
-[node name="Area2D" type="Area2D" parent="Bowl"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bowl/Area2D"]
-visible = false
-position = Vector2(-120, -27)
-polygon = PackedVector2Array(-1, -3, 4, -12, 26, -30, 51, -41, 86, -48, 119, -49, 160, -49, 198, -41, 228, -26, 236, -15, 240, -4, 237, 17, 221, 56, 203, 77, 175, 94, 135, 104, 90, 103, 65, 96, 39, 80, 21, 57, 11, 35, 3, 15)
 
 [node name="curryBkgd" type="Sprite2D" parent="."]
 visible = false
@@ -348,7 +334,3 @@ shape = SubResource("CircleShape2D_qitu1")
 [connection signal="body_exited" from="yellow" to="." method="_on_yellow_body_exited"]
 [connection signal="ready" from="ladle" to="ladle" method="_on_ready"]
 [connection signal="ready" from="fallingCurry" to="fallingCurry" method="_on_ready"]
-[connection signal="body_entered" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_body_exited"]
-[connection signal="mouse_entered" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Bowl/Area2D" to="Bowl" method="_on_area_2d_mouse_exited"]

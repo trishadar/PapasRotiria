@@ -18,7 +18,8 @@ var pendingTickets = []
 var storage = [0,0,0,0,0,0,0]
 
 var ladleMoving = true
-var is_dragging = false;
+var is_roti_dragging = false;
+var is_bowl_dragging = false;
 
 var score = 0
 var totalScore = 0

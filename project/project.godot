@@ -21,6 +21,7 @@ globalData="*res://globalData.gd"
 [global_group]
 
 Droppable=""
+BowlDroppable=""
 
 [input]
 
