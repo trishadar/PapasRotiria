@@ -30,6 +30,7 @@ var ticketPosUpdated = false
 @onready var bowlPlate2 = get_node("PutBowlHere2")
 @onready var ms = get_node("/root/MainScene")
 
+@onready var bowl = get_node("Bowl")
 
 func _on_ready() -> void:
 	pass
@@ -37,13 +38,10 @@ func _on_ready() -> void:
 func _process(delta: float):
 	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry" and globalData.orderFinished == false):
-		sidebar.spawn_scene()
+		sidebar.initial_spawn_scene()
 		fallingCurry.visible = false
 		ticketSpawned = true
 		ticketDeleted = false
-		
-	if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "curry"):
-		sidebar.update_ticket()
 		
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
@@ -73,22 +71,19 @@ func _process(delta: float):
 	if (globalData.viewingTicket != null and currySelected == true):
 		if (Input.is_action_just_pressed("ui_accept") and curryDropped == false):
 			curryDropped = true
-			# check if they chose right curry
-			if (curryChosen == globalData.viewingTicket["curry"]):
-				globalData.score += 100
-			else:
-				globalData.score += 0
+			
+			bowl.whichCurry = curryChosen
 			
 			spacePressed = true
 			if (is_colliding_green):
 				print("green")
-				globalData.score += 100
+				bowl.whichColor = "green"
 			elif (is_colliding_yellow):
 				print("yellow")
-				globalData.score += 50
+				bowl.whichColor = "yellow"
 			else:
 				print("red")
-				globalData.score += 0
+				bowl.whichColor = "yellow"
 			globalData.ladleMoving = false
 			fallingCurry.position.x = ladle.position.x
 			fallingCurry.position.y = ladle.position.y
@@ -119,7 +114,10 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.ticketOccupied = false
 		globalData.canTakeOrder = true	
 		globalData.makeNewTicket()
-		globalData.totalScore += globalData.score
+		
+		var plate = get_node("Plate")
+		plate.calculateScore()
+		
 		cam.position = orderPos
 		globalSidebar.position = globalSidebar.startingPos
 		globalData.ticketCount -= 1

@@ -8,6 +8,9 @@ var body_ref
 
 @onready var curryScene = get_node("/root/MainScene/curry")
 
+var whichCurry
+var whichColor
+
 func _process(delta: float) -> void:
 	if(draggable):
 		if Input.is_action_just_pressed("click"):

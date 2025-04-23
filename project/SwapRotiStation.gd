@@ -3,7 +3,7 @@ extends Sprite2D
 @onready var rollToCookHolder = get_node("/root/MainScene/roll/Roll->Cook")
 @onready var cookToCurryHolder = get_node("/root/MainScene/cook/Cook->Curry")
 @onready var rawRotiCookHold = get_node("/root/MainScene/cook/RawRotiHolder/PutRotiHere")
-@onready var cookedCurryHold = get_node("/root/MainScene/curry/PutRotiHere")
+@onready var cookedCurryHold = get_node("/root/MainScene/curry/Plate/PutRotiHere")
 
 @onready var whichScene
 @onready var useThisHolder
