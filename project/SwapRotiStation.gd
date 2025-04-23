@@ -41,9 +41,9 @@ func _on_area_2d_mouse_exited():
 
 func isFullRolled():
 	var rotiAnim = useThisHolder.rotiOccupied.get_node("AnimatedSprite2D")
-	if rotiAnim.animation == "roll" && rotiAnim.frame == 12:
+	if (rotiAnim.animation == "roti roll" || rotiAnim.animation == "naan roll") && rotiAnim.frame == 12:
 		return true
-	elif rotiAnim.animation == "cook":
+	elif rotiAnim.animation == "roti cook" || rotiAnim.animation == "naan cook":
 		return true
 	else:
 		false

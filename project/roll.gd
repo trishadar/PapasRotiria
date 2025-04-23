@@ -18,6 +18,10 @@ var isTweening = false
 
 @onready var ms = get_node("/root/MainScene")
 
+var rotispawn = false
+var naanspawn = false
+var parathaspawn = false
+
 var instance = null
 var ticketDeleted = false
 @onready var sidebar = $sidebar
@@ -31,6 +35,13 @@ func _on_take_order_button_pressed() -> void:
 
 func spawn_scene():
 	var dough = sceneToSpawn.instantiate()
+	var costume = dough.get_node("AnimatedSprite2D")
+	if rotispawn:
+		costume.animation = "roti roll"
+		dough.isRoti = true
+	if naanspawn:
+		costume.animation = "naan roll"
+		dough.isNaan = true
 	ms.add_child(dough)
 	dough.global_position = spawn.global_position
 	spawn.isOccupied = true
@@ -46,6 +57,8 @@ func _process(delta: float):
 		button.disabled = true
 	else:
 		button.disabled = false
+	if(!rotispawn and !naanspawn and !parathaspawn):
+		button.disabled = true
 
 		
 		
@@ -81,3 +94,21 @@ func _on_tween_finished():
 	
 func _on_tween_finished_finished():
 	isTweening = false
+
+
+func _on_spawn_roti_pressed() -> void:
+	rotispawn = true
+	naanspawn = false
+	parathaspawn = false
+
+
+func _on_spawn_naan_pressed() -> void:
+	rotispawn = false
+	naanspawn = true
+	parathaspawn = false
+
+
+func _on_spawn_paratha_pressed() -> void:
+	rotispawn = false
+	naanspawn = false
+	parathaspawn = true
