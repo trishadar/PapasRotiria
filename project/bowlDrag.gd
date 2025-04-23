@@ -5,7 +5,6 @@ var offset: Vector2
 var initialPos : Vector2
 var is_inside_dropable = false
 var body_ref
-
 @onready var curryScene = get_node("/root/MainScene/curry")
 
 var whichCurry
