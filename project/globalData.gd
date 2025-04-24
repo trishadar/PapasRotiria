@@ -3,7 +3,7 @@ extends Node
 var gameStarted = false
 var ticketNum = 0
 var ticketOccupied = false
-var doughs = ["Regular", "Naan", "Paratha"]
+var doughs = ["Roti", "Naan"]
 var curries = ["Paneer", "Gobi", "Butter Chicken"]
 
 var times = [225, 270, 315]
@@ -62,7 +62,7 @@ func removeTicket():
 func makeNewTicket():
 	ticketNum += 1
 	var ticketNumber = str(ticketNum)
-	var randomNum = randi() %3
+	var randomNum = randi() %2
 	var dough = str(doughs[randomNum])
 	randomNum = randi() %3
 	var curry = str(curries[randomNum])
