@@ -5,7 +5,6 @@ var viewingTicketNode = null
 var is_colliding_green: bool = false
 var is_colliding_yellow: bool = false
 var is_colliding_red: bool = false
-var curryFalling = true
 var targetCurryY = 200
 @onready var animationPlayer = $fallingCurry/AnimationPlayer
 @onready var fallingCurry = $fallingCurry
@@ -34,17 +33,20 @@ var ticketPosUpdated = false
 @onready var bowlPos = bowl.global_position
 
 var bowl_scene: PackedScene = preload("res://bowl.tscn")
+var color = null
+@onready var bowlPlayer = $Bowl/AnimationPlayer
 
 func _on_ready() -> void:
-	pass
+	bowlPlayer.play("emptyBowl")
 	
 func _process(delta: float):
 	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry" and globalData.orderFinished == false):
-		sidebar.initial_spawn_scene()
+		# globalSidebar.initial_spawn_scene()
 		fallingCurry.visible = false
 		ticketSpawned = true
 		ticketDeleted = false
+		bowlPlayer.play("emptyBowl")
 		
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
@@ -54,7 +56,7 @@ func _process(delta: float):
 		currySelected = false
 		
 	if (globalData.orderFinished == true and ticketDeleted == false):
-		sidebar.remove_scene()
+		globalSidebar.remove_scene()
 		ticketDeleted = true
 		
 		if(rotiPlate.isOccupied):
@@ -90,21 +92,35 @@ func _process(delta: float):
 			spacePressed = true
 			if (is_colliding_green):
 				print("green")
+				color = "green"
 				bowl.whichColor = "green"
 			elif (is_colliding_yellow):
 				print("yellow")
+				color = "yellow"
 				bowl.whichColor = "yellow"
 			else:
 				print("red")
-				bowl.whichColor = "yellow"
+				color = "red"
+				bowl.whichColor = "red"
 			globalData.ladleMoving = false
 			fallingCurry.position.x = ladle.position.x
 			fallingCurry.position.y = ladle.position.y
 			fallingCurry.visible = true
 			print("fallingCurry visible")
 			
-	if (globalData.viewingTicket != null and curryFalling == true and fallingCurry.position.y < targetCurryY):
-		fallingCurry.position.y += 10
+	if (globalData.viewingTicket != null and curryDropped == true):
+		if (fallingCurry.position.y < targetCurryY):
+			fallingCurry.position.y += 10
+		elif (fallingCurry.position.y == targetCurryY):
+			fallingCurry.visible = false
+			
+			if (curryChosen == "Paneer" and color != "red"):
+				# print("color: " , color)
+				bowlPlayer.play("paneerBowl")
+			elif (curryChosen == "Gobi" and color != "red"):
+				bowlPlayer.play("gobiBowl")
+			elif (curryChosen == "Butter Chicken" and color != "red"):
+				bowlPlayer.play("butterChickenBowl")
 		
 	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
 		globalData.ladleMoving = true

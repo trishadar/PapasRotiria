@@ -14,6 +14,8 @@ var cookTime = 0
 
 var timeStart = 0
 var timeNow = 0
+var isNaan
+var isRoti
 
 
 func _process(delta):

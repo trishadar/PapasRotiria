@@ -30,8 +30,12 @@ func _process(delta: float):
 
 func startCooking(roti, whichHand):
 	var rotiAnim = roti.get_node("AnimatedSprite2D")
-	rotiAnim.animation = "cook"
-	if(rotiAnim.frame != 31):
+	if(roti.isRoti):
+		rotiAnim.animation = "roti cook"
+	elif(roti.isRoti):
+		rotiAnim.animation = "naan cook"
+	
+	if(roti.isRoti and rotiAnim.frame != 31):
 		rotiAnim.play()
 		roti.isCooking = true
 		whichHand.rotation = roti.cookHandRot
@@ -41,6 +45,20 @@ func startCooking(roti, whichHand):
 		if(roti.cookTween == null || roti.whichHand != whichHand):
 			roti.cookTween = get_tree().create_tween()
 			roti.cookTween.tween_property(whichHand, "rotation", deg_to_rad(360), 31 - (roti.cookTime/1000))
+			roti.whichHand = whichHand
+		else:
+			roti.cookTween.play()
+			
+	if(roti.isNaan and rotiAnim.frame!=39):
+		rotiAnim.play("naan cook")
+		roti.isCooking = true
+		whichHand.rotation = roti.cookHandRot
+			
+		roti.timeStart = Time.get_ticks_msec()
+			
+		if(roti.cookTween == null || roti.whichHand != whichHand):
+			roti.cookTween = get_tree().create_tween()
+			roti.cookTween.tween_property(whichHand, "rotation", deg_to_rad(360), 39 - (roti.cookTime/1000))
 			roti.whichHand = whichHand
 		else:
 			roti.cookTween.play()
