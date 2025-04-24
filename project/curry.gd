@@ -67,7 +67,7 @@ func _process(delta: float):
 			remove_child(bowlPlate.rotiOccupied)
 			bowlPlate.rotiOccupied = null
 			var newBowl = bowl_scene.instantiate()
-			ms.add_child(newBowl)
+			add_child(newBowl)
 			newBowl.global_position = bowlPos
 			bowl = newBowl
 		if(bowlPlate2.isOccupied):
@@ -75,7 +75,7 @@ func _process(delta: float):
 			remove_child(bowlPlate2.rotiOccupied)
 			bowlPlate2.rotiOccupied = null
 			var newBowl = bowl_scene.instantiate()
-			ms.add_child(newBowl)
+			add_child(newBowl)
 			newBowl.global_position = bowlPos
 			bowl = newBowl
 		

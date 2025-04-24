@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 			tween.connect("finished", _on_tween_finished)
 			if is_inside_dropable:
 				tween.tween_property(self, "global_position", body_ref.global_position, 0.2).set_ease(Tween.EASE_OUT)
-				print(body_ref.global_position)
 			else:
 				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
 

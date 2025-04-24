@@ -30,7 +30,7 @@ text = "Trash Can"
 label_settings = SubResource("LabelSettings_fifm2")
 horizontal_alignment = 1
 
-[node name="PutRotiHereTrash" type="StaticBody2D" parent="." groups=["Droppable"]]
+[node name="PutRotiHereTrash" type="StaticBody2D" parent="." groups=["BowlDroppable", "Droppable"]]
 script = ExtResource("2_kcyba")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHereTrash"]
