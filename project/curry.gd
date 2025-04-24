@@ -34,7 +34,7 @@ var ticketPosUpdated = false
 
 var bowl_scene: PackedScene = preload("res://bowl.tscn")
 var color = null
-@onready var bowlPlayer = $Bowl/AnimationPlayer
+@onready var bowlPlayer = get_node("Bowl/AnimationPlayer")
 
 func _on_ready() -> void:
 	bowlPlayer.play("emptyBowl")
@@ -115,7 +115,7 @@ func _process(delta: float):
 			fallingCurry.visible = false
 			
 			if (curryChosen == "Paneer" and color != "red"):
-				# print("color: " , color)
+				print("color: " , color)
 				bowlPlayer.play("paneerBowl")
 			elif (curryChosen == "Gobi" and color != "red"):
 				bowlPlayer.play("gobiBowl")

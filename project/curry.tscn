@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=28 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_27nkd"]
@@ -6,16 +6,12 @@
 [ext_resource type="Script" uid="uid://bhmffjggmjr1s" path="res://ladle.gd" id="4_0pmta"]
 [ext_resource type="Texture2D" uid="uid://cwimeudorvp2f" path="res://Assets/ladle.png" id="4_tessa"]
 [ext_resource type="Texture2D" uid="uid://n6blgsth8dc5" path="res://Assets/butterChicken.png" id="5_8lmbm"]
-[ext_resource type="Texture2D" uid="uid://2xqb53hes2a0" path="res://Assets/bowl.png" id="5_r3f12"]
 [ext_resource type="Texture2D" uid="uid://06eormaalug5" path="res://Assets/gobi.png" id="6_khiik"]
 [ext_resource type="Texture2D" uid="uid://b0vurq4fd1axl" path="res://Assets/curryBkgd.png" id="7_5hcq3"]
 [ext_resource type="Texture2D" uid="uid://c3wssfxpjmxjo" path="res://Assets/paneer.png" id="7_qitu1"]
 [ext_resource type="PackedScene" uid="uid://c4fcisvvwbrom" path="res://bowl.tscn" id="9_tavto"]
-[ext_resource type="Texture2D" uid="uid://bawdpo7bnovdm" path="res://Assets/bowls/butterChickenBowl.png" id="11_pckgn"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="11_qitu1"]
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="12_u5jsc"]
-[ext_resource type="Texture2D" uid="uid://cdg610yv7ppvc" path="res://Assets/bowls/gobiBowl.png" id="12_u6bcm"]
-[ext_resource type="Texture2D" uid="uid://js74ir6srxls" path="res://Assets/bowls/paneerBowl.png" id="13_u087q"]
 [ext_resource type="Script" uid="uid://c21mwh4xtm6rv" path="res://plate.gd" id="13_wbs1u"]
 [ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="14_tavto"]
 
@@ -152,157 +148,6 @@ _data = {
 &"paneer": SubResource("Animation_5hcq3")
 }
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_u6bcm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_pckgn")
-}],
-"loop": true,
-"name": &"butterChickenBowl",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_r3f12")
-}],
-"loop": true,
-"name": &"emptyBowl",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_u6bcm")
-}],
-"loop": true,
-"name": &"gobiBowl",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_u087q")
-}],
-"loop": true,
-"name": &"paneerBowl",
-"speed": 5.0
-}]
-
-[sub_resource type="Animation" id="Animation_p2cx3"]
-resource_name = "butterChickenBowl"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"butterChickenBowl"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_u6bcm"]
-resource_name = "emptyBowl"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"emptyBowl"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_gum0b"]
-resource_name = "gobiBowl"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"gobiBowl"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_u087q"]
-resource_name = "paneerBowl"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"paneerBowl"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3ba6"]
-_data = {
-&"butterChickenBowl": SubResource("Animation_p2cx3"),
-&"emptyBowl": SubResource("Animation_u6bcm"),
-&"gobiBowl": SubResource("Animation_gum0b"),
-&"paneerBowl": SubResource("Animation_u087q")
-}
-
 [sub_resource type="CanvasTexture" id="CanvasTexture_5hcq3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qitu1"]
@@ -405,16 +250,6 @@ texture = ExtResource("3_bu7om")
 
 [node name="Bowl" parent="." instance=ExtResource("9_tavto")]
 position = Vector2(403, 549)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bowl"]
-scale = Vector2(0.129, 0.129)
-sprite_frames = SubResource("SpriteFrames_u6bcm")
-animation = &"butterChickenBowl"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Bowl"]
-libraries = {
-&"": SubResource("AnimationLibrary_r3ba6")
-}
 
 [node name="curryBkgd" type="Sprite2D" parent="."]
 visible = false
