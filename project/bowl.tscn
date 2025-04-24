@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://crmpysw4lcfkp" path="res://bowlDrag.gd" id="1_y8sj4"]
 [ext_resource type="Texture2D" uid="uid://2xqb53hes2a0" path="res://Assets/bowl.png" id="2_evrla"]
-[ext_resource type="Texture2D" uid="uid://bawdpo7bnovdm" path="res://Assets/bowls/butterChickenBowl.png" id="2_f4wr4"]
+[ext_resource type="Texture2D" uid="uid://bawdpo7bnovdm" path="res://Assets/bowls/butterChickenBowl.png" id="3_f4wr4"]
 [ext_resource type="Texture2D" uid="uid://cdg610yv7ppvc" path="res://Assets/bowls/gobiBowl.png" id="4_mamk5"]
 [ext_resource type="Texture2D" uid="uid://js74ir6srxls" path="res://Assets/bowls/paneerBowl.png" id="5_vw461"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_f4wr4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdvkh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_f4wr4")
+"texture": ExtResource("3_f4wr4")
 }],
 "loop": true,
 "name": &"butterChickenBowl",
@@ -161,15 +161,10 @@ _data = {
 z_index = 3
 script = ExtResource("1_y8sj4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.129, 0.129)
-sprite_frames = SubResource("SpriteFrames_f4wr4")
-animation = &"butterChickenBowl"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_r3ba6")
-}
+[node name="bowlSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.129382, 0.129492)
+texture = ExtResource("2_evrla")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -177,6 +172,16 @@ libraries = {
 visible = false
 position = Vector2(-120, -27)
 polygon = PackedVector2Array(-1, -3, 4, -12, 26, -30, 51, -41, 86, -48, 119, -49, 160, -49, 198, -41, 228, -26, 236, -15, 240, -4, 237, 17, 221, 56, 203, 77, 175, 94, 135, 104, 90, 103, 65, 96, 39, 80, 21, 57, 11, 35, 3, 15)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.129, 0.129)
+sprite_frames = SubResource("SpriteFrames_cdvkh")
+animation = &"butterChickenBowl"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r3ba6")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
