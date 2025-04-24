@@ -1,15 +1,175 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4fcisvvwbrom"]
+[gd_scene load_steps=12 format=3 uid="uid://c4fcisvvwbrom"]
 
 [ext_resource type="Script" uid="uid://crmpysw4lcfkp" path="res://bowlDrag.gd" id="1_y8sj4"]
 [ext_resource type="Texture2D" uid="uid://2xqb53hes2a0" path="res://Assets/bowl.png" id="2_evrla"]
+[ext_resource type="Texture2D" uid="uid://bawdpo7bnovdm" path="res://Assets/bowls/butterChickenBowl.png" id="2_f4wr4"]
+[ext_resource type="Texture2D" uid="uid://cdg610yv7ppvc" path="res://Assets/bowls/gobiBowl.png" id="4_mamk5"]
+[ext_resource type="Texture2D" uid="uid://js74ir6srxls" path="res://Assets/bowls/paneerBowl.png" id="5_vw461"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f4wr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f4wr4")
+}],
+"loop": true,
+"name": &"butterChickenBowl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_evrla")
+}],
+"loop": true,
+"name": &"emptyBowl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mamk5")
+}],
+"loop": true,
+"name": &"gobiBowl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vw461")
+}],
+"loop": true,
+"name": &"paneerBowl",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_p2cx3"]
+resource_name = "butterChickenBowl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"butterChickenBowl"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_u6bcm"]
+resource_name = "emptyBowl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"emptyBowl"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gum0b"]
+resource_name = "gobiBowl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"gobiBowl"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_u087q"]
+resource_name = "paneerBowl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"paneerBowl"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3ba6"]
+_data = {
+&"butterChickenBowl": SubResource("Animation_p2cx3"),
+&"emptyBowl": SubResource("Animation_u6bcm"),
+&"gobiBowl": SubResource("Animation_gum0b"),
+&"paneerBowl": SubResource("Animation_u087q")
+}
 
 [node name="Bowl" type="Node2D"]
 z_index = 3
 script = ExtResource("1_y8sj4")
 
-[node name="bowlSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.129382, 0.129492)
-texture = ExtResource("2_evrla")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.129, 0.129)
+sprite_frames = SubResource("SpriteFrames_f4wr4")
+animation = &"butterChickenBowl"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r3ba6")
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 

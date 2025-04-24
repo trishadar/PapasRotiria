@@ -34,7 +34,7 @@ var ticketPosUpdated = false
 
 var bowl_scene: PackedScene = preload("res://bowl.tscn")
 var color = null
-@onready var bowlPlayer = $Bowl/AnimationPlayer
+@onready var bowlPlayer = get_node("Bowl/AnimationPlayer2")
 
 func _on_ready() -> void:
 	bowlPlayer.play("emptyBowl")
@@ -72,6 +72,7 @@ func _process(delta: float):
 			add_child(newBowl)
 			newBowl.global_position = bowlPos
 			bowl = newBowl
+			bowlPlayer = newBowl.get_node("AnimationPlayer")
 		if(bowlPlate2.isOccupied):
 			bowlPlate2.isOccupied = false
 			remove_child(bowlPlate2.rotiOccupied)
@@ -80,6 +81,7 @@ func _process(delta: float):
 			add_child(newBowl)
 			newBowl.global_position = bowlPos
 			bowl = newBowl
+			bowlPlayer = newBowl.get_node("AnimationPlayer")
 		
 	
 	# check if space bar pressed and there is a collision
