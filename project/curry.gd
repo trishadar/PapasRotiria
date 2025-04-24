@@ -25,11 +25,15 @@ var ticketPosUpdated = false
 @onready var sidebar = $sidebar
 @onready var globalSidebar = get_node("/root/MainScene/sidebar")
 
-@onready var rotiPlate = get_node("PutRotiHere")
-@onready var bowlPlate = get_node("PutBowlHere")
-@onready var bowlPlate2 = get_node("PutBowlHere2")
+@onready var rotiPlate = get_node("Plate/PutRotiHere")
+@onready var bowlPlate = get_node("Plate/PutBowlHere")
+@onready var bowlPlate2 = get_node("Plate/PutBowlHere2")
 @onready var ms = get_node("/root/MainScene")
 
+@onready var bowl = get_node("Bowl")
+@onready var bowlPos = bowl.global_position
+
+var bowl_scene: PackedScene = preload("res://bowl.tscn")
 
 func _on_ready() -> void:
 	pass
@@ -37,13 +41,10 @@ func _on_ready() -> void:
 func _process(delta: float):
 	
 	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry" and globalData.orderFinished == false):
-		# sidebar.spawn_scene()
+		sidebar.initial_spawn_scene()
 		fallingCurry.visible = false
 		ticketSpawned = true
 		ticketDeleted = false
-		
-	# if (globalData.viewingTicket != null and ticketSpawned == true and globalData.currentScene != "curry"):
-		# sidebar.update_ticket()
 		
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
@@ -53,42 +54,49 @@ func _process(delta: float):
 		currySelected = false
 		
 	if (globalData.orderFinished == true and ticketDeleted == false):
-		globalSidebar.remove_scene()
+		sidebar.remove_scene()
 		ticketDeleted = true
 		
-		#if(rotiPlate.isOccupied):
-			#rotiPlate.isOccupied = false
-			#ms.remove_child(rotiPlate.rotiOccupied)
-			#rotiPlate.rotiOccupied = null
-		#if(bowlPlate.isOccupied):
-			#bowlPlate.isOccupied = false
-			#remove_child(bowlPlate.rotiOccupied)
-			#bowlPlate.rotiOccupied = null
-		#if(rotiPlate.isOccupied):
-			#bowlPlate2.isOccupied = false
-			#remove_child(bowlPlate2.rotiOccupied)
-			#bowlPlate2.rotiOccupied = null
+		if(rotiPlate.isOccupied):
+			rotiPlate.isOccupied = false
+			ms.rotiList.erase(rotiPlate.rotiOccupied)
+			ms.remove_child(rotiPlate.rotiOccupied)
+			rotiPlate.rotiOccupied = null
+		if(bowlPlate.isOccupied):
+			bowlPlate.isOccupied = false
+			remove_child(bowlPlate.rotiOccupied)
+			bowlPlate.rotiOccupied = null
+			var newBowl = bowl_scene.instantiate()
+			ms.add_child(newBowl)
+			newBowl.global_position = bowlPos
+			bowl = newBowl
+		if(bowlPlate2.isOccupied):
+			bowlPlate2.isOccupied = false
+			remove_child(bowlPlate2.rotiOccupied)
+			bowlPlate2.rotiOccupied = null
+			var newBowl = bowl_scene.instantiate()
+			ms.add_child(newBowl)
+			newBowl.global_position = bowlPos
+			bowl = newBowl
+		
 	
 	# check if space bar pressed and there is a collision
 	if (globalData.viewingTicket != null and currySelected == true):
 		if (Input.is_action_just_pressed("ui_accept") and curryDropped == false):
 			curryDropped = true
-			# check if they chose right curry
-			if (curryChosen == globalData.viewingTicket["curry"]):
-				globalData.score += 100
-			else:
-				globalData.score += 0
+			
+			bowl.whichCurry = curryChosen
 			
 			spacePressed = true
 			if (is_colliding_green):
 				print("green")
-				globalData.score += 100
+				bowl.whichColor = "green"
 			elif (is_colliding_yellow):
 				print("yellow")
-				globalData.score += 50
+				bowl.whichColor = "yellow"
 			else:
 				print("red")
-				globalData.score += 0
+				bowl.whichColor = "yellow"
 			globalData.ladleMoving = false
 			fallingCurry.position.x = ladle.position.x
 			fallingCurry.position.y = ladle.position.y
@@ -119,7 +127,10 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.ticketOccupied = false
 		globalData.canTakeOrder = true	
 		globalData.makeNewTicket()
-		globalData.totalScore += globalData.score
+		
+		var plate = get_node("Plate")
+		plate.calculateScore()
+		
 		cam.position = orderPos
 		globalSidebar.position = globalSidebar.startingPos
 		globalData.ticketCount -= 1
