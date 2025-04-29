@@ -20,7 +20,6 @@ var isTweening = false
 
 var rotispawn = false
 var naanspawn = false
-var parathaspawn = false
 
 var instance = null
 var ticketDeleted = false
@@ -57,7 +56,7 @@ func _process(delta: float):
 		button.disabled = true
 	else:
 		button.disabled = false
-	if(!rotispawn and !naanspawn and !parathaspawn):
+	if(!rotispawn and !naanspawn):
 		button.disabled = true
 
 		
@@ -99,16 +98,8 @@ func _on_tween_finished_finished():
 func _on_spawn_roti_pressed() -> void:
 	rotispawn = true
 	naanspawn = false
-	parathaspawn = false
 
 
 func _on_spawn_naan_pressed() -> void:
 	rotispawn = false
 	naanspawn = true
-	parathaspawn = false
-
-
-func _on_spawn_paratha_pressed() -> void:
-	rotispawn = false
-	naanspawn = false
-	parathaspawn = true

@@ -161,11 +161,6 @@ _data = {
 z_index = 3
 script = ExtResource("1_y8sj4")
 
-[node name="bowlSprite" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.129382, 0.129492)
-texture = ExtResource("2_evrla")
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
