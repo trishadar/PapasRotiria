@@ -125,7 +125,7 @@ func _process(delta: float):
 			elif (curryChosen == "Butter Chicken" and color != "red"):
 				bowlPlayer.play("butterChickenBowl")
 		
-	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
+	if (bowl.whichCurry == null and currySelected == true and spacePressed == false):
 		globalData.ladleMoving = true
 	else:
 		globalData.ladleMoving = false
@@ -171,21 +171,18 @@ func _on_yellow_body_exited(body: Node2D) -> void:
 	is_colliding_yellow = false
 
 func _on_paneer_button_pressed() -> void:
-	if (globalData.ticketOccupied == true):
 		currySelected = true
 		curryChosen = "Paneer"
 		animationPlayer.play("paneer")
 
 
 func _on_butter_chicken_button_pressed() -> void:
-	if (globalData.ticketOccupied == true):
 		currySelected = true
 		curryChosen = "Butter Chicken"
 		animationPlayer.play("butterChicken")
 
 
 func _on_gobi_button_pressed() -> void:
-	if (globalData.ticketOccupied == true):
 		currySelected = true
 		curryChosen = "Gobi"
 		animationPlayer.play("gobi")
