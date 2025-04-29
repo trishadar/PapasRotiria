@@ -62,9 +62,17 @@ func _input(event):
 
 func _on_area_2d_mouse_entered():
 	canTransferPos = true
+	if !hasShrunk:
+		scale = Vector2(1.03, 1.03)
+	else:
+		scale = Vector2(.37, .37)
 	
 func _on_area_2d_mouse_exited():
 	canTransferPos = false
+	if !hasShrunk:
+		scale = Vector2(1, 1)
+	else:
+		scale = Vector2(.35, .35)
 
 func move_to_side_box() -> void:
 	
