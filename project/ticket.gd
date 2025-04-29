@@ -20,6 +20,8 @@ var thisTicketStored = false  # Initialized to false
 
 var timeNum
 
+var canTransferPos = false
+
 func _ready() -> void:
 	ticketNumber.text = "ticketNumber"
 	dough.text = "dough"
@@ -47,7 +49,7 @@ func set_up(data):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed and is_mouse_over(get_global_mouse_position()):
+			if event.pressed and canTransferPos:
 				if (thisTicketOccupied or thisTicketStored):
 					# Only shrink if it's currently occupied
 					if (thisTicketStored == true and thisTicketOccupied == false):
@@ -57,15 +59,12 @@ func _input(event):
 					else:
 						print("thisTicketStored and thisTicketOccupied are false")
 
-func is_mouse_over(mouse_position: Vector2) -> bool:
-	return get_global_rect().has_point(mouse_position)
 
-func get_global_rect() -> Rect2:
-	var shape = get_node("Area2D/CollisionShape2D").shape
-	if shape is RectangleShape2D:
-		var rect = shape.size
-		return Rect2(global_position - rect / 2, rect)
-	return Rect2()
+func _on_area_2d_mouse_entered():
+	canTransferPos = true
+	
+func _on_area_2d_mouse_exited():
+	canTransferPos = false
 
 func move_to_side_box() -> void:
 	
