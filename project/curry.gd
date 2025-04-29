@@ -119,7 +119,6 @@ func _process(delta: float):
 			fallingCurry.visible = false
 			
 			if (curryChosen == "Paneer" and color != "red"):
-				# print("color: " , color)
 				bowlPlayer.play("paneerBowl")
 			elif (curryChosen == "Gobi" and color != "red"):
 				bowlPlayer.play("gobiBowl")
