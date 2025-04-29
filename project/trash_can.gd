@@ -15,6 +15,8 @@ func _process(delta: float) -> void:
 			curry.add_child(newBowl)
 			newBowl.global_position = curry.bowlPos
 			curry.bowl = newBowl
+			curry.bowlPlayer = newBowl.get_node("AnimationPlayer")
+			curry.bowlPlayer.play("emptyBowl")
 			
 			curry.curryDropped = false
 			curry.curryChosen = null

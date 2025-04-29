@@ -87,7 +87,7 @@ func _process(delta: float):
 		
 	
 	# check if space bar pressed and there is a collision
-	if (globalData.viewingTicket != null and currySelected == true):
+	if (bowl.whichCurry == null and currySelected == true):
 		if (Input.is_action_just_pressed("ui_accept") and curryDropped == false):
 			curryDropped = true
 			
@@ -110,15 +110,15 @@ func _process(delta: float):
 			fallingCurry.position.x = ladle.position.x
 			fallingCurry.position.y = ladle.position.y
 			fallingCurry.visible = true
-			print("fallingCurry visible")
 			
-	if (globalData.viewingTicket != null and curryDropped == true):
+	if (fallingCurry.visible && curryDropped == true):
 		if (fallingCurry.position.y < targetCurryY):
 			fallingCurry.position.y += 10
 		elif (fallingCurry.position.y == targetCurryY):
 			fallingCurry.visible = false
 			
 			if (curryChosen == "Paneer" and color != "red"):
+				# print("color: " , color)
 				bowlPlayer.play("paneerBowl")
 			elif (curryChosen == "Gobi" and color != "red"):
 				bowlPlayer.play("gobiBowl")
@@ -171,18 +171,18 @@ func _on_yellow_body_exited(body: Node2D) -> void:
 	is_colliding_yellow = false
 
 func _on_paneer_button_pressed() -> void:
-		currySelected = true
-		curryChosen = "Paneer"
-		animationPlayer.play("paneer")
+	currySelected = true
+	curryChosen = "Paneer"
+	animationPlayer.play("paneer")
 
 
 func _on_butter_chicken_button_pressed() -> void:
-		currySelected = true
-		curryChosen = "Butter Chicken"
-		animationPlayer.play("butterChicken")
+	currySelected = true
+	curryChosen = "Butter Chicken"
+	animationPlayer.play("butterChicken")
 
 
 func _on_gobi_button_pressed() -> void:
-		currySelected = true
-		curryChosen = "Gobi"
-		animationPlayer.play("gobi")
+	currySelected = true
+	curryChosen = "Gobi"
+	animationPlayer.play("gobi")
