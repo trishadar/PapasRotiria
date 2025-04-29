@@ -87,7 +87,7 @@ func _process(delta: float):
 		
 	
 	# check if space bar pressed and there is a collision
-	if (bowl.whichCurry == null and currySelected == true):
+	if (globalData.viewingTicket != null and currySelected == true):
 		if (Input.is_action_just_pressed("ui_accept") and curryDropped == false):
 			curryDropped = true
 			
@@ -119,13 +119,14 @@ func _process(delta: float):
 			fallingCurry.visible = false
 			
 			if (curryChosen == "Paneer" and color != "red"):
+				# print("color: " , color)
 				bowlPlayer.play("paneerBowl")
 			elif (curryChosen == "Gobi" and color != "red"):
 				bowlPlayer.play("gobiBowl")
 			elif (curryChosen == "Butter Chicken" and color != "red"):
 				bowlPlayer.play("butterChickenBowl")
 		
-	if (bowl.whichCurry == null and currySelected == true and spacePressed == false):
+	if (globalData.viewingTicket != null and currySelected == true and spacePressed == false):
 		globalData.ladleMoving = true
 	else:
 		globalData.ladleMoving = false
