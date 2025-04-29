@@ -56,8 +56,6 @@ func _input(event):
 						move_to_side_box()  # Move to side box
 					elif (thisTicketStored == false and thisTicketOccupied == true):
 						move_to_top()  # Move to top
-					else:
-						print("thisTicketStored and thisTicketOccupied are false")
 
 
 func _on_area_2d_mouse_entered():
