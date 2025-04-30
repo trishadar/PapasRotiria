@@ -77,7 +77,7 @@ func _process(delta: float):
 				doughtoroti.frame = doughtoroti.frame+1
 				var tween = get_tree().create_tween()
 				tween.connect("finished",_on_tween_finished)
-				tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,-200), 0.2)
+				tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,-250), 0.2)
 				isTweening = true
 			if(doughtoroti.frame == 12 and rotiObj.position != board.global_position):
 				rotiObj.roll = false
@@ -89,7 +89,7 @@ func _process(delta: float):
 func _on_tween_finished():
 	var tween = get_tree().create_tween()
 	tween.connect("finished",_on_tween_finished_finished)
-	tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,200), 0.2)
+	tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,250), 0.2)
 	
 func _on_tween_finished_finished():
 	isTweening = false
