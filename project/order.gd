@@ -11,8 +11,9 @@ extends Node2D
 @onready var totalScoreLabel = $score/totalScoreLabel
 @onready var sidebar = $sidebar
 
-@onready var customer = $customer
-@onready var animationPlayer = $customer/AnimationPlayer
+# @onready var customer = $customer
+@onready var customer_scene: PackedScene = preload("res://customer.tscn")
+var customer = null
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
@@ -28,7 +29,6 @@ var curryPos = Vector2(4416, 323)
 var instance = null
 var ticketSpawned = false
 var ticketDeleted = false
-
 var customerSpawned = false
 
 	
@@ -56,7 +56,6 @@ func _on_take_order_button_pressed() -> void:
 		takeOrderButton.text = " "
 		globalData.canTakeOrder = false	
 		globalData.removeTicket()
-		customerSpawned = false
 		
 func reachedTicketLimit():
 	if (globalData.ticketCount >= 7):
@@ -67,7 +66,17 @@ func reachedTicketLimit():
 func _on_ready() -> void:
 	pass
 		
+func customerEnter():
 	
+	var stop = false
+	for i in range(globalData.customerLoc.size()):
+		if (globalData.customerLoc[i] == 0 and stop == false):
+			await get_tree().create_timer(0.5).timeout
+			customer.position.x -= 100
+		else:
+			stop = true
+			if (i != 0):
+				globalData.customerLoc[i-1] = 1
 	
 func _process(delta):
 	
@@ -80,14 +89,14 @@ func _process(delta):
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
+		customerSpawned = false
 		
-		if !customerSpawned:
+		if (customerSpawned == false):
 			spawnCustomer()
-			customer.visible = true
+			customerEnter()
 		
 	else:
 		takeOrderButton.text = " "
-		customer.visible = false
 	
 	if (globalData.orderFinished == true):
 		# print("Score: " + str(globalData.score))
@@ -98,12 +107,17 @@ func _process(delta):
 		score.visible = false
 		
 func spawnCustomer():
+	customer = customer_scene.instantiate()
+	add_child(customer)
+	customer.position.x = 700
+	customer.position.y = 430
+	var animationPlayer = get_node("customer/AnimationPlayer")
 	var randomNum = randi() %2
 	if randomNum == 0:
 		animationPlayer.play("rithika")
 	elif randomNum == 1:
 		animationPlayer.play("kyle")
-	
+	customer.visible = true
 	customerSpawned = true
 	
 	

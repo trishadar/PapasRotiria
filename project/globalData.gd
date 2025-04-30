@@ -31,6 +31,8 @@ var ticketCount = 0
 var rng: RandomNumberGenerator
 var timer: Timer
 
+var customerLoc = [0,0,0,0,0]
+
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
