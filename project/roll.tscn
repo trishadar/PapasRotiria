@@ -41,12 +41,14 @@ texture = SubResource("CanvasTexture_vrgdt")
 
 [node name="rollingBoard" parent="." instance=ExtResource("6_32hjg")]
 position = Vector2(573, 349)
+scale = Vector2(1.5, 1.5)
 
 [node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
 visible = false
 
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(574, 350)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("3_48jdy")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHere"]
@@ -76,8 +78,8 @@ polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -17
 
 [node name="RollingPin" type="Node2D" parent="."]
 z_index = 7
-position = Vector2(562, 255)
-scale = Vector2(0.4, 0.4)
+position = Vector2(550, 206)
+scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="RollingPin"]
 position = Vector2(27.5, 27.5)
@@ -85,6 +87,7 @@ texture = ExtResource("8_j3jrc")
 
 [node name="PutRotiHere2" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(147, 401)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("3_48jdy")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHere2"]
@@ -103,15 +106,15 @@ position = Vector2(772, 185)
 [node name="spawnRoti" type="Button" parent="."]
 offset_left = 111.0
 offset_top = 153.0
-offset_right = 150.0
-offset_bottom = 184.0
+offset_right = 165.0
+offset_bottom = 201.0
 text = "Roti"
 
 [node name="spawnNaan" type="Button" parent="."]
 offset_left = 193.0
 offset_top = 153.0
-offset_right = 243.0
-offset_bottom = 184.0
+offset_right = 250.0
+offset_bottom = 201.0
 text = "Naan"
 
 [connection signal="ready" from="." to="." method="_on_ready"]

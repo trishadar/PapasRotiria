@@ -15,6 +15,7 @@ var mouseEx = 0
 func _process(delta: float):
 	if useThisHolder.isOccupied:
 		if Input.is_action_just_pressed("click") && isFullRolled():
+			scale = Vector2(1, 1)
 			if(mouseEnt - 1 == mouseEx):
 				if(goesToHold.isOccupied):
 					print("Transfer is occupied")

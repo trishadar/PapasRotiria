@@ -34,6 +34,8 @@ func _on_take_order_button_pressed() -> void:
 
 func spawn_scene():
 	var dough = sceneToSpawn.instantiate()
+	dough.scale = Vector2(1.5, 1.5)
+	dough.roll = true
 	var costume = dough.get_node("AnimatedSprite2D")
 	if rotispawn:
 		costume.animation = "roti roll"
@@ -64,24 +66,22 @@ func _process(delta: float):
 	for rotiObj in ms.rotiList:
 		
 		if(rotiObj.position == board.global_position and spawnCountChecker == false):
-			#spawn.isOccupied = false
-			print_debug("debra")
-			#rotiObj.visible = false
 			board.isOccupied = false
 			board.rotiOccupied = null
 			spawnCountChecker = true
+			
 			
 		if(spawnCountChecker == true and rotiObj.position == board.global_position):
 			var doughtoroti = rotiObj.get_node("AnimatedSprite2D")
 			if(Input.is_action_just_pressed("ui_right") and doughtoroti.frame!=12 and isTweening == false):
 				doughtoroti.frame = doughtoroti.frame+1
-				#pin.global_position.y = pin.global_position.y+20
 				var tween = get_tree().create_tween()
 				tween.connect("finished",_on_tween_finished)
-				tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,-150), 0.2)
+				tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,-200), 0.2)
 				isTweening = true
+			if(doughtoroti.frame == 12 and rotiObj.position != board.global_position):
+				rotiObj.roll = false
 				
-			
 		if(spawn.isOccupied == true):
 			button.disabled = true
 		else:
@@ -89,7 +89,7 @@ func _process(delta: float):
 func _on_tween_finished():
 	var tween = get_tree().create_tween()
 	tween.connect("finished",_on_tween_finished_finished)
-	tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,150), 0.2)
+	tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,200), 0.2)
 	
 func _on_tween_finished_finished():
 	isTweening = false
