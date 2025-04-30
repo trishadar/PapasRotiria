@@ -36,7 +36,7 @@ func _ready() -> void:
 	rng.randomize()
 	
 	timer = Timer.new()
-	timer.wait_time = rng.randi_range(1,2)
+	timer.wait_time = rng.randi_range(2,3)
 	timer.one_shot = false
 	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	add_child(timer)
@@ -44,7 +44,7 @@ func _ready() -> void:
 	
 func _on_timer_timeout():
 	makeNewTicket()
-	timer.wait_time = rng.randi_range(3,5)
+	timer.wait_time = rng.randi_range(25,40)
 	timer.start()
 
 func _process(delta: float) -> void:
