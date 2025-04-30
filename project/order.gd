@@ -57,13 +57,13 @@ func _on_take_order_button_pressed() -> void:
 		customers[4] = null
 		
 		#shift all customers forward
-		for i in range(customers.size()-1):
-			if (globalData.customerLoc[i] == 1):
-				var cust = customers[i]
+		for i in range(customers.size()-1,-1,-1):
+			if (globalData.customerLoc[i-1] == 1):
+				var cust = customers[i-1]
 				cust.position.x -= 150
-				globalData.customerLoc[i] = 0
-				customers[i+1] = cust
-				globalData.customerLoc[i+1] = 1
+				globalData.customerLoc[i-1] = 0
+				customers[i] = cust
+				globalData.customerLoc[i] = 1
 	
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
 		if (globalData.ticketOccupied == true):
