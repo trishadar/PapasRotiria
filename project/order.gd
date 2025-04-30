@@ -33,6 +33,8 @@ var customerSpawned = false
 
 var curCustomer = null
 
+var customers = [null,null,null,null,null]
+
 	
 func change_to_order() -> void:
 	cam.position = orderPos
@@ -52,6 +54,16 @@ func _on_take_order_button_pressed() -> void:
 		remove_child(curCustomer)
 		print("removed customer")
 		globalData.customerLoc[4] = 0
+		customers[4] = null
+		
+		#shift all customers forward
+		for i in range(customers.size()-1):
+			if (globalData.customerLoc[i] == 1):
+				var cust = customers[i]
+				cust.position.x -= 150
+				globalData.customerLoc[i] = 0
+				customers[i+1] = cust
+				globalData.customerLoc[i+1] = 1
 	
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
 		if (globalData.ticketOccupied == true):
@@ -84,11 +96,12 @@ func customerEnter():
 		else:
 			stop = true
 			globalData.customerLoc[i] = 1
-			print("full spot: ", i+1)
+			customers[i] = customer
 	if (stop == false):
 		stop = true
 		globalData.customerLoc[4] = 1
 		curCustomer = customer
+		customers[4] = customer
 				
 				
 
