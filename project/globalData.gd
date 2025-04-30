@@ -46,7 +46,7 @@ func _ready() -> void:
 	
 func _on_timer_timeout():
 	makeNewTicket()
-	timer.wait_time = rng.randi_range(3,5)
+	timer.wait_time = rng.randi_range(5,10)
 	timer.start()
 
 func _process(delta: float) -> void:

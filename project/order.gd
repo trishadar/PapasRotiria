@@ -31,6 +31,8 @@ var ticketSpawned = false
 var ticketDeleted = false
 var customerSpawned = false
 
+var curCustomer = null
+
 	
 func change_to_order() -> void:
 	cam.position = orderPos
@@ -45,6 +47,12 @@ func change_to_curry() -> void:
 	cam.position = curryPos
 
 func _on_take_order_button_pressed() -> void:
+	
+	if (curCustomer != null):
+		remove_child(curCustomer)
+		print("removed customer")
+		globalData.customerLoc[4] = 0
+	
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
 		if (globalData.ticketOccupied == true):
 			# sidebar.moveTicket()
@@ -69,14 +77,22 @@ func _on_ready() -> void:
 func customerEnter():
 	
 	var stop = false
-	for i in range(globalData.customerLoc.size()):
-		if (globalData.customerLoc[i] == 0 and stop == false):
+	for i in range(globalData.customerLoc.size()-1):
+		if (globalData.customerLoc[i+1] == 0 and stop == false):
 			await get_tree().create_timer(0.5).timeout
-			customer.position.x -= 100
+			customer.position.x -= 120
 		else:
 			stop = true
-			if (i != 0):
-				globalData.customerLoc[i-1] = 1
+			globalData.customerLoc[i+1] = 1
+			print("i+1: ", i+1)
+			if (i+1 == 4):
+				curCustomer = customer
+	stop = true
+	globalData.customerLoc[4] = 1
+	curCustomer = customer
+				
+				
+
 	
 func _process(delta):
 	
@@ -89,7 +105,6 @@ func _process(delta):
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
-		customerSpawned = false
 		
 		if (customerSpawned == false):
 			spawnCustomer()
@@ -109,7 +124,7 @@ func _process(delta):
 func spawnCustomer():
 	customer = customer_scene.instantiate()
 	add_child(customer)
-	customer.position.x = 700
+	customer.position.x = 750
 	customer.position.y = 430
 	var animationPlayer = get_node("customer/AnimationPlayer")
 	var randomNum = randi() %2
