@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://df6qbe7a8i3nw"]
+[gd_scene load_steps=7 format=3 uid="uid://df6qbe7a8i3nw"]
 
 [ext_resource type="Script" uid="uid://b60t24grpvux8" path="res://order.gd" id="1_vwbfx"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_vdalh"]
 [ext_resource type="Texture2D" uid="uid://jg3enieqr28l" path="res://Assets/scoreExit.png" id="3_4o8cy"]
 [ext_resource type="PackedScene" uid="uid://dh7yhswfn5qrv" path="res://customer.tscn" id="4_k7pnm"]
+[ext_resource type="Texture2D" uid="uid://b7uw0btjip71l" path="res://Assets/bkgds/orderBkgd2.png" id="5_8jx6t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vdalh"]
 
@@ -63,6 +64,12 @@ icon = ExtResource("3_4o8cy")
 z_index = -20
 position = Vector2(450, 426)
 scale = Vector2(0.7, 0.7)
+
+[node name="OrderBkgd" type="Sprite2D" parent="."]
+z_index = -200
+position = Vector2(452, 322)
+scale = Vector2(0.48, 0.51)
+texture = ExtResource("5_8jx6t")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
