@@ -32,6 +32,7 @@ var rng: RandomNumberGenerator
 var timer: Timer
 
 var customerLoc = [0,0,0,0,0]
+var orderScript: Node
 
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
@@ -45,7 +46,8 @@ func _ready() -> void:
 	timer.start()
 	
 func _on_timer_timeout():
-	makeNewTicket()
+	if (pendingTickets.size() <5):
+		makeNewTicket()
 	timer.wait_time = rng.randi_range(5,10)
 	timer.start()
 
@@ -81,6 +83,12 @@ func makeNewTicket():
 	
 	allTickets.append(ticket_data)
 	pendingTickets.append(ticket_data)
+	
+	orderScript = get_tree().get_root().get_node("MainScene/order")
+	if orderScript:
+		orderScript.spawnCustomer()
+	else:
+		print("orderScript null!")
 	
 func isStorageFull():
 	var foundSpot = false

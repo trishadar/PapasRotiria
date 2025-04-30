@@ -79,17 +79,16 @@ func customerEnter():
 	var stop = false
 	for i in range(globalData.customerLoc.size()-1):
 		if (globalData.customerLoc[i+1] == 0 and stop == false):
-			await get_tree().create_timer(0.5).timeout
-			customer.position.x -= 120
+			await get_tree().create_timer(0.3).timeout
+			customer.position.x -= 150
 		else:
 			stop = true
-			globalData.customerLoc[i+1] = 1
-			print("i+1: ", i+1)
-			if (i+1 == 4):
-				curCustomer = customer
-	stop = true
-	globalData.customerLoc[4] = 1
-	curCustomer = customer
+			globalData.customerLoc[i] = 1
+			print("full spot: ", i+1)
+	if (stop == false):
+		stop = true
+		globalData.customerLoc[4] = 1
+		curCustomer = customer
 				
 				
 
@@ -106,10 +105,6 @@ func _process(delta):
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
 		
-		if (customerSpawned == false):
-			spawnCustomer()
-			customerEnter()
-		
 	else:
 		takeOrderButton.text = " "
 	
@@ -124,7 +119,7 @@ func _process(delta):
 func spawnCustomer():
 	customer = customer_scene.instantiate()
 	add_child(customer)
-	customer.position.x = 750
+	customer.position.x = 800
 	customer.position.y = 430
 	var animationPlayer = get_node("customer/AnimationPlayer")
 	var randomNum = randi() %2
@@ -134,6 +129,7 @@ func spawnCustomer():
 		animationPlayer.play("kyle")
 	customer.visible = true
 	customerSpawned = true
+	customerEnter()
 	
 	
 func _on_score_exit_button_pressed() -> void:
