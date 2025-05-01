@@ -51,6 +51,10 @@ func change_to_curry() -> void:
 func _on_take_order_button_pressed() -> void:
 	
 	if (curCustomer != null):
+		
+		for i in range(globalData.customerLoc.size()):
+			print(globalData.customerLoc[i], " ")
+		
 		remove_child(curCustomer)
 		print("removed customer")
 		globalData.customerLoc[4] = 0
@@ -58,12 +62,19 @@ func _on_take_order_button_pressed() -> void:
 		
 		#shift all customers forward
 		for i in range(customers.size()-1,-1,-1):
-			if (globalData.customerLoc[i-1] == 1):
+			if (customers[i-1] != null):
 				var cust = customers[i-1]
 				cust.position.x -= 150
 				globalData.customerLoc[i-1] = 0
+				customers[i-1] = null
 				customers[i] = cust
 				globalData.customerLoc[i] = 1
+				print("i: ", i)
+				if (i == 4):
+					curCustomer = cust
+					
+		for i in range(globalData.customerLoc.size()):
+			print(globalData.customerLoc[i], " ")
 	
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
 		if (globalData.ticketOccupied == true):
@@ -96,6 +107,7 @@ func customerEnter():
 		else:
 			stop = true
 			globalData.customerLoc[i] = 1
+			print("got blocked")
 			customers[i] = customer
 	if (stop == false):
 		stop = true
