@@ -53,7 +53,7 @@ func spawn_scene():
 
 
 func _process(delta: float):
-		
+	
 	if(spawn.isOccupied == true):
 		button.disabled = true
 	else:
@@ -64,7 +64,8 @@ func _process(delta: float):
 		
 		
 	for rotiObj in ms.rotiList:
-		
+		if board.isOccupied == false:
+			$Control/ProgressBar.value = 0
 		if(rotiObj.position == board.global_position and spawnCountChecker == false):
 			board.isOccupied = false
 			board.rotiOccupied = null
@@ -75,6 +76,7 @@ func _process(delta: float):
 			var doughtoroti = rotiObj.get_node("AnimatedSprite2D")
 			if(Input.is_action_just_pressed("ui_right") and doughtoroti.frame!=12 and isTweening == false):
 				doughtoroti.frame = doughtoroti.frame+1
+				$Control/ProgressBar.value+=8.33
 				var tween = get_tree().create_tween()
 				tween.connect("finished",_on_tween_finished)
 				tween.tween_property(pin, "global_position", pin.global_position-Vector2(0,-250), 0.2)
