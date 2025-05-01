@@ -70,13 +70,6 @@ func _on_ready() -> void:
 	
 	
 func _process(delta):
-	
-	if (globalData.orderFinished == true):
-		ticketSpawned = false
-		
-	if (globalData.orderFinished == true and ticketDeleted == false):
-		sidebar.remove_scene()
-		ticketDeleted = true
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
@@ -90,7 +83,6 @@ func _process(delta):
 		customer.visible = false
 	
 	if (globalData.orderFinished == true):
-		# print("Score: " + str(globalData.score))
 		scoreLabel.text = "Score: " + str(globalData.score)
 		totalScoreLabel.text = "Total Score: " + str(globalData.totalScore)
 		score.visible = true

@@ -12,14 +12,12 @@ var targetCurryY = 200
 var currySelected = false
 var spacePressed = false
 var curryChosen
-var ticketSpawned = false
 var curryDropped = false
 
 @onready var cam = get_node("/root/MainScene/Camera2D")
 var orderPos = Vector2(576, 323)
 
 var instance = null
-var ticketDeleted = false
 var ticketPosUpdated = false
 @onready var sidebar = $sidebar
 @onready var globalSidebar = get_node("/root/MainScene/sidebar")
@@ -41,23 +39,12 @@ func _on_ready() -> void:
 	
 func _process(delta: float):
 	
-	if (globalData.viewingTicket != null and ticketSpawned == false and globalData.currentScene == "curry" and globalData.orderFinished == false):
-		# globalSidebar.initial_spawn_scene()
-		fallingCurry.visible = false
-		ticketSpawned = true
-		ticketDeleted = false
-		bowlPlayer.play("emptyBowl")
-		
 	if (globalData.orderFinished == true):
-		ticketSpawned = false
 		curryDropped = false
 		curryChosen = null
 		spacePressed = false
 		currySelected = false
-		
-	if (globalData.orderFinished == true and ticketDeleted == false):
 		globalSidebar.remove_scene()
-		ticketDeleted = true
 		
 		if(rotiPlate.isOccupied):
 			rotiPlate.isOccupied = false
@@ -144,8 +131,6 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.orderFinished = true
 		globalData.viewingTicket = null
 		globalData.ticketOccupied = false
-		globalData.canTakeOrder = true	
-		globalData.makeNewTicket()
 		
 		var plate = get_node("Plate")
 		plate.calculateScore()

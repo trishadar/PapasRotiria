@@ -4,15 +4,18 @@ var isOccupied = false
 var rotiOccupied
 
 var isBowl = false
+var isTrash = false
 
 func _ready():
 	modulate = Color(Color.MEDIUM_PURPLE, 0.7)
 	
-	if(self.is_in_group("BowlDroppable")):
+	if(is_in_group("BowlDroppable") && is_in_group("Droppable")):
+		isTrash = true
+	elif(is_in_group("BowlDroppable")):
 		isBowl = true
 
 func _process(delta):
-	if (globalData.is_bowl_dragging && isBowl && !isOccupied) || (globalData.is_roti_dragging && !isBowl && !isOccupied):
+	if (((globalData.is_bowl_dragging && isBowl) || (globalData.is_roti_dragging && !isBowl)) && !isOccupied) || ((globalData.is_bowl_dragging || globalData.is_roti_dragging) && isTrash):
 		visible = true
 	else:
 		visible = false
