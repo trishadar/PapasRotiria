@@ -117,6 +117,20 @@ offset_right = 250.0
 offset_bottom = 201.0
 text = "Naan"
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 375.0
+offset_top = 533.0
+offset_right = 415.0
+offset_bottom = 573.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 27.0
+show_percentage = false
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
 [connection signal="area_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_area_entered"]
