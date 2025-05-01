@@ -40,13 +40,15 @@ scale = Vector2(-246.364, 30.8728)
 texture = SubResource("CanvasTexture_vrgdt")
 
 [node name="rollingBoard" parent="." instance=ExtResource("6_32hjg")]
-position = Vector2(573, 349)
+position = Vector2(452, 408)
+scale = Vector2(1.75, 1.75)
 
 [node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
 visible = false
 
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(574, 350)
+position = Vector2(452, 408)
+scale = Vector2(1.75, 1.75)
 script = ExtResource("3_48jdy")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHere"]
@@ -60,8 +62,8 @@ scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_gk5yo")
 
 [node name="SwapArrow" type="Node2D" parent="."]
-position = Vector2(758, 571)
-scale = Vector2(0.4465, 0.4725)
+position = Vector2(743, 534)
+scale = Vector2(0.6, 0.634)
 
 [node name="BigArrow" type="Sprite2D" parent="SwapArrow"]
 z_index = -2
@@ -76,8 +78,8 @@ polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -17
 
 [node name="RollingPin" type="Node2D" parent="."]
 z_index = 7
-position = Vector2(562, 255)
-scale = Vector2(0.4, 0.4)
+position = Vector2(425, 242)
+scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="RollingPin"]
 position = Vector2(27.5, 27.5)
@@ -85,6 +87,7 @@ texture = ExtResource("8_j3jrc")
 
 [node name="PutRotiHere2" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(147, 401)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("3_48jdy")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHere2"]
@@ -103,16 +106,30 @@ position = Vector2(772, 185)
 [node name="spawnRoti" type="Button" parent="."]
 offset_left = 111.0
 offset_top = 153.0
-offset_right = 150.0
-offset_bottom = 184.0
+offset_right = 165.0
+offset_bottom = 201.0
 text = "Roti"
 
 [node name="spawnNaan" type="Button" parent="."]
 offset_left = 193.0
 offset_top = 153.0
-offset_right = 243.0
-offset_bottom = 184.0
+offset_right = 250.0
+offset_bottom = 201.0
 text = "Naan"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 375.0
+offset_top = 533.0
+offset_right = 415.0
+offset_bottom = 573.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 27.0
+show_percentage = false
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
