@@ -31,6 +31,9 @@ var ticketCount = 0
 var rng: RandomNumberGenerator
 var timer: Timer
 
+var customerLoc = [0,0,0,0,0]
+var orderScript: Node
+
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -43,8 +46,9 @@ func _ready() -> void:
 	timer.start()
 	
 func _on_timer_timeout():
-	makeNewTicket()
-	timer.wait_time = rng.randi_range(3,5)
+	if (pendingTickets.size() <5):
+		makeNewTicket()
+	timer.wait_time = rng.randi_range(5,10)
 	timer.start()
 
 func _process(delta: float) -> void:
@@ -60,6 +64,13 @@ func removeTicket():
 	pendingTickets.remove_at(0)
 	
 func makeNewTicket():
+	
+	orderScript = get_tree().get_root().get_node("MainScene/order")
+	if orderScript:
+		orderScript.spawnCustomer()
+	else:
+		print("orderScript null!")
+	
 	ticketNum += 1
 	var ticketNumber = str(ticketNum)
 	var randomNum = randi() %2
