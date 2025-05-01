@@ -29,8 +29,6 @@ var curryPos = Vector2(4416, 323)
 var instance = null
 var ticketSpawned = false
 var ticketDeleted = false
-var customerSpawned = false
-
 var curCustomer = null
 
 var customers = [null,null,null,null,null]
@@ -50,10 +48,12 @@ func change_to_curry() -> void:
 
 func _on_take_order_button_pressed() -> void:
 	
+	curCustomer = customers[4]
 	if (curCustomer != null):
 		
+		print("----------------------------")
 		for i in range(globalData.customerLoc.size()):
-			print(globalData.customerLoc[i], " ")
+			print(i , ": ", globalData.customerLoc[i])
 		
 		remove_child(curCustomer)
 		print("removed customer")
@@ -61,20 +61,17 @@ func _on_take_order_button_pressed() -> void:
 		customers[4] = null
 		
 		#shift all customers forward
-		for i in range(customers.size()-1,-1,-1):
+		for i in range(customers.size()-1,0,-1):
 			if (customers[i-1] != null):
 				var cust = customers[i-1]
-				cust.position.x -= 150
-				globalData.customerLoc[i-1] = 0
-				customers[i-1] = null
 				customers[i] = cust
+				customers[i-1] = null
 				globalData.customerLoc[i] = 1
-				print("i: ", i)
-				if (i == 4):
-					curCustomer = cust
+				globalData.customerLoc[i-1] = 0
+				cust.position.x -= 150
 					
 		for i in range(globalData.customerLoc.size()):
-			print(globalData.customerLoc[i], " ")
+			print(i , ": ", globalData.customerLoc[i])
 	
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
 		if (globalData.ticketOccupied == true):
@@ -102,23 +99,24 @@ func customerEnter():
 	var stop = false
 	for i in range(globalData.customerLoc.size()-1):
 		if (globalData.customerLoc[i+1] == 0 and stop == false):
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.2).timeout
 			customer.position.x -= 150
 		else:
+			print("got blocked")
 			stop = true
 			globalData.customerLoc[i] = 1
-			print("got blocked")
 			customers[i] = customer
 	if (stop == false):
 		stop = true
 		globalData.customerLoc[4] = 1
-		curCustomer = customer
 		customers[4] = customer
 				
 				
 
 	
 func _process(delta):
+	
+	curCustomer = customers[4]
 	
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
@@ -146,14 +144,13 @@ func spawnCustomer():
 	add_child(customer)
 	customer.position.x = 800
 	customer.position.y = 430
-	var animationPlayer = get_node("customer/AnimationPlayer")
+	var animationPlayer = customer.get_node("AnimationPlayer")
 	var randomNum = randi() %2
 	if randomNum == 0:
 		animationPlayer.play("rithika")
 	elif randomNum == 1:
 		animationPlayer.play("kyle")
 	customer.visible = true
-	customerSpawned = true
 	customerEnter()
 	
 	

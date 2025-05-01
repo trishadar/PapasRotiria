@@ -64,6 +64,13 @@ func removeTicket():
 	pendingTickets.remove_at(0)
 	
 func makeNewTicket():
+	
+	orderScript = get_tree().get_root().get_node("MainScene/order")
+	if orderScript:
+		orderScript.spawnCustomer()
+	else:
+		print("orderScript null!")
+	
 	ticketNum += 1
 	var ticketNumber = str(ticketNum)
 	var randomNum = randi() %2
@@ -83,12 +90,6 @@ func makeNewTicket():
 	
 	allTickets.append(ticket_data)
 	pendingTickets.append(ticket_data)
-	
-	orderScript = get_tree().get_root().get_node("MainScene/order")
-	if orderScript:
-		orderScript.spawnCustomer()
-	else:
-		print("orderScript null!")
 	
 func isStorageFull():
 	var foundSpot = false
