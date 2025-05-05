@@ -144,8 +144,6 @@ func _on_finish_order_button_pressed() -> void:
 		globalData.orderFinished = true
 		globalData.viewingTicket = null
 		globalData.ticketOccupied = false
-		globalData.canTakeOrder = true	
-		globalData.makeNewTicket()
 		
 		var plate = get_node("Plate")
 		plate.calculateScore()
