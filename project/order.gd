@@ -31,7 +31,7 @@ var ticketSpawned = false
 var ticketDeleted = false
 var curCustomer = null
 
-var customers = [null,null,null,null,null]
+var customers = [null,null,null]
 
 	
 func change_to_order() -> void:
@@ -48,7 +48,7 @@ func change_to_curry() -> void:
 
 func _on_take_order_button_pressed() -> void:
 	
-	curCustomer = customers[4]
+	curCustomer = customers[2]
 	if (curCustomer != null):
 		
 		print("----------------------------")
@@ -57,8 +57,8 @@ func _on_take_order_button_pressed() -> void:
 		
 		remove_child(curCustomer)
 		print("removed customer")
-		globalData.customerLoc[4] = 0
-		customers[4] = null
+		globalData.customerLoc[2] = 0
+		customers[2] = null
 		
 		#shift all customers forward
 		for i in range(customers.size()-1,0,-1):
@@ -108,15 +108,15 @@ func customerEnter():
 			customers[i] = customer
 	if (stop == false):
 		stop = true
-		globalData.customerLoc[4] = 1
-		customers[4] = customer
+		globalData.customerLoc[2] = 1
+		customers[2] = customer
 				
 				
 
 	
 func _process(delta):
 	
-	curCustomer = customers[4]
+	curCustomer = customers[2]
 	
 	if (globalData.orderFinished == true):
 		ticketSpawned = false
@@ -142,7 +142,7 @@ func _process(delta):
 func spawnCustomer():
 	customer = customer_scene.instantiate()
 	add_child(customer)
-	customer.position.x = 800
+	customer.position.x = 500
 	customer.position.y = 430
 	var animationPlayer = customer.get_node("AnimationPlayer")
 	var randomNum = randi() %2

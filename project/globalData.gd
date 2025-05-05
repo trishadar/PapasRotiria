@@ -31,7 +31,7 @@ var ticketCount = 0
 var rng: RandomNumberGenerator
 var timer: Timer
 
-var customerLoc = [0,0,0,0,0]
+var customerLoc = [0,0,0]
 var orderScript: Node
 
 func _ready() -> void:
@@ -46,7 +46,7 @@ func _ready() -> void:
 	timer.start()
 	
 func _on_timer_timeout():
-	if (pendingTickets.size() <5):
+	if (pendingTickets.size() < 3):
 		makeNewTicket()
 	timer.wait_time = rng.randi_range(25,40)
 	timer.start()
