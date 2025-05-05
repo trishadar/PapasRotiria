@@ -23,6 +23,8 @@ func _process(delta):
 	if(rotiOccupied != null):
 		if(rotiOccupied.global_position != global_position):
 			isOccupied = false
+		if(rotiOccupied.global_position == global_position):
+			isOccupied = true
 	
 	if(isOccupied && isBowl):
 		self.remove_from_group("BowlDroppable")

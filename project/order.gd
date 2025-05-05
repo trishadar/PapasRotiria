@@ -11,8 +11,9 @@ extends Node2D
 @onready var totalScoreLabel = $score/totalScoreLabel
 @onready var sidebar = $sidebar
 
-@onready var customer = $customer
-@onready var animationPlayer = $customer/AnimationPlayer
+# @onready var customer = $customer
+@onready var customer_scene: PackedScene = preload("res://customer.tscn")
+var customer = null
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
@@ -28,8 +29,9 @@ var curryPos = Vector2(4416, 323)
 var instance = null
 var ticketSpawned = false
 var ticketDeleted = false
+var curCustomer = null
 
-var customerSpawned = false
+var customers = [null,null,null,null,null]
 
 	
 func change_to_order() -> void:
@@ -45,6 +47,32 @@ func change_to_curry() -> void:
 	cam.position = curryPos
 
 func _on_take_order_button_pressed() -> void:
+	
+	curCustomer = customers[4]
+	if (curCustomer != null):
+		
+		print("----------------------------")
+		for i in range(globalData.customerLoc.size()):
+			print(i , ": ", globalData.customerLoc[i])
+		
+		remove_child(curCustomer)
+		print("removed customer")
+		globalData.customerLoc[4] = 0
+		customers[4] = null
+		
+		#shift all customers forward
+		for i in range(customers.size()-1,0,-1):
+			if (customers[i-1] != null):
+				var cust = customers[i-1]
+				customers[i] = cust
+				customers[i-1] = null
+				globalData.customerLoc[i] = 1
+				globalData.customerLoc[i-1] = 0
+				cust.position.x -= 150
+					
+		for i in range(globalData.customerLoc.size()):
+			print(i , ": ", globalData.customerLoc[i])
+	
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
 		if (globalData.ticketOccupied == true):
 			# sidebar.moveTicket()
@@ -56,7 +84,6 @@ func _on_take_order_button_pressed() -> void:
 		takeOrderButton.text = " "
 		globalData.canTakeOrder = false	
 		globalData.removeTicket()
-		customerSpawned = false
 		
 func reachedTicketLimit():
 	if (globalData.ticketCount >= 7):
@@ -67,22 +94,45 @@ func reachedTicketLimit():
 func _on_ready() -> void:
 	pass
 		
+func customerEnter():
 	
+	var stop = false
+	for i in range(globalData.customerLoc.size()-1):
+		if (globalData.customerLoc[i+1] == 0 and stop == false):
+			await get_tree().create_timer(0.2).timeout
+			customer.position.x -= 150
+		else:
+			print("got blocked")
+			stop = true
+			globalData.customerLoc[i] = 1
+			customers[i] = customer
+	if (stop == false):
+		stop = true
+		globalData.customerLoc[4] = 1
+		customers[4] = customer
+				
+				
+
 	
 func _process(delta):
+	
+	curCustomer = customers[4]
+	
+	if (globalData.orderFinished == true):
+		ticketSpawned = false
+		
+	if (globalData.orderFinished == true and ticketDeleted == false):
+		sidebar.remove_scene()
+		ticketDeleted = true
 
 	if globalData.canTakeOrder == true:
 		takeOrderButton.text = "TAKE ORDER"
 		
-		if !customerSpawned:
-			spawnCustomer()
-			customer.visible = true
-		
 	else:
 		takeOrderButton.text = " "
-		customer.visible = false
 	
 	if (globalData.orderFinished == true):
+		# print("Score: " + str(globalData.score))
 		scoreLabel.text = "Score: " + str(globalData.score)
 		totalScoreLabel.text = "Total Score: " + str(globalData.totalScore)
 		score.visible = true
@@ -90,13 +140,18 @@ func _process(delta):
 		score.visible = false
 		
 func spawnCustomer():
+	customer = customer_scene.instantiate()
+	add_child(customer)
+	customer.position.x = 800
+	customer.position.y = 430
+	var animationPlayer = customer.get_node("AnimationPlayer")
 	var randomNum = randi() %2
 	if randomNum == 0:
 		animationPlayer.play("rithika")
 	elif randomNum == 1:
 		animationPlayer.play("kyle")
-	
-	customerSpawned = true
+	customer.visible = true
+	customerEnter()
 	
 	
 func _on_score_exit_button_pressed() -> void:

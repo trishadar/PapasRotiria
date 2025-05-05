@@ -16,6 +16,7 @@ var curryDropped = false
 
 @onready var cam = get_node("/root/MainScene/Camera2D")
 var orderPos = Vector2(576, 323)
+var orderPresentPos = Vector2(5696,323)
 
 var instance = null
 var ticketPosUpdated = false
@@ -34,6 +35,8 @@ var bowl_scene: PackedScene = preload("res://bowl.tscn")
 var color = null
 @onready var bowlPlayer = get_node("Bowl/AnimationPlayer")
 
+@onready var orderPresent = ms.get_node("PresentOrder")
+
 func _on_ready() -> void:
 	bowlPlayer.play("emptyBowl")
 	
@@ -45,32 +48,6 @@ func _process(delta: float):
 		spacePressed = false
 		currySelected = false
 		globalSidebar.remove_scene()
-		
-		if(rotiPlate.isOccupied):
-			rotiPlate.isOccupied = false
-			ms.rotiList.erase(rotiPlate.rotiOccupied)
-			ms.remove_child(rotiPlate.rotiOccupied)
-			rotiPlate.rotiOccupied = null
-		if(bowlPlate.isOccupied):
-			bowlPlate.isOccupied = false
-			remove_child(bowlPlate.rotiOccupied)
-			bowlPlate.rotiOccupied = null
-			var newBowl = bowl_scene.instantiate()
-			add_child(newBowl)
-			newBowl.global_position = bowlPos
-			bowl = newBowl
-			bowlPlayer = newBowl.get_node("AnimationPlayer")
-			bowlPlayer.play("emptyBowl")
-		if(bowlPlate2.isOccupied):
-			bowlPlate2.isOccupied = false
-			remove_child(bowlPlate2.rotiOccupied)
-			bowlPlate2.rotiOccupied = null
-			var newBowl = bowl_scene.instantiate()
-			add_child(newBowl)
-			newBowl.global_position = bowlPos
-			bowl = newBowl
-			bowlPlayer = newBowl.get_node("AnimationPlayer")
-			bowlPlayer.play("emptyBowl")
 		
 	
 	# check if space bar pressed and there is a collision
@@ -135,7 +112,8 @@ func _on_finish_order_button_pressed() -> void:
 		var plate = get_node("Plate")
 		plate.calculateScore()
 		
-		cam.position = orderPos
+		cam.position = orderPresentPos
+		orderPresent.justOpened()
 		globalSidebar.position = globalSidebar.startingPos
 		globalData.ticketCount -= 1
 
@@ -171,3 +149,30 @@ func _on_gobi_button_pressed() -> void:
 	currySelected = true
 	curryChosen = "Gobi"
 	animationPlayer.play("gobi")
+
+func clearPlate():
+	if(rotiPlate.isOccupied):
+		rotiPlate.isOccupied = false
+		ms.rotiList.erase(rotiPlate.rotiOccupied)
+		ms.remove_child(rotiPlate.rotiOccupied)
+		rotiPlate.rotiOccupied = null
+	if(bowlPlate.isOccupied):
+		bowlPlate.isOccupied = false
+		remove_child(bowlPlate.rotiOccupied)
+		bowlPlate.rotiOccupied = null
+		var newBowl = bowl_scene.instantiate()
+		add_child(newBowl)
+		newBowl.global_position = bowlPos
+		bowl = newBowl
+		bowlPlayer = newBowl.get_node("AnimationPlayer")
+		bowlPlayer.play("emptyBowl")
+	if(bowlPlate2.isOccupied):
+		bowlPlate2.isOccupied = false
+		remove_child(bowlPlate2.rotiOccupied)
+		bowlPlate2.rotiOccupied = null
+		var newBowl = bowl_scene.instantiate()
+		add_child(newBowl)
+		newBowl.global_position = bowlPos
+		bowl = newBowl
+		bowlPlayer = newBowl.get_node("AnimationPlayer")
+		bowlPlayer.play("emptyBowl")
