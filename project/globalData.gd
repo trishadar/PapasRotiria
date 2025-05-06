@@ -48,7 +48,7 @@ func _ready() -> void:
 func _on_timer_timeout():
 	if (pendingTickets.size() < 3):
 		makeNewTicket()
-	timer.wait_time = rng.randi_range(5,10)
+	timer.wait_time = rng.randi_range(25,40)
 	timer.start()
 
 func _process(delta: float) -> void:

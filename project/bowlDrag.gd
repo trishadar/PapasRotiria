@@ -22,10 +22,14 @@ func _process(delta: float) -> void:
 		elif Input.is_action_just_released("click"):
 			globalData.is_bowl_dragging = false
 			var tween = get_tree().create_tween()
-			tween.connect("finished", _on_tween_finished)
 			if is_inside_dropable:
+				tween.connect("finished", _on_tween_finished)
 				tween.tween_property(self, "global_position", body_ref.global_position, 0.2).set_ease(Tween.EASE_OUT)
 			else:
+				if(initialPos == curryScene.bowlPos):
+					tween.connect("finished", _on_tween_finished_initial)
+				else:
+					tween.connect("finished", _on_tween_finished)
 				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_mouse_entered():
@@ -48,8 +52,12 @@ func _on_area_2d_body_exited(body):
 	if body.is_in_group('BowlDroppable'):
 		is_inside_dropable = false
 		body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
+		body_ref = null
 
 func _on_tween_finished():
 	if(body_ref != null):
 		body_ref.isOccupied = true
 		body_ref.newRoti(self)
+
+func _on_tween_finished_initial():
+	scale = Vector2(1,1)

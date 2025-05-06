@@ -13,10 +13,10 @@ func _process(delta: float) -> void:
 			curry.remove_child(trashHold.rotiOccupied)
 			var newBowl = curry.bowl_scene.instantiate()
 			curry.add_child(newBowl)
-			newBowl.global_position = curry.bowlPos
-			curry.bowl = newBowl
 			curry.bowlPlayer = newBowl.get_node("AnimationPlayer")
 			curry.bowlPlayer.play("emptyBowl")
+			newBowl.global_position = curry.bowlPos
+			curry.bowl = newBowl
 			
 			curry.curryDropped = false
 			curry.curryChosen = null

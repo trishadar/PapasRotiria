@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dh7yhswfn5qrv"]
 
 [ext_resource type="Texture2D" uid="uid://eja5a2j8s652" path="res://Assets/customers/Watson.png" id="1_7tiyv"]
-[ext_resource type="Script" uid="uid://63y5klkivgho" path="res://customer.gd" id="1_r8ta2"]
+[ext_resource type="Script" path="res://customer.gd" id="1_r8ta2"]
 [ext_resource type="Texture2D" uid="uid://cdgbveebvqstr" path="res://Assets/customers/kyle.png" id="2_0rcyg"]
 [ext_resource type="Texture2D" uid="uid://bu3ecbn2twxss" path="res://Assets/customers/watsonIdleNoBall.png" id="2_f7asb"]
 [ext_resource type="Texture2D" uid="uid://d02twor8xpphd" path="res://Assets/customers/rithika.png" id="3_co351"]

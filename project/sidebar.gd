@@ -77,13 +77,10 @@ func initial_spawn_scene():
 	
 func remove_scene():
 	if (globalData.orderFinished == true):
-		print("order finished")
 		if (viewingTicketNode != null):
 			print("viewing ticket deleted")
 			remove_child(viewingTicketNode)
 			viewingTicketNode = null
-		else:
-			print("viewingTicketNode is null")
 	
 func moveTicket():
 	viewingTicketNode.move_to_top()
