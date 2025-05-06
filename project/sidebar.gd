@@ -16,6 +16,8 @@ var instance = null
 @onready var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
 var startingPos = position
+@onready var instructions = $Area2D
+var buttonOn = false
 
 func _on_order_button_pressed() -> void:
 	cam.position = orderPos
@@ -41,7 +43,6 @@ func _on_ready() -> void:
 	help.text = globalData.helpText
 	
 func _process(delta):
-	
 	if orderButton.is_hovered():
 		globalData.helpText = "**Order Station**"
 		help.text = globalData.helpText
@@ -57,6 +58,11 @@ func _process(delta):
 	else:
 		globalData.helpText = "..."
 		help.text = globalData.helpText
+		
+	if(buttonOn):
+		instructions.visible = true
+	else:
+		instructions.visible = false
 		
 func initial_spawn_scene():
 	var instance_data = globalData.pendingTickets[0]
@@ -85,3 +91,10 @@ func moveTicket():
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_button_2_toggled(toggled_on: bool) -> void:
+	if(buttonOn):
+		buttonOn = false
+	else:
+		buttonOn = true
