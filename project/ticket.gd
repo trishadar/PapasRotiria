@@ -45,9 +45,14 @@ func set_up(data):
 	timeHand.rotate(deg_to_rad(float(timeNum)))
 	position = side_box_position
 	scale = Vector2(1, 1) if position == side_box_position else Vector2(scale_factor, scale_factor)
+	
+	if (globalData.currentScene == "orderPresent"):
+		position = Vector2(344,430)
+		scale = Vector2(0.51, 0.51)
+		rotation = .08
 
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and globalData.currentScene != "orderPresent":
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed and canTransferPos:
 				if (thisTicketOccupied or thisTicketStored):
@@ -59,18 +64,20 @@ func _input(event):
 
 
 func _on_area_2d_mouse_entered():
-	canTransferPos = true
-	if !hasShrunk:
-		scale = Vector2(1.03, 1.03)
-	else:
-		scale = Vector2(.37, .37)
+	if (globalData.currentScene != "orderPresent"):
+		canTransferPos = true
+		if !hasShrunk:
+			scale = Vector2(1.03, 1.03)
+		else:
+			scale = Vector2(.37, .37)
 	
 func _on_area_2d_mouse_exited():
-	canTransferPos = false
-	if !hasShrunk:
-		scale = Vector2(1, 1)
-	else:
-		scale = Vector2(.35, .35)
+	if (globalData.currentScene != "orderPresent"):
+		canTransferPos = false
+		if !hasShrunk:
+			scale = Vector2(1, 1)
+		else:
+			scale = Vector2(.35, .35)
 
 func move_to_side_box() -> void:
 	

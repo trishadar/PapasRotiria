@@ -105,6 +105,9 @@ func _on_green_body_exited(body: Node2D) -> void:
 
 func _on_finish_order_button_pressed() -> void:
 	if (globalData.viewingTicket != null):
+		
+		globalData.recentTicket = globalData.viewingTicket
+		
 		globalData.orderFinished = true
 		globalData.viewingTicket = null
 		globalData.ticketOccupied = false
@@ -113,6 +116,7 @@ func _on_finish_order_button_pressed() -> void:
 		plate.calculateScore()
 		
 		cam.position = orderPresentPos
+		globalData.currentScene = "orderPresent"
 		orderPresent.justOpened()
 		globalSidebar.position = globalSidebar.startingPos
 		globalData.ticketCount -= 1
