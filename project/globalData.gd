@@ -33,6 +33,7 @@ var timer: Timer
 
 var customerLoc = [0,0,0]
 var orderScript: Node
+var recentTicket = null
 
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()

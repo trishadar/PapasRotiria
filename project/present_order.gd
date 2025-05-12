@@ -4,19 +4,27 @@ extends Node2D
 @onready var cam = ms.get_node("Camera2D")
 @onready var curry = ms.get_node("curry")
 @onready var plate = curry.get_node("Plate")
+@onready var ticket_scene: PackedScene = preload("res://ticket.tscn")
 
 var orderPos = Vector2(576, 323)
 @onready var platePosCurry = plate.global_position
 var platePosPresent = Vector2(4416 + 1500, 323)
+var instance = null
 
 func _on_go_back_button_pressed() -> void:
 	cam.global_position = orderPos
+	globalData.currentScene = "order"
 	plate.global_position = platePosCurry
 	globalData.orderFinished = false
 	
 	curry.clearPlate()
 
 func justOpened():
+	
+	instance = ticket_scene.instantiate()
+	add_child(instance)
+	instance.set_up(globalData.recentTicket)
+	
 	var rotiHold = plate.get_node("PutRotiHere")
 	var isRoti = false
 	var bowlHold = plate.get_node("PutBowlHere")
