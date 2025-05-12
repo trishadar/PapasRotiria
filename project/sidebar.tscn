@@ -16,6 +16,7 @@ size = Vector2(223, 332)
 [sub_resource type="CanvasTexture" id="CanvasTexture_hpwuh"]
 
 [node name="sidebar" type="Node2D"]
+z_index = 25
 script = ExtResource("1_1nfj0")
 
 [node name="curryButton" type="Button" parent="."]

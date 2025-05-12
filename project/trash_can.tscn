@@ -11,7 +11,6 @@ radius = 50.01
 script = ExtResource("1_wr0p8")
 
 [node name="TrashSprite" type="Sprite2D" parent="."]
-modulate = Color(0.43134, 0.43134, 0.43134, 1)
 position = Vector2(1.14441e-05, -2)
 scale = Vector2(0.772, 0.726)
 texture = ExtResource("2_dv6pg")

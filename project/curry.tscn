@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bn7aqby5pen6l"]
+[gd_scene load_steps=29 format=3 uid="uid://bn7aqby5pen6l"]
 
 [ext_resource type="Script" uid="uid://dm1rn3g01ksdo" path="res://curry.gd" id="1_kx0aq"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_27nkd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://vm1pi531y2h8" path="res://Assets/Circle.png" id="12_u5jsc"]
 [ext_resource type="Script" uid="uid://c21mwh4xtm6rv" path="res://plate.gd" id="13_wbs1u"]
 [ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="14_tavto"]
+[ext_resource type="Texture2D" uid="uid://cscyruqcyhkr3" path="res://Assets/bkgds/currybg.png" id="15_wbs1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tessa"]
 size = Vector2(111, 99)
@@ -188,12 +189,14 @@ text = "FINISH ORDER"
 visible = false
 
 [node name="green" type="Area2D" parent="."]
+position = Vector2(0, 40)
 
 [node name="greenCollision" type="CollisionShape2D" parent="green"]
 position = Vector2(401.5, 278.5)
 shape = SubResource("RectangleShape2D_tessa")
 
 [node name="red" type="Area2D" parent="."]
+position = Vector2(0, 40)
 
 [node name="redCollision" type="CollisionShape2D" parent="red"]
 position = Vector2(664.5, 278.5)
@@ -204,6 +207,7 @@ position = Vector2(138, 278.5)
 shape = SubResource("RectangleShape2D_r3f12")
 
 [node name="yellow" type="Area2D" parent="."]
+position = Vector2(0, 40)
 
 [node name="yellowCollision" type="CollisionShape2D" parent="yellow"]
 position = Vector2(278, 278.5)
@@ -215,6 +219,7 @@ shape = SubResource("RectangleShape2D_4he2u")
 
 [node name="ladle" type="CharacterBody2D" parent="."]
 z_index = 5
+position = Vector2(-7, 44)
 script = ExtResource("4_0pmta")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ladle"]
@@ -231,6 +236,7 @@ texture = ExtResource("4_tessa")
 [node name="fallingCurry" type="CharacterBody2D" parent="."]
 visible = false
 z_index = 5
+position = Vector2(0, 40)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fallingCurry"]
 position = Vector2(126, 355)
@@ -244,7 +250,7 @@ libraries = {
 }
 
 [node name="spectrum" type="Sprite2D" parent="."]
-position = Vector2(406.5, 278)
+position = Vector2(407, 318)
 scale = Vector2(0.52144, 0.211663)
 texture = ExtResource("3_bu7om")
 
@@ -261,7 +267,7 @@ texture = ExtResource("7_5hcq3")
 [node name="spectrumBack" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = -11
-position = Vector2(407.5, 278.5)
+position = Vector2(412, 318)
 scale = Vector2(689, 111)
 texture = SubResource("CanvasTexture_5hcq3")
 
@@ -269,7 +275,7 @@ texture = SubResource("CanvasTexture_5hcq3")
 position = Vector2(118, 550)
 
 [node name="Plate" type="Node2D" parent="."]
-position = Vector2(721, 402)
+position = Vector2(714, 433)
 scale = Vector2(1.3, 1.3)
 script = ExtResource("13_wbs1u")
 
@@ -321,6 +327,12 @@ texture = ExtResource("12_u5jsc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plate/PutBowlHere2"]
 scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_qitu1")
+
+[node name="Currybg" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(487, 325)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("15_wbs1u")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="paneerButton" to="." method="_on_paneer_button_pressed"]
