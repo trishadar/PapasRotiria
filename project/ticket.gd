@@ -20,6 +20,8 @@ var thisTicketStored = false  # Initialized to false
 
 var timeNum
 
+var custType
+
 var canTransferPos = false
 
 func _ready() -> void:
@@ -33,11 +35,13 @@ func _ready() -> void:
 	initial_scale = scale
 	set_process_input(true)
 
-func set_up(data):
+func set_up(data, custT):
 	ticketNumber.text = data.get("ticketNumber", "N/A")
 	dough.text = data.get("dough", "N/A")
 	curry.text = data.get("curry", "N/A")
 	timeNum = data.get("time", "N/A")
+	custType = custT
+	print_debug(custType)
 	var timeInstance = timer.instantiate()
 	add_child(timeInstance)
 	timeInstance.position = time.position + Vector2(75,40)

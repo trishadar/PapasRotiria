@@ -85,7 +85,8 @@ func makeNewTicket():
 		"dough": dough,
 		"curry": curry,
 		"time": time,
-		"position": Vector2(1011, 318)
+		"position": Vector2(1011, 318),
+		"custType" : ""
 	}
 	
 	allTickets.append(ticket_data)

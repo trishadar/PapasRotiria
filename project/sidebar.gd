@@ -58,11 +58,13 @@ func _process(delta):
 		globalData.helpText = "..."
 		help.text = globalData.helpText
 		
-func initial_spawn_scene():
+func initial_spawn_scene(custType):
+	globalData.pendingTickets[0].set(custType, custType)
 	var instance_data = globalData.pendingTickets[0]
+	print_debug(instance_data.get(custType))
 	instance = ticket_scene.instantiate()
 	add_child(instance)
-	instance.set_up(instance_data)
+	instance.set_up(instance_data, custType)
 	viewingTicketNode = instance
 	globalData.viewingTicket = instance_data
 	globalData.ticketOccupied = true

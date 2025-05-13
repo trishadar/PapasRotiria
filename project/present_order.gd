@@ -9,6 +9,10 @@ var orderPos = Vector2(576, 323)
 @onready var platePosCurry = plate.global_position
 var platePosPresent = Vector2(4416 + 1500, 323)
 
+@onready var customer_scene: PackedScene = preload("res://customer.tscn")
+var customer
+var currentTicket
+
 func _on_go_back_button_pressed() -> void:
 	cam.global_position = orderPos
 	plate.global_position = platePosCurry
@@ -17,6 +21,19 @@ func _on_go_back_button_pressed() -> void:
 	curry.clearPlate()
 
 func justOpened():
+	customer = customer_scene.instantiate()
+	add_child(customer)
+	customer.global_position = Vector2(5696, 323)
+	var animationPlayer = customer.get_node("AnimationPlayer")
+	
+	print_debug(currentTicket.custType)
+	if(currentTicket.custType == "rithika"):
+		print_debug(currentTicket.custType)
+		animationPlayer.play("rithika")
+	elif(currentTicket.custType == "kyle"):
+		print_debug(currentTicket.custType)
+		animationPlayer.play("kyle")
+	
 	var rotiHold = plate.get_node("PutRotiHere")
 	var isRoti = false
 	var bowlHold = plate.get_node("PutBowlHere")

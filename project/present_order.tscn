@@ -1,14 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bernypcr6twl0"]
+[gd_scene load_steps=2 format=3 uid="uid://bernypcr6twl0"]
 
 [ext_resource type="Script" uid="uid://db5uchgeh4dhx" path="res://present_order.gd" id="1_phje8"]
-[ext_resource type="Texture2D" uid="uid://eja5a2j8s652" path="res://Assets/customers/Watson.png" id="1_rqpg1"]
 
 [node name="PresentOrder" type="Node2D"]
 script = ExtResource("1_phje8")
-
-[node name="Watson" type="Sprite2D" parent="."]
-position = Vector2(552, 352)
-texture = ExtResource("1_rqpg1")
 
 [node name="GoBackButton" type="Button" parent="."]
 offset_left = 8.0

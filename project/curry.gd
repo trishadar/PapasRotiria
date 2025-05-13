@@ -105,6 +105,10 @@ func _on_green_body_exited(body: Node2D) -> void:
 
 func _on_finish_order_button_pressed() -> void:
 	if (globalData.viewingTicket != null):
+		var side = ms.get_node("sidebar")
+		print_debug(side.viewingTicketNode.custType)
+		orderPresent.currentTicket = side.viewingTicketNode
+		
 		globalData.orderFinished = true
 		globalData.viewingTicket = null
 		globalData.ticketOccupied = false
