@@ -10,7 +10,7 @@ extends Node2D
 var orderPos = Vector2(576, 323)
 @onready var platePosCurry = plate.global_position
 var platePosPresent = Vector2(4416 + 1500, 323)
-var customerPos = Vector2(5516, 323)
+var customerPos = Vector2(5616, 300)
 
 var instance = null
 var customerInst
