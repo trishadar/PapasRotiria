@@ -149,6 +149,7 @@ shape = SubResource("CircleShape2D_00dve")
 
 [node name="sidebar" parent="." instance=ExtResource("6_fifm2")]
 visible = false
+z_index = 0
 
 [node name="SwapArrow" type="Node2D" parent="."]
 position = Vector2(751, 538)

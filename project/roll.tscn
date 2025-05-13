@@ -20,7 +20,7 @@ radius = 50.01
 script = ExtResource("1_32hjg")
 
 [node name="takeOrderButton" type="Button" parent="."]
-z_index = 26
+z_index = 100
 offset_left = 926.0
 offset_top = 523.0
 offset_right = 1095.0
@@ -48,6 +48,7 @@ scale = Vector2(1.75, 1.75)
 
 [node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
 visible = false
+z_index = 0
 
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
 position = Vector2(447, 441)

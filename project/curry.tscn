@@ -179,6 +179,7 @@ offset_bottom = 190.0
 text = "GOBI"
 
 [node name="finishOrderButton" type="Button" parent="."]
+z_index = 100
 offset_left = 926.0
 offset_top = 523.0
 offset_right = 1095.0
@@ -187,6 +188,7 @@ text = "FINISH ORDER"
 
 [node name="sidebar" parent="." instance=ExtResource("2_27nkd")]
 visible = false
+z_index = 0
 
 [node name="green" type="Area2D" parent="."]
 position = Vector2(0, 40)
