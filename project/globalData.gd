@@ -13,6 +13,7 @@ var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var canTakeOrder = false
 
 var viewingTicket = null
+var viewingTicketNode = null
 var allTickets = []
 var pendingTickets = []
 var storage = [0,0,0,0,0,0,0]
@@ -86,7 +87,8 @@ func makeNewTicket():
 		"dough": dough,
 		"curry": curry,
 		"time": time,
-		"position": Vector2(1011, 318)
+		"position": Vector2(1011, 318),
+		"custType" : ""
 	}
 	
 	allTickets.append(ticket_data)

@@ -64,12 +64,14 @@ func _process(delta):
 	else:
 		instructions.visible = false
 		
-func initial_spawn_scene():
+func initial_spawn_scene(custType):
 	var instance_data = globalData.pendingTickets[0]
 	instance = ticket_scene.instantiate()
+	instance.custType = custType
 	add_child(instance)
 	instance.set_up(instance_data)
 	viewingTicketNode = instance
+	globalData.viewingTicketNode = instance
 	globalData.viewingTicket = instance_data
 	globalData.ticketOccupied = true
 	globalData.orderFinished = false
@@ -81,6 +83,7 @@ func remove_scene():
 			print("viewing ticket deleted")
 			remove_child(viewingTicketNode)
 			viewingTicketNode = null
+			globalData.viewingTicketNode = null
 	
 func moveTicket():
 	viewingTicketNode.move_to_top()

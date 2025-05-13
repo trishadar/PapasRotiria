@@ -20,6 +20,8 @@ var thisTicketStored = false  # Initialized to false
 
 var timeNum
 
+var custType
+
 var canTransferPos = false
 
 func _ready() -> void:
@@ -102,6 +104,7 @@ func move_to_side_box() -> void:
 		}
 		globalData.viewingTicket = ticket_data
 		globalSidebar.viewingTicketNode = self
+		globalData.viewingTicketNode = self
 		
 		# print("moved ticket to side")
 
@@ -118,6 +121,7 @@ func move_to_top() -> void:
 		# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
 		globalData.viewingTicket = null
 		globalSidebar.viewingTicketNode = null
+		globalData.viewingTicketNode = null
 		# print("moved ticket to top")
 		
 func getStoragePos():

@@ -14,6 +14,7 @@ extends Node2D
 # @onready var customer = $customer
 @onready var customer_scene: PackedScene = preload("res://customer.tscn")
 var customer = null
+var custType = null
 
 var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var viewingTicketNode = null
@@ -30,8 +31,10 @@ var instance = null
 var ticketSpawned = false
 var ticketDeleted = false
 var curCustomer = null
+var curCustType = null
 
 var customers = [null,null,null]
+var custTypes = [null, null, null]
 
 	
 func change_to_order() -> void:
@@ -49,7 +52,8 @@ func change_to_curry() -> void:
 func _on_take_order_button_pressed() -> void:
 	
 	curCustomer = customers[2]
-	if (curCustomer != null):
+	curCustType = custTypes[2]
+	if (curCustomer != null && curCustType != null):
 		
 		print("----------------------------")
 		for i in range(globalData.customerLoc.size()):
@@ -59,13 +63,17 @@ func _on_take_order_button_pressed() -> void:
 		print("removed customer")
 		globalData.customerLoc[2] = 0
 		customers[2] = null
+		custTypes[2] = null
 		
 		#shift all customers forward
 		for i in range(customers.size()-1,0,-1):
 			if (customers[i-1] != null):
 				var cust = customers[i-1]
+				var cType = custTypes[i-1]
 				customers[i] = cust
+				custTypes[i] = cType
 				customers[i-1] = null
+				custTypes[i-1] = null
 				globalData.customerLoc[i] = 1
 				globalData.customerLoc[i-1] = 0
 				cust.position.x -= 150
@@ -78,7 +86,7 @@ func _on_take_order_button_pressed() -> void:
 			# sidebar.moveTicket()
 			globalSidebar.moveTicket()
 		# sidebar.initial_spawn_scene()
-		globalSidebar.initial_spawn_scene()
+		globalSidebar.initial_spawn_scene(curCustType)
 		ticketSpawned = true
 		ticketDeleted = false
 		takeOrderButton.text = " "
@@ -94,24 +102,24 @@ func reachedTicketLimit():
 func _on_ready() -> void:
 	pass
 		
-func customerEnter():
+func customerEnter(rCust):
 	
 	var stop = false
-	for i in range(-1, globalData.customerLoc.size()-1):
+	for i in range(globalData.customerLoc.size()-1):
 		if (globalData.customerLoc[i+1] == 0 and stop == false):
 			await get_tree().create_timer(0.2).timeout
 			customer.position.x -= 150
 		else:
 			print("got blocked")
 			stop = true
-			if (i >= 0):
-				globalData.customerLoc[i] = 1
-				customers[i] = customer
+			globalData.customerLoc[i] = 1
+			customers[i] = customer
+			custTypes[i] = rCust
 	if (stop == false):
-		print("reached front")
 		stop = true
 		globalData.customerLoc[2] = 1
 		customers[2] = customer
+		custTypes[2] = rCust
 				
 				
 
@@ -144,16 +152,19 @@ func _process(delta):
 func spawnCustomer():
 	customer = customer_scene.instantiate()
 	add_child(customer)
-	customer.position.x = 700
+	customer.position.x = 500
 	customer.position.y = 430
 	var animationPlayer = customer.get_node("AnimationPlayer")
 	var randomNum = randi() %2
+	var customerTypeR
 	if randomNum == 0:
 		animationPlayer.play("rithika")
+		customerTypeR = "rithika"
 	elif randomNum == 1:
 		animationPlayer.play("kyle")
+		customerTypeR = "kyle"
 	customer.visible = true
-	customerEnter()
+	customerEnter(customerTypeR)
 	
 	
 func _on_score_exit_button_pressed() -> void:

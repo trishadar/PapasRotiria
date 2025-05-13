@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cn2d54ksqsmb8"]
+[gd_scene load_steps=13 format=3 uid="uid://cn2d54ksqsmb8"]
 
 [ext_resource type="Script" uid="uid://bpt1talwgye20" path="res://roll.gd" id="1_32hjg"]
 [ext_resource type="Script" uid="uid://bwcgvbhiu3ixp" path="res://put_roti_here.gd" id="3_48jdy"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c8idf0kmkxbra" path="res://SwapRotiStation.gd" id="8_ak4fk"]
 [ext_resource type="Texture2D" uid="uid://ctqdh8ivxtujf" path="res://Assets/rolling pin.png" id="8_j3jrc"]
 [ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="9_j3jrc"]
+[ext_resource type="Texture2D" uid="uid://256l0juu43v7" path="res://Assets/bkgds/rollbg2.png" id="10_v48tw"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vrgdt"]
 
@@ -19,6 +20,7 @@ radius = 50.01
 script = ExtResource("1_32hjg")
 
 [node name="takeOrderButton" type="Button" parent="."]
+z_index = 26
 offset_left = 926.0
 offset_top = 523.0
 offset_right = 1095.0
@@ -26,6 +28,7 @@ offset_bottom = 561.0
 text = "SPAWN DOUGH"
 
 [node name="pauseButton" type="Button" parent="."]
+z_index = 26
 offset_left = 954.0
 offset_top = 601.0
 offset_right = 1067.0
@@ -40,14 +43,14 @@ scale = Vector2(-246.364, 30.8728)
 texture = SubResource("CanvasTexture_vrgdt")
 
 [node name="rollingBoard" parent="." instance=ExtResource("6_32hjg")]
-position = Vector2(452, 408)
+position = Vector2(447, 444)
 scale = Vector2(1.75, 1.75)
 
 [node name="sidebar" parent="." instance=ExtResource("3_ft62e")]
 visible = false
 
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(452, 408)
+position = Vector2(447, 441)
 scale = Vector2(1.75, 1.75)
 script = ExtResource("3_48jdy")
 
@@ -78,7 +81,7 @@ polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -17
 
 [node name="RollingPin" type="Node2D" parent="."]
 z_index = 7
-position = Vector2(425, 242)
+position = Vector2(421, 271)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="RollingPin"]
@@ -101,7 +104,9 @@ scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_gk5yo")
 
 [node name="TrashCan" parent="." instance=ExtResource("9_j3jrc")]
-position = Vector2(772, 185)
+light_mask = 0
+z_index = 10
+position = Vector2(79, 542)
 
 [node name="spawnRoti" type="Button" parent="."]
 offset_left = 111.0
@@ -120,16 +125,22 @@ text = "Naan"
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 375.0
-offset_top = 533.0
-offset_right = 415.0
-offset_bottom = 573.0
+offset_left = 372.0
+offset_top = 573.0
+offset_right = 412.0
+offset_bottom = 613.0
 
 [node name="ProgressBar" type="ProgressBar" parent="Control"]
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 27.0
 show_percentage = false
+
+[node name="Rollbg2" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(405.25, 333)
+scale = Vector2(0.519712, 0.526563)
+texture = ExtResource("10_v48tw")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
