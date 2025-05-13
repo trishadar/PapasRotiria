@@ -97,16 +97,18 @@ func _on_ready() -> void:
 func customerEnter():
 	
 	var stop = false
-	for i in range(globalData.customerLoc.size()-1):
+	for i in range(-1, globalData.customerLoc.size()-1):
 		if (globalData.customerLoc[i+1] == 0 and stop == false):
 			await get_tree().create_timer(0.2).timeout
 			customer.position.x -= 150
 		else:
 			print("got blocked")
 			stop = true
-			globalData.customerLoc[i] = 1
-			customers[i] = customer
+			if (i >= 0):
+				globalData.customerLoc[i] = 1
+				customers[i] = customer
 	if (stop == false):
+		print("reached front")
 		stop = true
 		globalData.customerLoc[2] = 1
 		customers[2] = customer
@@ -142,7 +144,7 @@ func _process(delta):
 func spawnCustomer():
 	customer = customer_scene.instantiate()
 	add_child(customer)
-	customer.position.x = 500
+	customer.position.x = 700
 	customer.position.y = 430
 	var animationPlayer = customer.get_node("AnimationPlayer")
 	var randomNum = randi() %2
