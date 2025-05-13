@@ -13,6 +13,7 @@ var ticket_scene: PackedScene = preload("res://ticket.tscn")
 var canTakeOrder = false
 
 var viewingTicket = null
+var viewingTicketNode = null
 var allTickets = []
 var pendingTickets = []
 var storage = [0,0,0,0,0,0,0]

@@ -35,13 +35,11 @@ func _ready() -> void:
 	initial_scale = scale
 	set_process_input(true)
 
-func set_up(data, custT):
+func set_up(data):
 	ticketNumber.text = data.get("ticketNumber", "N/A")
 	dough.text = data.get("dough", "N/A")
 	curry.text = data.get("curry", "N/A")
 	timeNum = data.get("time", "N/A")
-	custType = custT
-	print_debug(custType)
 	var timeInstance = timer.instantiate()
 	add_child(timeInstance)
 	timeInstance.position = time.position + Vector2(75,40)
@@ -106,6 +104,7 @@ func move_to_side_box() -> void:
 		}
 		globalData.viewingTicket = ticket_data
 		globalSidebar.viewingTicketNode = self
+		globalData.viewingTicketNode = self
 		
 		# print("moved ticket to side")
 
@@ -122,6 +121,7 @@ func move_to_top() -> void:
 		# globalData.viewingTicket["position"] = Vector2(position.x, position.y)
 		globalData.viewingTicket = null
 		globalSidebar.viewingTicketNode = null
+		globalData.viewingTicketNode = null
 		# print("moved ticket to top")
 		
 func getStoragePos():
