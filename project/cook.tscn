@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cus2uri4avjoi"]
+[gd_scene load_steps=23 format=3 uid="uid://cus2uri4avjoi"]
 
 [ext_resource type="Script" uid="uid://8s3t3it0dyfn" path="res://cook.gd" id="1_6u6uf"]
 [ext_resource type="Texture2D" uid="uid://btqyf76iwxf3" path="res://Assets/Frying Pan on Stove.png" id="2_ciqc8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://j0msave456tf" path="res://Assets/Timer.png" id="8_3ltjv"]
 [ext_resource type="Texture2D" uid="uid://dflmb8rqy3wn8" path="res://Assets/TimerHand.png" id="9_o64d8"]
 [ext_resource type="PackedScene" uid="uid://d3ciqkisnm1fh" path="res://trash_can.tscn" id="10_o64d8"]
+[ext_resource type="Texture2D" uid="uid://cwuqig2mh6wif" path="res://Assets/bkgds/cookbg.png" id="12_centn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgwpa"]
 atlas = ExtResource("2_ciqc8")
@@ -78,7 +79,7 @@ radius = 50.01
 script = ExtResource("1_6u6uf")
 
 [node name="FryingPan1" type="CharacterBody2D" parent="."]
-position = Vector2(101, -466)
+position = Vector2(104, -374)
 scale = Vector2(1.3, 1.3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FryingPan1"]
@@ -119,7 +120,7 @@ scale = Vector2(1.001, 0.7)
 shape = SubResource("CircleShape2D_00dve")
 
 [node name="PutRotiHere" type="StaticBody2D" parent="." groups=["Droppable"]]
-position = Vector2(424, 189)
+position = Vector2(424, 280)
 script = ExtResource("3_t8dlq")
 
 [node name="Circle" type="Sprite2D" parent="PutRotiHere"]
@@ -165,7 +166,8 @@ visible = false
 polygon = PackedVector2Array(-192.609, -124.868, 55.9911, -124.868, 40.3136, -177.778, 197.089, -14.8148, 47.0325, 160.847, 62.71, 95.2382, -194.849, 95.2382, -76.1478, 42.3281, -33.5946, 52.9102, 13.4379, 50.7937, 62.71, 31.7461, 91.8253, 0, 91.8253, -38.0952, 67.1892, -71.9576, 8.95862, -95.238, -42.5532, -93.1217, -82.8667, -82.5397, -111.982, -61.3756, -129.899, -31.746, -127.66, -4.23279, -107.503, 25.3969, -78.3875, 42.3281, -194.849, 95.2382)
 
 [node name="CookTimer" parent="." instance=ExtResource("8_2x4bt")]
-position = Vector2(201, 208)
+z_index = 5
+position = Vector2(208, 228)
 scale = Vector2(0.3, 0.378)
 
 [node name="CookTimer2" type="Node2D" parent="."]
@@ -179,7 +181,13 @@ texture = ExtResource("8_3ltjv")
 texture = ExtResource("9_o64d8")
 
 [node name="TrashCan" parent="." instance=ExtResource("10_o64d8")]
-position = Vector2(768, 171)
+position = Vector2(737, 264)
+
+[node name="Cookbg" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(490, 328)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("12_centn")
 
 [connection signal="area_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_area_entered"]
 [connection signal="mouse_entered" from="SwapArrow/Area2D" to="SwapArrow/BigArrow" method="_on_area_2d_mouse_entered"]
