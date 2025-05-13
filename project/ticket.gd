@@ -49,7 +49,7 @@ func set_up(data):
 	scale = Vector2(1, 1) if position == side_box_position else Vector2(scale_factor, scale_factor)
 	
 	if (globalData.currentScene == "orderPresent"):
-		position = Vector2(344,430)
+		position = Vector2(340,440)
 		scale = Vector2(0.51, 0.51)
 		rotation = .08
 
