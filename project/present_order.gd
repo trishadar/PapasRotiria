@@ -10,7 +10,7 @@ extends Node2D
 
 var orderPos = Vector2(576, 323)
 @onready var platePosCurry = plate.global_position
-var platePosPresent = Vector2(5650, 478)
+var platePosPresent = Vector2(5650, 468)
 var customerPos = Vector2(5700, 350)
 
 var instance = null
@@ -33,7 +33,7 @@ func _on_go_back_button_pressed() -> void:
 	plate.z_index = 1
 
 func justOpened():
-	plate.scale = Vector2(.5,.5)
+	plate.scale = Vector2(.65,.65)
 	
 	instance = ticket_scene.instantiate()
 	add_child(instance)
@@ -68,20 +68,20 @@ func justOpened():
 	plate.z_index = 20
 	if(isRoti):
 		rotiHold.rotiOccupied.global_position = rotiHold.global_position
-		rotiHold.rotiOccupied.scale = Vector2(.5, .5)
+		rotiHold.rotiOccupied.scale = Vector2(.65, .65)
 		rotiHold.rotiOccupied.z_index = 21
 		rotiHold.rotiOccupied.remove_from_group("Droppable")
 	if(isBowl):
 		bowlHold.rotiOccupied.global_position = bowlHold.global_position
-		bowlHold.rotiOccupied.scale = Vector2(.1, .1)
+		bowlHold.rotiOccupied.scale = Vector2(.15, .15)
 		bowlHold.rotiOccupied.z_index = 21
 	if(isBowl2):
 		bowlHold2.rotiOccupied.global_position = bowlHold2.global_position
-		bowlHold2.rotiOccupied.scale = Vector2(.1, .1)
+		bowlHold2.rotiOccupied.scale = Vector2(.15, .15)
 		bowlHold2.rotiOccupied.z_index = 21
 	
-	globalData.totalScore += plate.rollScore + plate.cookScore + plate.curryScore
-	scoreLabel.text = "Roll Score = " + str(plate.rollScore) + "\nCook Score = " +  str(plate.cookScore) + "\nCurry Score = " + str(plate.curryScore) + "\nTotal Order Score = " + str(plate.rollScore + plate.cookScore + plate.curryScore) + "\nGame Score = " + str(globalData.totalScore)
+	globalData.totalScore += (plate.rollScore + plate.cookScore + plate.curryScore)
+	scoreLabel.text = "Roll Score = " + str(plate.rollScore) + "/100\nCook Score = " +  str(plate.cookScore) + "/250\nCurry Score = " + str(plate.curryScore) + "/150\nTotal Order Score = " + str(plate.rollScore + plate.cookScore + plate.curryScore) + "\nGame Score = " + str(globalData.totalScore)
 	plate.rollScore = 0
 	plate.cookScore = 0
 	plate.curryScore = 0

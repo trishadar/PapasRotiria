@@ -8,7 +8,6 @@ extends Node2D
 @onready var takeOrderButton = $takeOrderButton
 @onready var score = $score
 @onready var scoreLabel = $score/scoreLabel
-@onready var totalScoreLabel = $score/totalScoreLabel
 @onready var sidebar = $sidebar
 
 # @onready var customer = $customer
@@ -85,9 +84,7 @@ func _on_take_order_button_pressed() -> void:
 	
 	if (globalData.canTakeOrder == true and reachedTicketLimit() == false && custAtFront):
 		if (globalData.ticketOccupied == true):
-			# sidebar.moveTicket()
 			globalSidebar.moveTicket()
-		# sidebar.initial_spawn_scene()
 		globalSidebar.initial_spawn_scene(curCustType)
 		ticketSpawned = true
 		ticketDeleted = false
@@ -145,13 +142,6 @@ func _process(delta):
 	else:
 		takeOrderButton.text = " "
 	
-	if (globalData.orderFinished == true):
-		# print("Score: " + str(globalData.score))
-		scoreLabel.text = "Score: " + str(globalData.score)
-		totalScoreLabel.text = "Total Score: " + str(globalData.totalScore)
-		score.visible = true
-	else:
-		score.visible = false
 		
 func spawnCustomer():
 	customer = customer_scene.instantiate()
@@ -171,7 +161,3 @@ func spawnCustomer():
 	customerEnter(customerTypeR)
 	
 	
-func _on_score_exit_button_pressed() -> void:
-	score.visible = false
-	globalData.score = 0
-	globalData.orderFinished = false

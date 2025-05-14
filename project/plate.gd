@@ -42,4 +42,3 @@ func calculateScore():
 			curryScore += 50
 
 	
-	globalData.totalScore += rollScore + cookScore + curryScore

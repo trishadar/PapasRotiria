@@ -1,11 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://df6qbe7a8i3nw"]
+[gd_scene load_steps=4 format=3 uid="uid://df6qbe7a8i3nw"]
 
 [ext_resource type="Script" uid="uid://b60t24grpvux8" path="res://order.gd" id="1_vwbfx"]
 [ext_resource type="PackedScene" uid="uid://hsfseme0taar" path="res://sidebar.tscn" id="2_vdalh"]
-[ext_resource type="Texture2D" uid="uid://jg3enieqr28l" path="res://Assets/scoreExit.png" id="3_4o8cy"]
 [ext_resource type="Texture2D" uid="uid://b7uw0btjip71l" path="res://Assets/bkgds/orderBkgd2.png" id="5_8jx6t"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_vdalh"]
 
 [node name="order" type="Node2D"]
 script = ExtResource("1_vwbfx")
@@ -22,45 +19,6 @@ metadata/_edit_use_anchors_ = true
 [node name="sidebar" parent="." instance=ExtResource("2_vdalh")]
 visible = false
 
-[node name="score" type="Area2D" parent="."]
-z_index = 50
-
-[node name="scoreLabel" type="Label" parent="score"]
-offset_left = 91.0
-offset_top = 285.0
-offset_right = 770.0
-offset_bottom = 338.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "SCORE: "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="totalScoreLabel" type="Label" parent="score"]
-offset_left = 91.0
-offset_top = 335.0
-offset_right = 770.0
-offset_bottom = 384.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "TOTAL SCORE: "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="score"]
-z_index = -10
-position = Vector2(430, 335.5)
-scale = Vector2(676, 97)
-texture = SubResource("CanvasTexture_vdalh")
-
-[node name="scoreExitButton" type="Button" parent="score"]
-offset_left = 98.0
-offset_top = 294.0
-offset_right = 133.0
-offset_bottom = 328.0
-scale = Vector2(0.035, 0.035)
-icon = ExtResource("3_4o8cy")
-
 [node name="OrderBkgd" type="Sprite2D" parent="."]
 z_index = -200
 position = Vector2(452, 322)
@@ -69,4 +27,3 @@ texture = ExtResource("5_8jx6t")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="takeOrderButton" to="." method="_on_take_order_button_pressed"]
-[connection signal="pressed" from="score/scoreExitButton" to="." method="_on_score_exit_button_pressed"]
