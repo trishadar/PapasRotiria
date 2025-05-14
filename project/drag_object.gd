@@ -18,7 +18,6 @@ var isNaan
 var isRoti
 var roll
 
-
 func _process(delta):
 	if draggable:
 		if Input.is_action_just_pressed("click"):
