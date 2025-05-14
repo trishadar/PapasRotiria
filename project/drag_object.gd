@@ -38,18 +38,10 @@ func _process(delta):
 func _on_area_2d_mouse_entered():
 	if not globalData.is_roti_dragging && not globalData.is_bowl_dragging:
 		draggable = true
-		if(roll):
-			scale = Vector2(1.55, 1.55)
-		else:
-			scale = Vector2(1.05, 1.05)
 
 func _on_area_2d_mouse_exited():
 	if not globalData.is_roti_dragging && not globalData.is_bowl_dragging:
 		draggable = false
-		if(roll):
-			scale = Vector2(1.5, 1.5)
-		else:
-			scale = Vector2(1, 1)
 
 func _on_area_2d_body_entered(body:StaticBody2D):
 	if body.is_in_group('Droppable'):
