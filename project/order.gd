@@ -78,6 +78,7 @@ func _on_take_order_button_pressed() -> void:
 				globalData.customerLoc[i] = 1
 				globalData.customerLoc[i-1] = 0
 				cust.position.x -= 150
+				custAtFront = true
 					
 		for i in range(globalData.customerLoc.size()):
 			print(i , ": ", globalData.customerLoc[i])
