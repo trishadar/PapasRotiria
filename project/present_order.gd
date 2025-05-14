@@ -73,11 +73,15 @@ func justOpened():
 		rotiHold.rotiOccupied.remove_from_group("Droppable")
 	if(isBowl):
 		bowlHold.rotiOccupied.global_position = bowlHold.global_position
-		bowlHold.rotiOccupied.scale = Vector2(.15, .15)
+		bowlHold.rotiOccupied.scale = Vector2(.1, .1)
 		bowlHold.rotiOccupied.z_index = 21
 	if(isBowl2):
 		bowlHold2.rotiOccupied.global_position = bowlHold2.global_position
-		bowlHold2.rotiOccupied.scale = Vector2(.15, .15)
+		bowlHold2.rotiOccupied.scale = Vector2(.1, .1)
 		bowlHold2.rotiOccupied.z_index = 21
 	
-	scoreLabel.text = "Roll Score = " + str(plate.rollScore) + "\nCook Score = " +  str(plate.cookScore) + "\nCurry Score = " + str(plate.curryScore) + "\nTotal Order Score = " + str(plate.rollScore + plate.cookScore + plate.curryScore)
+	globalData.totalScore += plate.rollScore + plate.cookScore + plate.curryScore
+	scoreLabel.text = "Roll Score = " + str(plate.rollScore) + "\nCook Score = " +  str(plate.cookScore) + "\nCurry Score = " + str(plate.curryScore) + "\nTotal Order Score = " + str(plate.rollScore + plate.cookScore + plate.curryScore) + "\nGame Score = " + str(globalData.totalScore)
+	plate.rollScore = 0
+	plate.cookScore = 0
+	plate.curryScore = 0

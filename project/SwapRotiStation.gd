@@ -8,6 +8,7 @@ extends Sprite2D
 @onready var whichScene
 @onready var useThisHolder
 @onready var goesToHold
+var Scale
 
 var mouseEnt = 0
 var mouseEx = 0
@@ -55,7 +56,10 @@ func _ready():
 		whichScene = "roll"
 		useThisHolder = rollToCookHolder
 		goesToHold = rawRotiCookHold
+		Scale = Vector2(1,1)
+		
 	if(pos.x >= 2560 && pos.x <= 3730):
 		whichScene = "cook"
 		useThisHolder = cookToCurryHolder
 		goesToHold = cookedCurryHold
+		Scale = Vector2(.85,.85)

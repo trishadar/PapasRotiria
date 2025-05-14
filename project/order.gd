@@ -32,6 +32,7 @@ var ticketSpawned = false
 var ticketDeleted = false
 var curCustomer = null
 var curCustType = null
+var custAtFront = false
 
 var customers = [null,null,null]
 var custTypes = [null, null, null]
@@ -81,7 +82,7 @@ func _on_take_order_button_pressed() -> void:
 		for i in range(globalData.customerLoc.size()):
 			print(i , ": ", globalData.customerLoc[i])
 	
-	if (globalData.canTakeOrder == true and reachedTicketLimit() == false):
+	if (globalData.canTakeOrder == true and reachedTicketLimit() == false && custAtFront):
 		if (globalData.ticketOccupied == true):
 			# sidebar.moveTicket()
 			globalSidebar.moveTicket()
@@ -92,6 +93,7 @@ func _on_take_order_button_pressed() -> void:
 		takeOrderButton.text = " "
 		globalData.canTakeOrder = false	
 		globalData.removeTicket()
+		custAtFront = true
 		
 func reachedTicketLimit():
 	if (globalData.ticketCount >= 7):
@@ -121,7 +123,7 @@ func customerEnter(rCust):
 		globalData.customerLoc[2] = 1
 		customers[2] = customer
 		custTypes[2] = rCust
-				
+		custAtFront = true
 				
 
 	
@@ -136,7 +138,7 @@ func _process(delta):
 		sidebar.remove_scene()
 		ticketDeleted = true
 
-	if globalData.canTakeOrder == true:
+	if globalData.canTakeOrder == true && custAtFront:
 		takeOrderButton.text = "TAKE ORDER"
 		
 	else:
