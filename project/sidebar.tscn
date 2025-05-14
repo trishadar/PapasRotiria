@@ -47,10 +47,10 @@ icon = ExtResource("4_c1lln")
 metadata/_edit_use_anchors_ = true
 
 [node name="orderButton" type="Button" parent="."]
-offset_left = 860.0
+offset_left = 858.0
 offset_top = 12.0
-offset_right = 922.0
-offset_bottom = 75.0
+offset_right = 2146.0
+offset_bottom = 1300.0
 scale = Vector2(0.048, 0.048)
 icon = ExtResource("5_ysgnd")
 metadata/_edit_use_anchors_ = true
