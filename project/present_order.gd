@@ -6,11 +6,12 @@ extends Node2D
 @onready var plate = curry.get_node("Plate")
 @onready var ticket_scene: PackedScene = preload("res://ticket.tscn")
 @onready var customer_scene: PackedScene = preload("res://customer.tscn")
+@onready var scoreLabel = get_node("ScoreLabel")
 
 var orderPos = Vector2(576, 323)
 @onready var platePosCurry = plate.global_position
-var platePosPresent = Vector2(4416 + 1500, 323)
-var customerPos = Vector2(5616, 300)
+var platePosPresent = Vector2(5650, 450)
+var customerPos = Vector2(5650, 350)
 
 var instance = null
 var customerInst
@@ -21,6 +22,8 @@ func _on_go_back_button_pressed() -> void:
 	plate.global_position = platePosCurry
 	globalData.orderFinished = false
 	
+	plate.scale = Vector2(1,1)
+	
 	remove_child(customerInst)
 	customerInst = null
 	remove_child(instance)
@@ -29,6 +32,7 @@ func _on_go_back_button_pressed() -> void:
 	curry.clearPlate()
 
 func justOpened():
+	plate.scale = Vector2(.5,.5)
 	
 	instance = ticket_scene.instantiate()
 	add_child(instance)
@@ -37,6 +41,7 @@ func justOpened():
 	customerInst = customer_scene.instantiate()
 	add_child(customerInst)
 	customerInst.global_position = customerPos
+	customerInst.scale = Vector2(1.3,1.3)
 	var animationPlayer = customerInst.get_node("AnimationPlayer")
 	
 	if(globalData.viewingTicketNode.custType == "rithika"):
@@ -60,8 +65,13 @@ func justOpened():
 	
 	plate.global_position = platePosPresent
 	if(isRoti):
-		rotiHold.rotiOccupied.global_position = rotiHold.global_position 
+		rotiHold.rotiOccupied.global_position = rotiHold.global_position
+		rotiHold.rotiOccupied.scale = Vector2(.15, .15)
 	if(isBowl):
 		bowlHold.rotiOccupied.global_position = bowlHold.global_position
+		bowlHold.rotiOccupied.scale = Vector2(.15, .15)
 	if(isBowl2):
 		bowlHold2.rotiOccupied.global_position = bowlHold2.global_position
+		bowlHold2.rotiOccupied.scale = Vector2(.15, .15)
+	
+	scoreLabel.text = "Roll Score = " + str(plate.rollScore) + "\nCook Score = " +  str(plate.cookScore) + "\nCurry Score = " + str(plate.curryScore) + "\nTotal Order Score = " + str(plate.rollScore + plate.cookScore + plate.curryScore)
