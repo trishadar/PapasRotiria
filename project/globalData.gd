@@ -37,6 +37,9 @@ var orderScript: Node
 var recentTicket = null
 
 func _ready() -> void:
+	pass
+	
+func gameStart():
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
